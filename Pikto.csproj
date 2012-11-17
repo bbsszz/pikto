@@ -69,6 +69,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RecognitionPath\ArrayImage.cs" />
+    <Compile Include="RecognitionPath\DiscretizationModule\DiscretizationModule.cs" />
+    <Compile Include="RecognitionPath\IImage.cs" />
+    <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
+    <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +132,9 @@
     <Content Include="EmguCV\opencv_video231.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
