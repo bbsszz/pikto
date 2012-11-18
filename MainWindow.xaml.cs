@@ -16,6 +16,7 @@ using Emgu.CV.UI;
 using Emgu.CV.Structure;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
+
 namespace Pikto
 {
     /// <summary>
@@ -23,6 +24,8 @@ namespace Pikto
     /// </summary>
     public partial class MainWindow : Window
     {
+        //public delegate void EventHandler(object sender, CameraEventArgs e);
+
         private DispatcherTimer timer;
         MarkerDetector md;
         Capture c;
@@ -37,6 +40,19 @@ namespace Pikto
 
         }
 
+        private void displayImage(object s, CameraEventArgs e)
+        {
+            cameraImage.Source = Camera.ToBitmapSource(e.Image);
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+
+            Camera camera = new Camera();
+
+            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
+        }
+
         private void TimerHandler(object sender, EventArgs e)
         {
             md.findMarkers(c.QueryGrayFrame());
@@ -49,9 +65,7 @@ namespace Pikto
             
         }
 
-        
-
-        private void button1_Click(object sender, RoutedEventArgs e)
+        /*private void button1_Click(object sender, RoutedEventArgs e)
         {
            timer = new DispatcherTimer();
             timer.Interval = System.TimeSpan.FromMilliseconds(25);
@@ -59,7 +73,7 @@ namespace Pikto
             timer.Start(); 
             v.Show();
            
-        }
+        }*/
 
     }
 }

@@ -82,6 +82,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Camera.cs" />
+    <Compile Include="CameraEventArgs.cs" />
     <Compile Include="EmguTools.cs" />
     <Compile Include="ExtendContour.cs" />
     <Compile Include="MainWindow.xaml.cs">
