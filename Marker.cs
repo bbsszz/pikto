@@ -7,7 +7,11 @@ using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using Emgu.Util;
 using System.Drawing;
+<<<<<<< HEAD
 namespace Pikto
+=======
+namespace Cap
+>>>>>>> bebfd0a5ec7bda0f9264a272afb72e6b59e6636e
 {
 
     class Marker
