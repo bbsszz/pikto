@@ -21,12 +21,25 @@ namespace AdaptiveResonanceTheory1
 			this.attentionalSubsystem = attentionalSubsystem;
 		}
 
-		public int Present(float[] input, bool forceLearning = false)
+		public int Present(IEnumerable<float> input, bool forceLearning = false)
 		{
-			Contract.Requires<ArgumentException>(input.Length == attentionalSubsystem.InputSize, "Length of the input vector is invalid.");
-			Contract.Requires<ArgumentException>(Contract.ForAll<float>(input, new Predicate<float>(x => x == 1f || x == 0f)), "Input vector contains invalid elements. Only '0' and '1' are allowed.");
+			//Contract.Requires<ArgumentException>(input.Length == attentionalSubsystem.InputSize, "Length of the input vector is invalid.");
+			//Contract.Requires<ArgumentException>(Contract.ForAll<float>(input, new Predicate<float>(x => x == 1f || x == 0f)), "Input vector contains invalid elements. Only '0' and '1' are allowed.");
 
 			return attentionalSubsystem.ProcessData(input, forceLearning);
 		}
+
+		public override string ToString()
+		{
+			StringBuilder builder = new StringBuilder("ART1 [");
+			builder.Append("Input size: ");
+			builder.Append(attentionalSubsystem.InputSize);
+			builder.Append(", Clusters: ");
+			builder.Append(attentionalSubsystem.ClustersCount);
+			builder.Append(", Vigilance: ");
+			builder.Append(attentionalSubsystem.Vigilance);
+			builder.Append("]");
+			return builder.ToString();
+		}
 	}
 }

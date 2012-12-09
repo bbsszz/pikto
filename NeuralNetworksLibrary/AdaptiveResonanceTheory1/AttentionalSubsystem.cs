@@ -13,19 +13,15 @@ namespace AdaptiveResonanceTheory1
 		private InputLayer inputLayer;
 		private OutputLayer outputLayer;
 
-		private float vigilance;
+		public int InputSize { get { return inputLayer.Size; } }
+
+		public int ClustersCount { get { return outputLayer.Size; } }
 
 		public float Vigilance
 		{
-			get { return vigilance; }
-			set
-			{
-				Contract.Requires<ArgumentOutOfRangeException>(0f < value && value < 1f, "Vigilance parameter must be in (0,1) range.");
-				vigilance = value;
-			}
+			get { return orientingSubsystem.Vigilance; }
+			set { orientingSubsystem.Vigilance = value; }
 		}
-
-		public int InputSize { get { return inputLayer.Size; } }
 
 		public AttentionalSubsystem(OrientingSubsystem orientingSubsystem, InputLayer inputLayer, OutputLayer outputLayer)
 		{
@@ -37,7 +33,7 @@ namespace AdaptiveResonanceTheory1
 		public int ProcessData(IEnumerable<float> data, bool forceLearning)
 		{
 			int winner;
-			if (forceLearning)
+			if (forceLearning || outputLayer.Size == 0)
 			{
 				// additional conditions could be checked to avoid weird cluster addition
 				winner = outputLayer.AddNeuron(data);
@@ -54,7 +50,7 @@ namespace AdaptiveResonanceTheory1
 					// TODO adjust weights...
 					winner = outputLayer.Winner;
 				}
-				catch (Exception e)
+				catch (OutOfNeuronsException)
 				{
 					winner = outputLayer.AddNeuron(data);
 				}
@@ -66,6 +62,7 @@ namespace AdaptiveResonanceTheory1
 		private void PrepareProcess(IEnumerable<float> data)
 		{
 			orientingSubsystem.InputData = data;
+			orientingSubsystem.Initialize();
 			outputLayer.Initialize();
 		}
 

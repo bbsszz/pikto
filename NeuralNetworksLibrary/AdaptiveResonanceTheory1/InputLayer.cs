@@ -22,8 +22,8 @@ namespace AdaptiveResonanceTheory1
 			IEnumerator<float> input = data.GetEnumerator();
 			foreach (var neuron in neurons)
 			{
-				neuron.Activate(input.Current);
 				input.MoveNext();
+				neuron.Activate(input.Current);
 			}
 		}
 

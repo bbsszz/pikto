@@ -14,5 +14,10 @@ namespace AdaptiveResonanceTheory1
 		{
 			Source = source;
 		}
+
+		public override string ToString()
+		{
+			return "W: " + Weight;
+		}
 	}
 }

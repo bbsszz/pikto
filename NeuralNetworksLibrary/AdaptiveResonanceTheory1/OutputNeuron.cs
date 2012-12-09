@@ -30,5 +30,18 @@ namespace AdaptiveResonanceTheory1
 		{
 			CurrentInput = 0f;
 		}
+
+		public override string ToString()
+		{
+			StringBuilder builder = new StringBuilder("Cs [");
+			foreach (var connection in connections)
+			{
+				builder.Append(connection.Weight);
+				builder.Append(", ");
+			}
+			builder.Remove(builder.Length - 2, 2);
+			builder.Append("]");
+			return builder.ToString();
+		}
 	}
 }

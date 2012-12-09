@@ -12,7 +12,7 @@ namespace AdaptiveResonanceTheory1
 
 		private static ART1Builder instance;
 
-		public ART1Builder Instance
+		public static ART1Builder Instance
 		{
 			get
 			{
@@ -39,6 +39,7 @@ namespace AdaptiveResonanceTheory1
 			OutputLayer outputLayer = outputLayerBuilder.Build(initialClusterCount);
 
 			OrientingSubsystem orientingSubsystem = new OrientingSubsystem(inputLayer, outputLayer);
+			orientingSubsystem.Vigilance = vigilance;
 			AttentionalSubsystem attentionalSubsystem = new AttentionalSubsystem(orientingSubsystem, inputLayer, outputLayer);
 
 			ART1 network = new ART1(attentionalSubsystem);

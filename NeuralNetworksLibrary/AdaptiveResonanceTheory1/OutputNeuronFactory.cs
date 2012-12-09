@@ -35,13 +35,14 @@ namespace AdaptiveResonanceTheory1
 		public OutputNeuron Create(IEnumerable<float> data)
 		{
 			IEnumerator<float> enumerator = data.GetEnumerator();
+			float sum = data.Sum();
 			return Create(
 				() =>
-					L / (L - 1f + data.Sum()),
+					L / (L - 1f + sum),
 				delegate()
 				{
-					float val = enumerator.Current;
 					enumerator.MoveNext();
+					float val = enumerator.Current;
 					return val;
 				}
 				);
@@ -65,7 +66,7 @@ namespace AdaptiveResonanceTheory1
 				inputNeuron.AddConnection(connection);
 			}
 
-			return new OutputNeuron(connections);
+			return neuron;
 		}
 	}
 }

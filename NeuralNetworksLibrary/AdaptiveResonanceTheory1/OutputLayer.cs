@@ -10,66 +10,60 @@ namespace AdaptiveResonanceTheory1
 		private OutputNeuronFactory outputNeuronFactory;
 		private IList<OutputNeuron> neurons;
 
-		private OutputNeuron winner;
-		private int winnerI;
+		private bool firstRun;
 
-		private int blocked;
-
-		public int Winner { get { return winnerI/*neurons.IndexOf(winner)*/; } }
+		public int Winner { get; private set; }
+		public int Size { get { return neurons.Count; } }
 
 		public OutputLayer(
 			OutputNeuronFactory outputNeuronFactory,
 			IList<OutputNeuron> neurons,
 			int initialClusterCount = 0)
 		{
+			this.outputNeuronFactory = outputNeuronFactory;
 			this.neurons = neurons;
+			Winner = neurons.Count - 1;
 		}
 
 		public void Initialize()
 		{
-			blocked = 0;
+			firstRun = true;
 		}
 
 		public void Compute()
 		{
-			if (blocked == 0)
+			if (firstRun)
 			{
 				foreach (var neuron in neurons)
 				{
 					neuron.Compute();
 				}
+				firstRun = false;
 			}
 			ChooseWinner();
 		}
 
 		private void ChooseWinner()
 		{
-			winnerI = 0;
-			winner = neurons[0];
 			for (int i = 0; i < neurons.Count; ++i)
 			{
-				if (neurons[i].CurrentInput > winner.CurrentInput)
+				if (neurons[i].CurrentInput > neurons[Winner].CurrentInput)
 				{
-					winnerI = i;
-					winner = neurons[i];
+					Winner = i;
 				}
 			}
 		}
 
 		public void BlockWinner()
 		{
-			if (blocked == neurons.Count)
-			{
-				throw new Exception("Run out of clustering neurons.");
-			}
-			winner.Block();
-			++blocked;
+			neurons[Winner].Block();
 		}
 
 		public int AddNeuron(IEnumerable<float> data)
 		{
 			neurons.Add(outputNeuronFactory.Create(data));
-			return neurons.Count - 1;
+			Winner = neurons.Count - 1;
+			return Winner;
 		}
 	}
 }
