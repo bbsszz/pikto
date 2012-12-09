@@ -7,13 +7,15 @@ namespace AdaptiveResonanceTheory1
 {
 	class InputLayer : IEnumerable<float>
 	{
-		private OutputLayer outputLayer;
-		private OrientingSubsystem orientingSubsystem;
-
 		private IList<InputNeuron> neurons;
 
 		public int Size { get { return neurons.Count; } }
 		public IEnumerable<InputNeuron> Neurons { get { return neurons; } }
+
+		public InputLayer(IList<InputNeuron> neurons)
+		{
+			this.neurons = neurons;
+		}
 
 		public void Activate(IEnumerable<float> data)
 		{
@@ -23,7 +25,6 @@ namespace AdaptiveResonanceTheory1
 				neuron.Activate(input.Current);
 				input.MoveNext();
 			}
-			outputLayer.Compute();
 		}
 
 		public void Compute(int winner)

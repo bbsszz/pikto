@@ -7,16 +7,23 @@ namespace AdaptiveResonanceTheory1
 {
 	class OutputLayer
 	{
-		private const float L = 4f;
-
-		//private GainController gainController;
-		private InputLayer inputLayer;
-
+		private OutputNeuronFactory outputNeuronFactory;
 		private IList<OutputNeuron> neurons;
+
 		private OutputNeuron winner;
+		private int winnerI;
+
 		private int blocked;
 
-		public int Winner { get { return neurons.IndexOf(winner); } }
+		public int Winner { get { return winnerI/*neurons.IndexOf(winner)*/; } }
+
+		public OutputLayer(
+			OutputNeuronFactory outputNeuronFactory,
+			IList<OutputNeuron> neurons,
+			int initialClusterCount = 0)
+		{
+			this.neurons = neurons;
+		}
 
 		public void Initialize()
 		{
@@ -32,14 +39,12 @@ namespace AdaptiveResonanceTheory1
 					neuron.Compute();
 				}
 			}
-			int winner = ChooseWinner();
-			//gainController.Block();
-			inputLayer.Compute(winner);
+			ChooseWinner();
 		}
 
-		private int ChooseWinner()
+		private void ChooseWinner()
 		{
-			int winnerI = 0;
+			winnerI = 0;
 			winner = neurons[0];
 			for (int i = 0; i < neurons.Count; ++i)
 			{
@@ -49,7 +54,6 @@ namespace AdaptiveResonanceTheory1
 					winner = neurons[i];
 				}
 			}
-			return winnerI;
 		}
 
 		public void BlockWinner()
@@ -64,25 +68,7 @@ namespace AdaptiveResonanceTheory1
 
 		public int AddNeuron(IEnumerable<float> data)
 		{
-			IList<Connection> connections = new List<Connection>(inputLayer.Size);
-			float sum = data.Sum();
-			foreach (var inputNeuron in inputLayer.Neurons)
-			{
-				Connection connection = new Connection(inputNeuron);
-				connection.Weight = L / (L - 1f + sum);
-				connections.Add(connection);
-			}
-
-			OutputNeuron neuron = new OutputNeuron(connections); // move it to a factory
-			foreach (var inputNeuron in inputLayer.Neurons)
-			{
-				Connection connection = new Connection(neuron);
-				connection.Weight = 1f;
-				inputNeuron.AddConnection(connection);
-			}
-
-			neurons.Add(neuron);
-
+			neurons.Add(outputNeuronFactory.Create(data));
 			return neurons.Count - 1;
 		}
 	}

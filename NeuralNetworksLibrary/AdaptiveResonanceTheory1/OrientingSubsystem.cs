@@ -7,12 +7,19 @@ namespace AdaptiveResonanceTheory1
 {
 	class OrientingSubsystem
 	{
-		private OutputLayer outputlayer;
+		private OutputLayer outputLayer;
 
 		public IEnumerable<float> InputData { private get; set; }
-		public IEnumerable<float> InputFromInputLayer { private get; set; }
+
+		private IEnumerable<float> inputFromInputLayer;
 
 		public float Vigilance { private get; set; }
+
+		public OrientingSubsystem(InputLayer inputLayer, OutputLayer outputLayer)
+		{
+			this.inputFromInputLayer = inputLayer;
+			this.outputLayer = outputLayer;
+		}
 
 		public bool CheckResemblance()
 		{
@@ -29,7 +36,7 @@ namespace AdaptiveResonanceTheory1
 
 		private float ComputeResemblance()
 		{
-			IEnumerable<float> mlt = Enumerable.Zip<float, float, float>(InputData, InputFromInputLayer, (x1, x2) => 1f - x1 - x2 + 2f * x1 * x2);
+			IEnumerable<float> mlt = Enumerable.Zip<float, float, float>(InputData, inputFromInputLayer, (x1, x2) => 1f - x1 - x2 + 2f * x1 * x2);
 			float common = 0f;
 			foreach (var item in mlt)
 			{
@@ -40,7 +47,7 @@ namespace AdaptiveResonanceTheory1
 
 		private void Reset()
 		{
-			outputlayer.BlockWinner();
+			outputLayer.BlockWinner();
 		}
 	}
 }
