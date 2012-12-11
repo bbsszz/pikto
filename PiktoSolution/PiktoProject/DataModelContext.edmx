@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="piktoModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="piktoModelStoreContainer">
+          <EntitySet Name="categories" EntityType="piktoModel.Store.categories" store:Type="Tables" />
+          <EntitySet Name="cluster_bt" EntityType="piktoModel.Store.cluster_bt" store:Type="Tables" />
+          <EntitySet Name="cluster_tb" EntityType="piktoModel.Store.cluster_tb" store:Type="Tables" />
+          <EntitySet Name="map" EntityType="piktoModel.Store.map" store:Type="Tables" store:Name="map">
+            <DefiningQuery>SELECT 
+      [map].[old] AS [old], 
+      [map].[new] AS [new]
+      FROM [map] AS [map]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="piktogramy" EntityType="piktoModel.Store.piktogramy" store:Type="Tables" />
+          <AssociationSet Name="FK_cluster_bt_0_0" Association="piktoModel.Store.FK_cluster_bt_0_0">
+            <End Role="piktogramy" EntitySet="piktogramy" />
+            <End Role="cluster_bt" EntitySet="cluster_bt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cluster_tb_0_0" Association="piktoModel.Store.FK_cluster_tb_0_0">
+            <End Role="piktogramy" EntitySet="piktogramy" />
+            <End Role="cluster_tb" EntitySet="cluster_tb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_piktogramy_0_0" Association="piktoModel.Store.FK_piktogramy_0_0">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="piktogramy" EntitySet="piktogramy" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="cluster_bt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" />
+          <Property Name="class" Type="integer" />
+          <Property Name="weight" Type="float" />
+        </EntityType>
+        <EntityType Name="cluster_tb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" />
+          <Property Name="class" Type="integer" />
+          <Property Name="weight" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.map' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="map">
+          <Key>
+            <PropertyRef Name="old" />
+          </Key>
+          <Property Name="old" Type="integer" Nullable="false" />
+          <Property Name="new" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="piktogramy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" />
+          <Property Name="name" Type="nvarchar" />
+          <Property Name="image" Type="blob" />
+          <Property Name="category_id" Type="integer" />
+        </EntityType>
+        <Association Name="FK_cluster_bt_0_0">
+          <End Role="piktogramy" Type="piktoModel.Store.piktogramy" Multiplicity="0..1" />
+          <End Role="cluster_bt" Type="piktoModel.Store.cluster_bt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="piktogramy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cluster_bt">
+              <PropertyRef Name="class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cluster_tb_0_0">
+          <End Role="piktogramy" Type="piktoModel.Store.piktogramy" Multiplicity="0..1" />
+          <End Role="cluster_tb" Type="piktoModel.Store.cluster_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="piktogramy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cluster_tb">
+              <PropertyRef Name="class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_piktogramy_0_0">
+          <End Role="categories" Type="piktoModel.Store.categories" Multiplicity="0..1" />
+          <End Role="piktogramy" Type="piktoModel.Store.piktogramy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="piktogramy">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="piktoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="piktoDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="piktoModel.category" />
+          <EntitySet Name="cluster_bt" EntityType="piktoModel.cluster_bt" />
+          <EntitySet Name="cluster_tb" EntityType="piktoModel.cluster_tb" />
+          <EntitySet Name="maps" EntityType="piktoModel.map" />
+          <EntitySet Name="piktogramies" EntityType="piktoModel.piktogramy" />
+          <AssociationSet Name="FK_piktogramy_0_0" Association="piktoModel.FK_piktogramy_0_0">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="piktogramy" EntitySet="piktogramies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cluster_bt_0_0" Association="piktoModel.FK_cluster_bt_0_0">
+            <End Role="piktogramy" EntitySet="piktogramies" />
+            <End Role="cluster_bt" EntitySet="cluster_bt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cluster_tb_0_0" Association="piktoModel.FK_cluster_tb_0_0">
+            <End Role="piktogramy" EntitySet="piktogramies" />
+            <End Role="cluster_tb" EntitySet="cluster_tb" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="piktogramies" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="categories" ToRole="piktogramy" />
+        </EntityType>
+        <EntityType Name="cluster_bt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="class" Type="Int64" />
+          <Property Name="weight" Type="Double" />
+          <NavigationProperty Name="piktogramy" Relationship="piktoModel.FK_cluster_bt_0_0" FromRole="cluster_bt" ToRole="piktogramy" />
+        </EntityType>
+        <EntityType Name="cluster_tb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="class" Type="Int64" />
+          <Property Name="weight" Type="Boolean" />
+          <NavigationProperty Name="piktogramy" Relationship="piktoModel.FK_cluster_tb_0_0" FromRole="cluster_tb" ToRole="piktogramy" />
+        </EntityType>
+        <EntityType Name="map">
+          <Key>
+            <PropertyRef Name="old" />
+          </Key>
+          <Property Name="old" Type="Int64" Nullable="false" />
+          <Property Name="new" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="piktogramy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="image" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="category_id" Type="Int64" />
+          <NavigationProperty Name="category" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="piktogramy" ToRole="categories" />
+          <NavigationProperty Name="cluster_bt" Relationship="piktoModel.FK_cluster_bt_0_0" FromRole="piktogramy" ToRole="cluster_bt" />
+          <NavigationProperty Name="cluster_tb" Relationship="piktoModel.FK_cluster_tb_0_0" FromRole="piktogramy" ToRole="cluster_tb" />
+        </EntityType>
+        <Association Name="FK_piktogramy_0_0">
+          <End Role="categories" Type="piktoModel.category" Multiplicity="0..1" />
+          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="piktogramy">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cluster_bt_0_0">
+          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="0..1" />
+          <End Role="cluster_bt" Type="piktoModel.cluster_bt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="piktogramy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cluster_bt">
+              <PropertyRef Name="class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cluster_tb_0_0">
+          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="0..1" />
+          <End Role="cluster_tb" Type="piktoModel.cluster_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="piktogramy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cluster_tb">
+              <PropertyRef Name="class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="piktoModelStoreContainer" CdmEntityContainer="piktoDB">
+          <EntitySetMapping Name="categories"><EntityTypeMapping TypeName="piktoModel.category"><MappingFragment StoreEntitySet="categories">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="cluster_bt"><EntityTypeMapping TypeName="piktoModel.cluster_bt"><MappingFragment StoreEntitySet="cluster_bt">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="class" ColumnName="class" />
+            <ScalarProperty Name="weight" ColumnName="weight" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="cluster_tb"><EntityTypeMapping TypeName="piktoModel.cluster_tb"><MappingFragment StoreEntitySet="cluster_tb">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="class" ColumnName="class" />
+            <ScalarProperty Name="weight" ColumnName="weight" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="maps"><EntityTypeMapping TypeName="piktoModel.map"><MappingFragment StoreEntitySet="map">
+            <ScalarProperty Name="old" ColumnName="old" />
+            <ScalarProperty Name="new" ColumnName="new" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="piktogramies"><EntityTypeMapping TypeName="piktoModel.piktogramy"><MappingFragment StoreEntitySet="piktogramy">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="image" ColumnName="image" />
+            <ScalarProperty Name="category_id" ColumnName="category_id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DataModelContext">
+        <EntityTypeShape EntityType="piktoModel.category" Width="1.5" PointX="0.75" PointY="2.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="piktoModel.cluster_bt" Width="1.5" PointX="5.25" PointY="1" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="piktoModel.cluster_tb" Width="1.5" PointX="5.25" PointY="3.625" Height="1.7879850260416661" IsExpanded="true" />
+        <EntityTypeShape EntityType="piktoModel.map" Width="1.5" PointX="0.75" PointY="5.75" Height="1.4033821614583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="piktoModel.piktogramy" Width="1.5" PointX="3" PointY="2" Height="2.3648893229166674" IsExpanded="true" />
+        <AssociationConnector Association="piktoModel.FK_piktogramy_0_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.172841796875" />
+          <ConnectorPoint PointX="3" PointY="3.172841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="piktoModel.FK_cluster_bt_0_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.3939925130208337" />
+          <ConnectorPoint PointX="5.25" PointY="2.3939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="piktoModel.FK_cluster_tb_0_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="3.9949446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="3.9949446614583337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
