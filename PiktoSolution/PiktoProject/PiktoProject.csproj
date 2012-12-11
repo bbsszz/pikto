@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdaptiveResonanceTheory1">
+      <HintPath>..\..\Libs\AdaptiveResonanceTheory1.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV, Version=2.3.0.1416, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>EmguCV\Emgu.CV.dll</HintPath>
@@ -70,6 +73,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="RecognitionPath\ArrayImage.cs" />
+    <Compile Include="RecognitionPath\Classifier\ART1PictogramClassifier.cs" />
+    <Compile Include="RecognitionPath\Classifier\IPictogramClassifier.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\DiscretizationModule.cs" />
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />

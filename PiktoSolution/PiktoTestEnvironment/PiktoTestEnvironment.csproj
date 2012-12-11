@@ -79,7 +79,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pikto\PiktoProject.csproj">
+    <ProjectReference Include="..\PiktoProject\PiktoProject.csproj">
       <Project>{C7005F15-6920-4A77-8BBC-F4CDD011026C}</Project>
       <Name>PiktoProject</Name>
     </ProjectReference>
