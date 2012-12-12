@@ -39,5 +39,15 @@ namespace Pikto
             for (int i = 0; i < c.Count; i++)
                 img.Draw(c.ElementAt(i), new Bgr(0,255,255), 1);
         }
+        static public void draw3LineFromList(Image<Bgr, Byte> img, List<Point> l)
+        {
+            LineSegment2D line1 = new LineSegment2D(l[0], l[1]);
+            LineSegment2D line2 = new LineSegment2D(l[2], l[3]);
+            LineSegment2D line3 = new LineSegment2D(l[4], l[5]);
+            img.Draw(line1, new Bgr(255, 0, 0), 3);
+            img.Draw(line2, new Bgr(0, 255, 0), 3);
+            img.Draw(line3, new Bgr(0, 0, 255), 3);
+        }
+
     }
 }

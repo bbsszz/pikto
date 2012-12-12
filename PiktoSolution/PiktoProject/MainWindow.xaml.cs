@@ -28,52 +28,49 @@ namespace Pikto
 
         private DispatcherTimer timer;
         MarkerDetector md;
-        Capture c;
         ImageViewer v;
+        Position3DForm.FormInfoPosition f;
+        Position3D pos;
         Image<Bgr, Byte> img;
         public MainWindow()
         {
             InitializeComponent();
             md = new MarkerDetector();
-            c = new Capture();
             v = new ImageViewer();
-
+            pos = new Position3D();
+            f = new Position3DForm.FormInfoPosition();
+            f.setModelPoints(pos.modelPoints);
         }
 
         private void displayImage(object s, CameraEventArgs e)
         {
-            cameraImage.Source = Camera.ToBitmapSource(e.Image);
+            md.findMarkers(e.Image.Convert<Gray, Byte>());
+            img = e.Image;
+            if (md.getMarkerCount() == 1)
+            {
+                EmguTools.draw4ContourAndCircle(img,
+                    md.getMarkers().First().getContourExternal());
+                pos.estimate(md.getMarkers().First());
+                f.setImagePoint(pos.imagePoints);
+                f.setTransformatinMatrix(pos.getTransformatinMatrix());
+                f.setEstymationLabel(pos.estimatedYaw,
+                    pos.estimatedPitch, pos.estimatedRoll);
+                EmguTools.draw3LineFromList(img,pos.getPointList(320,240));
+
+            }
+           
+            cameraImage.Source = Camera.ToBitmapSource(img);
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
 
             Camera camera = new Camera();
-
+            f.Show();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
 
-        private void TimerHandler(object sender, EventArgs e)
-        {
-            md.findMarkers(c.QueryGrayFrame());
-            img = c.QueryFrame();
-            if (md.getMarkerCount() == 1) {
-                EmguTools.draw4ContourAndCircle(img, 
-                    md.getMarkers().First().getContourExternal());
-          }
-            v.Image = img;
-            
-        }
-
-        /*private void button1_Click(object sender, RoutedEventArgs e)
-        {
-           timer = new DispatcherTimer();
-            timer.Interval = System.TimeSpan.FromMilliseconds(25);
-            timer.Tick += new EventHandler(TimerHandler);
-            timer.Start(); 
-            v.Show();
-           
-        }*/
+     
 
     }
 }

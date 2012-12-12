@@ -36,6 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.4.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Framework\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.4.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Framework\Release\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="AdaptiveResonanceTheory1">
       <HintPath>..\..\Libs\AdaptiveResonanceTheory1.dll</HintPath>
     </Reference>
@@ -72,6 +80,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Position3D.cs" />
+    <Compile Include="Position3DForm\FormInfoPosition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Position3DForm\FormInfoPosition.Designer.cs">
+      <DependentUpon>FormInfoPosition.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecognitionPath\ArrayImage.cs" />
     <Compile Include="RecognitionPath\Classifier\ART1PictogramClassifier.cs" />
     <Compile Include="RecognitionPath\Classifier\IPictogramClassifier.cs" />
@@ -113,6 +128,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Position3DForm\FormInfoPosition.resx">
+      <DependentUpon>FormInfoPosition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -124,6 +142,12 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EmguCV\AForge.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\AForge.Math.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="EmguCV\Emgu.CV.dll" />
     <Content Include="EmguCV\Emgu.CV.UI.dll" />
     <Content Include="EmguCV\Emgu.Util.dll" />
