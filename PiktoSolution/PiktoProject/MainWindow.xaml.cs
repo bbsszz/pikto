@@ -29,17 +29,17 @@ namespace Pikto
         private DispatcherTimer timer;
         MarkerDetector md;
         ImageViewer v;
-        Position3DForm.FormInfoPosition f;
+        Position3DForm.Window1 f;
         Position3D pos;
         Image<Bgr, Byte> img;
         public MainWindow()
         {
             InitializeComponent();
             md = new MarkerDetector();
-            v = new ImageViewer();
+          
             pos = new Position3D();
-            f = new Position3DForm.FormInfoPosition();
-            f.setModelPoints(pos.modelPoints);
+        
+          
         }
 
         private void displayImage(object s, CameraEventArgs e)
@@ -49,14 +49,18 @@ namespace Pikto
             if (md.getMarkerCount() == 1)
             {
                 EmguTools.draw4ContourAndCircle(img,
-                    md.getMarkers().First().getContourExternal());
+                md.getMarkers().First().getContourExternal());
                 pos.estimate(md.getMarkers().First());
                 f.setImagePoint(pos.imagePoints);
                 f.setTransformatinMatrix(pos.getTransformatinMatrix());
                 f.setEstymationLabel(pos.estimatedYaw,
-                    pos.estimatedPitch, pos.estimatedRoll);
+                pos.estimatedPitch, pos.estimatedRoll);
+                f.updateAngle(pos.estimatedYaw,
+                    pos.estimatedPitch,
+                    pos.estimatedRoll);
                 EmguTools.draw3LineFromList(img,pos.getPointList(320,240));
-
+          
+               
             }
            
             cameraImage.Source = Camera.ToBitmapSource(img);
@@ -67,6 +71,9 @@ namespace Pikto
 
             Camera camera = new Camera();
             f.Show();
+            v = new ImageViewer();
+            f = new Position3DForm.Window1();
+            f.setModelPoints(pos.modelPoints);
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
 

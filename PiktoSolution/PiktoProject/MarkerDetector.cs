@@ -7,7 +7,6 @@ using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using Emgu.Util;
 using System.Drawing;
-using System.Collections.Generic;
 namespace Pikto
 {
 

@@ -10,7 +10,6 @@ using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using Emgu.Util;
 using System.Drawing;
-using System.Collections.Generic;
 namespace Pikto
 {
     class Position3D
@@ -26,7 +25,6 @@ namespace Pikto
         Matrix3x3 rotationMatrix;
         Vector3 translationVector;
         float focusLenght;
-        float realSizeMarker;
         private Vector3[] axesModel = new Vector3[]
        {
              new Vector3( 0, 0, 0 ),
@@ -109,7 +107,7 @@ namespace Pikto
             }
     return projectedPoints;
     }
-        public List<System.Drawing.Point> getPointList(int cx,int cy) { 
+   public List<System.Drawing.Point> getPointList(int cx,int cy) { 
             List<System.Drawing.Point> pktList=new List<System.Drawing.Point>();
             AForge.Point[] projectedAxes = PerformProjection(axesModel,
              Matrix4x4.CreateTranslation(translationVector) *        // 3: translate
