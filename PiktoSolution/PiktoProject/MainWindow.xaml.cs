@@ -70,10 +70,10 @@ namespace Pikto
         {
 
             Camera camera = new Camera();
-            f.Show();
             v = new ImageViewer();
             f = new Position3DForm.Window1();
             f.setModelPoints(pos.modelPoints);
+            f.Show();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
 
