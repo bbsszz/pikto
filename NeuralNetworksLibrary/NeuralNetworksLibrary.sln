@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveResonanceTheory1", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ART1Test", "ART1Test\ART1Test.csproj", "{1CBEFC39-57C1-493A-8D87-7876122A26DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ART1Paint", "ART1Paint\ART1Paint.csproj", "{CE323955-9A73-472F-B410-FEAB0191470D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{1CBEFC39-57C1-493A-8D87-7876122A26DF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1CBEFC39-57C1-493A-8D87-7876122A26DF}.Release|x86.ActiveCfg = Release|x86
 		{1CBEFC39-57C1-493A-8D87-7876122A26DF}.Release|x86.Build.0 = Release|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Debug|x86.ActiveCfg = Debug|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Debug|x86.Build.0 = Debug|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Release|Any CPU.ActiveCfg = Release|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Release|x86.ActiveCfg = Release|x86
+		{CE323955-9A73-472F-B410-FEAB0191470D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
