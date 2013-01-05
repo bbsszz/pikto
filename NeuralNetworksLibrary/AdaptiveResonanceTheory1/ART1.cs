@@ -40,6 +40,7 @@ namespace AdaptiveResonanceTheory1
 			builder.Append(attentionalSubsystem.Vigilance);
 			builder.Append("]");
 			return builder.ToString();
-		}
+		}
+
 	}
 }
