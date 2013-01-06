@@ -11,54 +11,92 @@ namespace ART1Paint
 	{
 		private IPatternInput patternInput;
 
-		private readonly float squareWidth;
-		private readonly float squareHeight;
+		private float squareWidth;
+		private float squareHeight;
 
-		public PatternInputTranslator(IPatternInput patternInput, int sqrHorizontally, int sqrVertically)
+		private Point previousLocation;
+
+		public PatternInputTranslator(IPatternInput patternInput, int sqrHorizontally = 0, int sqrVertically = 0)
 		{
 			this.patternInput = patternInput;
 
 			SubscribeEvents();
 
+			ComputeSquareSize(sqrHorizontally, sqrVertically);
+		}
+
+		public void Colour(PointColour colour, int i, int j)
+		{
+			patternInput.DrawRectangle(colour, (float)i * squareWidth, (float)j * squareHeight, squareWidth, squareHeight);
+		}
+
+		public void Renew(int width, int height)
+		{
+			ComputeSquareSize(width, height);
+			patternInput.Clear(PointColour.Black);
+		}
+
+		private void ComputeSquareSize(int sqrHorizontally, int sqrVertically)
+		{
 			squareWidth = patternInput.InputSize.Width / (float)sqrHorizontally;
 			squareHeight = patternInput.InputSize.Height / (float)sqrVertically;
 		}
 
 		private void SubscribeEvents()
 		{
-			patternInput.MouseMove += new MouseEventHandler(patternInput_MouseMove);
-			patternInput.MouseDown += new MouseEventHandler(patternInput_MouseDown);
-			patternInput.MouseUp += new MouseEventHandler(patternInput_MouseUp);
-			patternInput.PresentClicked += new EventHandler(patternInput_PresentClicked);
+			patternInput.PatternMouseMove += new MouseEventHandler(patternInput_PatternMouseMove);
+			patternInput.PatternMouseDown += new MouseEventHandler(patternInput_PatternMouseDown);
+			patternInput.PatternMouseUp += new MouseEventHandler(patternInput_PatternMouseUp);
 		}
 
-		private void patternInput_MouseMove(object sender, MouseEventArgs e)
+		private void patternInput_PatternMouseMove(object sender, MouseEventArgs e)
 		{
-			throw new NotImplementedException();
+			if (e.Button != MouseButtons.None)
+			{
+				Point newLocation = ComputePoint(e.X, e.Y);
+				if (newLocation != previousLocation)
+				{
+					previousLocation = newLocation;
+					RaiseEvent(SquareChanged, new SquareEventArgs(e.Button, newLocation.X, newLocation.Y));
+				}
+			}
 		}
 
-		private void patternInput_MouseDown(object sender, MouseEventArgs e)
+		private void patternInput_PatternMouseDown(object sender, MouseEventArgs e)
 		{
-			throw new NotImplementedException();
+			Point pp = ComputePoint(e.X, e.Y);
+			RaiseEvent(MouseDown, new SquareEventArgs(e.Button, pp.X, pp.Y));
 		}
 
-		private void patternInput_MouseUp(object sender, MouseEventArgs e)
+		private void patternInput_PatternMouseUp(object sender, MouseEventArgs e)
 		{
-			throw new NotImplementedException();
-		}
-
-		private void patternInput_PresentClicked(object sender, EventArgs e)
-		{
-			throw new NotImplementedException();
+			Point pp = ComputePoint(e.X, e.Y);
+			RaiseEvent(MouseUp, new SquareEventArgs(e.Button, pp.X, pp.Y));
 		}
 
 		private Point ComputePoint(int x, int y)
 		{
-			return new Point();
+			int nx = (int)((float)x / squareWidth);
+			int ny = (int)((float)y / squareHeight);
+			return new Point(nx, ny);
+		}
+
+		private void RaiseEvent(EventHandler<SquareEventArgs> evnt, SquareEventArgs e)
+		{
+			if (evnt != null)
+			{
+				evnt(this, e);
+			}
 		}
 
 		public event EventHandler<SquareEventArgs> MouseDown;
 		public event EventHandler<SquareEventArgs> MouseUp;
 		public event EventHandler<SquareEventArgs> SquareChanged;
+
+		public event EventHandler PresentClicked
+		{
+			add { patternInput.PresentClicked += value; }
+			remove { patternInput.PresentClicked -= value; }
+		}
 	}
 }

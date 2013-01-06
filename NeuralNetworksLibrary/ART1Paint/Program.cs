@@ -23,7 +23,11 @@ namespace ART1Paint
 		{
 			ART1PaintForm mainForm = new ART1PaintForm();
 
-			new ART1PaintPresenter(mainForm);
+			PatternInputTranslator translator = new PatternInputTranslator(mainForm);
+			PatternInputProcessor processor = new PatternInputProcessor(translator);
+			PatternInputPresenter presenter = new PatternInputPresenter(processor);
+			presenter.Renew(50, 50, 0.7f);
+			new ART1PaintPresenter(mainForm, presenter);
 
 			return mainForm;
 		}

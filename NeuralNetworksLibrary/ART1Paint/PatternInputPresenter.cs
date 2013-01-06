@@ -11,15 +11,25 @@ namespace ART1Paint
 		private PatternInputProcessor patternInputProcessor;
 		private ART1 network;
 
-		public PatternInputPresenter(PatternInputProcessor patternInputProcessor, ART1 network)
+		public PatternInputPresenter(PatternInputProcessor patternInputProcessor)
 		{
 			this.patternInputProcessor = patternInputProcessor;
-			this.network = network;
 
 			patternInputProcessor.PatternEntered += new EventHandler(patternInputProcessor_PatternEntered);
 		}
 
-		void patternInputProcessor_PatternEntered(object sender, EventArgs e)
+		public void Renew(int width, int height, float vigilance)
+		{
+			network = ART1Builder.Instance.BuildNetwork(width * height, vigilance);
+			patternInputProcessor.Renew(width, height);
+		}
+
+		public void ClearPattern()
+		{
+			patternInputProcessor.ClearPattern();
+		}
+
+		private void patternInputProcessor_PatternEntered(object sender, EventArgs e)
 		{
 			int cluster = network.Present(patternInputProcessor.Pattern);
 			RaisePatternPresented(new PatternEventArgs(cluster, patternInputProcessor.Pattern));
