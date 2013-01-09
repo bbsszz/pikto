@@ -28,15 +28,19 @@ namespace Pikto
 
         private DispatcherTimer timer;
         MarkerDetector md;
+        Xna3DViewer.AugmentedRealityForm arForm;
+
         ImageViewer v;
         Position3DForm.Window1 f;
         Position3D pos;
+        bool mode3D;
         Image<Bgr, Byte> img;
         public MainWindow()
         {
             InitializeComponent();
             md = new MarkerDetector();
-          
+            arForm = new Xna3DViewer.AugmentedRealityForm();
+            mode3D = false;
             pos = new Position3D();
         
           
@@ -50,25 +54,40 @@ namespace Pikto
         private void displayImage(object s, CameraEventArgs e)
         {
             md.findMarkers(e.Image.Convert<Gray, Byte>());
-            img = e.Image;
+          //  img = e.Image;
+
             if (md.getMarkerCount() == 1)
             {
-                EmguTools.draw4ContourAndCircle(img,
-                md.getMarkers().First().getContourExternal());
-                pos.estimate(md.getMarkers().First());
-                f.setImagePoint(pos.imagePoints);
-                f.setTransformatinMatrix(pos.getTransformatinMatrix());
-                f.setEstymationLabel(pos.estimatedYaw,
-                pos.estimatedPitch, pos.estimatedRoll);
-                f.updateAngle(pos.estimatedYaw,
-                    pos.estimatedPitch,
-                    pos.estimatedRoll);
-                EmguTools.draw3LineFromList(img,pos.getPointList(320,240));
-          
-               
+                if (mode3D)
+                {
+                    pos.estimate(md.getMarkers().First());
+                    List<Xna3DViewer.VirtualModel> lista = new List<Xna3DViewer.VirtualModel>();
+                    lista.Add(new Xna3DViewer.VirtualModel("ship2", pos.getTransformatinMatrix(), 80.0f));
+                    arForm.UpdateScene(e.Image.ToBitmap(), lista);
+                }
+                else
+                {
+                    EmguTools.draw4ContourAndCircle(img,
+                    md.getMarkers().First().getContourExternal());
+                    pos.estimate(md.getMarkers().First());
+                    f.setImagePoint(pos.imagePoints);
+                    f.setTransformatinMatrix(pos.getTransformatinMatrix());
+                    f.setEstymationLabel(pos.estimatedYaw,
+                    pos.estimatedPitch, pos.estimatedRoll);
+                    f.updateAngle(pos.estimatedYaw,
+                        pos.estimatedPitch,
+                        pos.estimatedRoll);
+                    EmguTools.draw3LineFromList(img, pos.getPointList(320, 240));
+                }
+
             }
-           
-            cameraImage.Source = Camera.ToBitmapSource(img);
+            else
+            {
+                if (mode3D)
+                    arForm.UpdateScene(e.Image.ToBitmap(), new List<Xna3DViewer.VirtualModel>());
+                else
+                    cameraImage.Source = Camera.ToBitmapSource(e.Image);
+            }
         }
      
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -81,6 +100,15 @@ namespace Pikto
             f.Show();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
+        private void buttonXNA_Click(object sender, RoutedEventArgs e)
+        {
+            mode3D = true;
+            
+            Camera camera = new Camera();
+            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
+            arForm.Show();
+        }
+
      
         private void button2_Click(object sender, RoutedEventArgs e)
         {
