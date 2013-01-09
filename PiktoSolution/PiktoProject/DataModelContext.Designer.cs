@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_0", "categories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.category), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
+[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_0", "category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.category), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_bt_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_bt", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_bt), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_tb_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_tb", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_tb), true)]
 
@@ -809,16 +809,16 @@ namespace Pikto
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "categories")]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "category")]
         public category category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "categories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "categories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category").Value = value;
             }
         }
         /// <summary>
@@ -830,13 +830,13 @@ namespace Pikto
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "categories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "categories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category", value);
                 }
             }
         }

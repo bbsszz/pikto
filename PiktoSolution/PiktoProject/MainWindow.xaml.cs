@@ -77,6 +77,12 @@ namespace Pikto
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
 
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            AddPiktogram addPiktogram = new AddPiktogram();
+            addPiktogram.Show();
+        }
+
      
 
     }

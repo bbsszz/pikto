@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="piktoModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="piktoModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="piktoModelStoreContainer">
           <EntitySet Name="categories" EntityType="piktoModel.Store.categories" store:Type="Tables" />
           <EntitySet Name="cluster_bt" EntityType="piktoModel.Store.cluster_bt" store:Type="Tables" />
@@ -58,6 +58,7 @@
         <EntityType Name="map">
           <Key>
             <PropertyRef Name="old" />
+            
           </Key>
           <Property Name="old" Type="integer" Nullable="false" />
           <Property Name="new" Type="integer" Nullable="false" />
@@ -66,7 +67,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="integer" Nullable="false" />
+          <Property Name="id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="nvarchar" />
           <Property Name="image" Type="blob" />
           <Property Name="category_id" Type="integer" />
@@ -107,8 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="piktoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -119,7 +119,7 @@
           <EntitySet Name="maps" EntityType="piktoModel.map" />
           <EntitySet Name="piktogramies" EntityType="piktoModel.piktogramy" />
           <AssociationSet Name="FK_piktogramy_0_0" Association="piktoModel.FK_piktogramy_0_0">
-            <End Role="categories" EntitySet="categories" />
+            <End Role="category" EntitySet="categories" />
             <End Role="piktogramy" EntitySet="piktogramies" />
           </AssociationSet>
           <AssociationSet Name="FK_cluster_bt_0_0" Association="piktoModel.FK_cluster_bt_0_0">
@@ -130,14 +130,14 @@
             <End Role="piktogramy" EntitySet="piktogramies" />
             <End Role="cluster_tb" EntitySet="cluster_tb" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="category">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="piktogramies" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="categories" ToRole="piktogramy" />
+          <NavigationProperty Name="piktogramies" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="category" ToRole="piktogramy" />
         </EntityType>
         <EntityType Name="cluster_bt">
           <Key>
@@ -168,19 +168,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
-          <Property Name="image" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-          <Property Name="category_id" Type="Int64" />
-          <NavigationProperty Name="category" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="piktogramy" ToRole="categories" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="image" MaxLength="2147483647" FixedLength="false" />
+          <Property Type="Int64" Name="category_id" />
+          <NavigationProperty Name="category" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="piktogramy" ToRole="category" />
           <NavigationProperty Name="cluster_bt" Relationship="piktoModel.FK_cluster_bt_0_0" FromRole="piktogramy" ToRole="cluster_bt" />
           <NavigationProperty Name="cluster_tb" Relationship="piktoModel.FK_cluster_tb_0_0" FromRole="piktogramy" ToRole="cluster_tb" />
         </EntityType>
         <Association Name="FK_piktogramy_0_0">
-          <End Role="categories" Type="piktoModel.category" Multiplicity="0..1" />
-          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="*" />
+          <End Type="piktoModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="piktoModel.piktogramy" Role="piktogramy" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="categories">
+            <Principal Role="category">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="piktogramy">
@@ -189,8 +189,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cluster_bt_0_0">
-          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="0..1" />
-          <End Role="cluster_bt" Type="piktoModel.cluster_bt" Multiplicity="*" />
+          <End Type="piktoModel.piktogramy" Role="piktogramy" Multiplicity="0..1" />
+          <End Type="piktoModel.cluster_bt" Role="cluster_bt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="piktogramy">
               <PropertyRef Name="id" />
@@ -201,8 +201,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cluster_tb_0_0">
-          <End Role="piktogramy" Type="piktoModel.piktogramy" Multiplicity="0..1" />
-          <End Role="cluster_tb" Type="piktoModel.cluster_tb" Multiplicity="*" />
+          <End Type="piktoModel.piktogramy" Role="piktogramy" Multiplicity="0..1" />
+          <End Type="piktoModel.cluster_tb" Role="cluster_tb" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="piktogramy">
               <PropertyRef Name="id" />
@@ -212,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -236,12 +236,16 @@
             <ScalarProperty Name="old" ColumnName="old" />
             <ScalarProperty Name="new" ColumnName="new" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="piktogramies"><EntityTypeMapping TypeName="piktoModel.piktogramy"><MappingFragment StoreEntitySet="piktogramy">
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="name" ColumnName="name" />
-            <ScalarProperty Name="image" ColumnName="image" />
-            <ScalarProperty Name="category_id" ColumnName="category_id" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="piktogramies">
+            <EntityTypeMapping TypeName="piktoModel.piktogramy">
+              <MappingFragment StoreEntitySet="piktogramy">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -256,7 +260,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
@@ -267,16 +271,16 @@
         <EntityTypeShape EntityType="piktoModel.cluster_bt" Width="1.5" PointX="5.25" PointY="1" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="piktoModel.cluster_tb" Width="1.5" PointX="5.25" PointY="3.625" Height="1.7879850260416661" IsExpanded="true" />
         <EntityTypeShape EntityType="piktoModel.map" Width="1.5" PointX="0.75" PointY="5.75" Height="1.4033821614583335" IsExpanded="true" />
-        <EntityTypeShape EntityType="piktoModel.piktogramy" Width="1.5" PointX="3" PointY="2" Height="2.3648893229166674" IsExpanded="true" />
-        <AssociationConnector Association="piktoModel.FK_piktogramy_0_0" ManuallyRouted="false">
+        <EntityTypeShape EntityType="piktoModel.piktogramy" Width="1.5" PointX="3" PointY="2" Height="2.364889322916667" />
+        <AssociationConnector Association="piktoModel.FK_piktogramy_0_0" >
           <ConnectorPoint PointX="2.25" PointY="3.172841796875" />
           <ConnectorPoint PointX="3" PointY="3.172841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="piktoModel.FK_cluster_bt_0_0" ManuallyRouted="false">
+        <AssociationConnector Association="piktoModel.FK_cluster_bt_0_0" >
           <ConnectorPoint PointX="4.5" PointY="2.3939925130208337" />
           <ConnectorPoint PointX="5.25" PointY="2.3939925130208337" />
         </AssociationConnector>
-        <AssociationConnector Association="piktoModel.FK_cluster_tb_0_0" ManuallyRouted="false">
+        <AssociationConnector Association="piktoModel.FK_cluster_tb_0_0" >
           <ConnectorPoint PointX="4.5" PointY="3.9949446614583337" />
           <ConnectorPoint PointX="5.25" PointY="3.9949446614583337" />
         </AssociationConnector>

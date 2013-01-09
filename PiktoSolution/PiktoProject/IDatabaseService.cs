@@ -22,6 +22,7 @@ namespace Pikto
 
         #region kategorie
         category GetCategory(int id);
+        category GetCategory(string name);
 
         void AddCategory(string name);
 
@@ -65,10 +66,5 @@ namespace Pikto
 
         #endregion
 
-        //var piktogram = db.CreateObject<piktogramy>();
-            //piktogram.name = "dupa";
-            //db.piktogramies.AddObject(piktogram);
-            //db.SaveChanges();
-
-    }
+       }
 }
