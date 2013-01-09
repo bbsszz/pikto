@@ -59,12 +59,17 @@ namespace ART1Paint
 		public void DrawRectangle(PointColour colour, float x, float y, float width, float height)
 		{
 			patternGraphics.FillRectangle(colour == PointColour.Black ? Brushes.Black : Brushes.White, x, y, width, height);
-			pbInput.Refresh();
+			//pbInput.Refresh(); // too slow
 		}
 
 		public void Clear(PointColour colour)
 		{
 			patternGraphics.Clear(colour == PointColour.Black ? Color.Black : Color.White);
+			pbInput.Refresh();
+		}
+
+		public void RefreshView()
+		{
 			pbInput.Refresh();
 		}
 
@@ -78,6 +83,12 @@ namespace ART1Paint
 		{
 			add { bClear.Click += value; }
 			remove { bClear.Click -= value; }
+		}
+
+		public event EventHandler LoadClicked
+		{
+			add { bLoad.Click += value; }
+			remove { bLoad.Click -= value; }
 		}
 
 		public float Vigilance

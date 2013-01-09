@@ -27,7 +27,8 @@ namespace ART1Paint
 			PatternInputProcessor processor = new PatternInputProcessor(translator);
 			PatternInputPresenter presenter = new PatternInputPresenter(processor);
 			presenter.Renew(50, 50, 0.7f);
-			new ART1PaintPresenter(mainForm, presenter);
+			OpenFileDialog openDialog = new OpenFileDialog();
+			new ART1PaintPresenter(mainForm, presenter, openDialog);
 
 			return mainForm;
 		}

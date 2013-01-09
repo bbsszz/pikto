@@ -9,6 +9,7 @@ namespace ART1Paint
 	{
 		event EventHandler NewClicked;
 		event EventHandler ClearClicked;
+		event EventHandler LoadClicked;
 
 		float Vigilance { get; }
 		int ClustersCount { get; }

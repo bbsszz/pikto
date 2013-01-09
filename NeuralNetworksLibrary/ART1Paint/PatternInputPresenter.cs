@@ -29,6 +29,11 @@ namespace ART1Paint
 			patternInputProcessor.ClearPattern();
 		}
 
+		public void LoadPattern(Pattern pattern)
+		{
+			patternInputProcessor.LoadPattern(pattern);
+		}
+
 		private void patternInputProcessor_PatternEntered(object sender, EventArgs e)
 		{
 			int cluster = network.Present(patternInputProcessor.Pattern);

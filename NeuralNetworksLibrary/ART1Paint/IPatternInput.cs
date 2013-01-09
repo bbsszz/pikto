@@ -19,5 +19,6 @@ namespace ART1Paint
 
 		void DrawRectangle(PointColour colour, float x, float y, float squareWidth, float squareHeight);
 		void Clear(PointColour colour);
+		void RefreshView();
 	}
 }

@@ -30,6 +30,20 @@ namespace ART1Paint
 			Renew(Pattern.Size.Width, Pattern.Size.Height);
 		}
 
+		public void LoadPattern(Pattern pattern)
+		{
+			Pattern = pattern;
+			patternInputTranslator.Renew(pattern.Size.Width, pattern.Size.Height);
+			for (int i = 0; i < pattern.Size.Width; ++i)
+			{
+				for (int j = 0; j < pattern.Size.Height; ++j)
+				{
+					patternInputTranslator.Colour(pattern[i, j], i, j);
+				}
+			}
+			patternInputTranslator.Refresh();
+		}
+
 		private void SubscribeEvents()
 		{
 			patternInputTranslator.MouseDown += new EventHandler<SquareEventArgs>(patternInputTranslator_MouseDown);
@@ -63,17 +77,23 @@ namespace ART1Paint
 
 		private void Colour(MouseButtons button, int x, int y)
 		{
-			switch (button){
-				case MouseButtons.Left:
-					Pattern[x, y] = PointColour.White;
-					patternInputTranslator.Colour(PointColour.White, x, y);
-					break;
-				case MouseButtons.Right:
-					Pattern[x, y] = PointColour.Black;
-					patternInputTranslator.Colour(PointColour.Black, x, y);
-					break;
-				default:
-					break;
+			if (0 <= x && x < Pattern.Size.Width && 0 <= y && y < Pattern.Size.Height)
+			{
+				switch (button)
+				{
+					case MouseButtons.Left:
+						Pattern[x, y] = PointColour.White;
+						patternInputTranslator.Colour(PointColour.White, x, y);
+						patternInputTranslator.Refresh();
+						break;
+					case MouseButtons.Right:
+						Pattern[x, y] = PointColour.Black;
+						patternInputTranslator.Colour(PointColour.Black, x, y);
+						patternInputTranslator.Refresh();
+						break;
+					default:
+						break;
+				}
 			}
 		}
 

@@ -36,6 +36,11 @@ namespace ART1Paint
 			patternInput.Clear(PointColour.Black);
 		}
 
+		public void Refresh()
+		{
+			patternInput.RefreshView();
+		}
+
 		private void ComputeSquareSize(int sqrHorizontally, int sqrVertically)
 		{
 			squareWidth = patternInput.InputSize.Width / (float)sqrHorizontally;
