@@ -42,6 +42,11 @@ namespace Pikto
           
         }
 
+        private void displayImage1(object s, CameraEventArgs e)
+        {
+            cameraImage.Source = Camera.ToBitmapSource(e.Image);
+        }
+
         private void displayImage(object s, CameraEventArgs e)
         {
             md.findMarkers(e.Image.Convert<Gray, Byte>());
@@ -65,25 +70,41 @@ namespace Pikto
            
             cameraImage.Source = Camera.ToBitmapSource(img);
         }
-
+     
         private void button1_Click(object sender, RoutedEventArgs e)
         {
 
-            Camera camera = new Camera();
+           Camera camera = new Camera();
             v = new ImageViewer();
             f = new Position3DForm.Window1();
             f.setModelPoints(pos.modelPoints);
             f.Show();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
-
+     /*  
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             AddPiktogram addPiktogram = new AddPiktogram();
             addPiktogram.Show();
+
+            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage1);
+
+            FindCorners.Form1 frm = new FindCorners.Form1();
+            frm.Show();
+
+
+        }*/
+
+        private void button2_Click_1(object sender, RoutedEventArgs e)
+        {
+            Camera camera = new Camera();
+
+            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage1);
+
+            FindCorners.Form1 frm = new FindCorners.Form1();
+            frm.Show();
         }
 
-     
 
     }
 }
