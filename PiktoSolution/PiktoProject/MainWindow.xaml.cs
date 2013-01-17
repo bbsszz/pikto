@@ -81,19 +81,20 @@ namespace Pikto
             f.Show();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
-     /*  
+     
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             AddPiktogram addPiktogram = new AddPiktogram();
             addPiktogram.Show();
 
+			Camera camera = new Camera();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage1);
 
             FindCorners.Form1 frm = new FindCorners.Form1();
             frm.Show();
 
 
-        }*/
+        }
 
         private void button2_Click_1(object sender, RoutedEventArgs e)
         {
