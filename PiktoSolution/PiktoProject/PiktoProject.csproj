@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -128,12 +129,17 @@
       <DependentUpon>WpfInfoPosition.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecognitionPath\ArrayImage.cs" />
+    <Compile Include="RecognitionPath\ClassMapper\ClassMapper.cs" />
+    <Compile Include="RecognitionPath\ClassMapper\IClassMapper.cs" />
+    <Compile Include="RecognitionPath\ImageFacade.cs" />
+    <Compile Include="RecognitionPath\RecognitionPath.cs" />
     <Compile Include="RecognitionPath\Classifier\ART1PictogramClassifier.cs" />
     <Compile Include="RecognitionPath\Classifier\IPictogramClassifier.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\DiscretizationModule.cs" />
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
+    <Compile Include="UnsafeBitmap.cs" />
     <Page Include="AddPiktogram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
