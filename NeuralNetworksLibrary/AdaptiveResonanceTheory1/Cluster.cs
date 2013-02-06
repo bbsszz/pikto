@@ -10,6 +10,7 @@ namespace AdaptiveResonanceTheory1
 		public int Index { get; private set; }
 		public IEnumerable<float> BottomUpConnections { get; private set; }
 		public IEnumerable<float> TopDownConnections { get; private set; }
+		public int InputSize { get { return BottomUpConnections.Count(); } }
 
 		public Cluster(int index, IEnumerable<float> bot, IEnumerable<float> top)
 		{
