@@ -29,6 +29,8 @@ namespace AdaptiveResonanceTheory1
 			return attentionalSubsystem.ProcessData(input, forceLearning);
 		}
 
+		public IEnumerable<Cluster> Clusters { get { return attentionalSubsystem.Clusters; } }
+
 		public override string ToString()
 		{
 			StringBuilder builder = new StringBuilder("ART1 [");

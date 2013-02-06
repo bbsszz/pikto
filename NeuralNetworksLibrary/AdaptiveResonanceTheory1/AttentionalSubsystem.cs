@@ -17,6 +17,8 @@ namespace AdaptiveResonanceTheory1
 
 		public int ClustersCount { get { return outputLayer.Size; } }
 
+		public IEnumerable<Cluster> Clusters { get { return PrepareClusters(); } }
+
 		public float Vigilance
 		{
 			get { return orientingSubsystem.Vigilance; }
@@ -71,6 +73,45 @@ namespace AdaptiveResonanceTheory1
 			inputLayer.Activate(data);
 			outputLayer.Compute();
 			inputLayer.Compute(outputLayer.Winner);
+		}
+
+		private IEnumerable<Cluster> PrepareClusters()
+		{
+			var clusters = new List<Cluster>(outputLayer.Size);
+
+			var top = PrepareTopDownConnections();
+
+			int index = 0;
+			foreach (var neuron in outputLayer.Neurons)
+			{
+				var cluster = new Cluster(index, neuron.Connections.Select<Connection, float>(c => c.Weight), top[index]);
+				clusters.Add(cluster);
+				++index;
+			}
+
+			return clusters;
+		}
+
+		private IList<IList<float>> PrepareTopDownConnections()
+		{
+			var clusters = new List<IList<float>>(outputLayer.Size);
+			for (int i = 0; i < outputLayer.Size; ++i)
+			{
+				clusters.Add(new List<float>(inputLayer.Size));
+			}
+
+			for (int ni = 0; ni < inputLayer.Size; ++ni)
+			{
+				var neuron = inputLayer[ni];
+				int connI = 0;
+				foreach (var conn in neuron.Connections)
+				{
+					clusters[connI].Add(conn.Weight);
+					++connI;
+				}
+			}
+
+			return clusters;
 		}
 	}
 }

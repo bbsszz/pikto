@@ -44,5 +44,10 @@ namespace AdaptiveResonanceTheory1
 		{
 			return GetEnumerator();
 		}
+
+		public InputNeuron this[int index]
+		{
+			get { return neurons[index]; }
+		}
 	}
 }

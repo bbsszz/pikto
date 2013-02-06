@@ -108,6 +108,7 @@
     <Compile Include="ART1.cs" />
     <Compile Include="ART1Builder.cs" />
     <Compile Include="AttentionalSubsystem.cs" />
+    <Compile Include="Cluster.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="INeuron.cs" />

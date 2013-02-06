@@ -47,5 +47,10 @@ namespace AdaptiveResonanceTheory1
 
 			return network;
 		}
+
+		public ART1 BuildNetwork(IList<Cluster> clusters, float vigilance = 0.5f)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
