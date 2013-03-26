@@ -27,5 +27,19 @@ namespace AdaptiveResonanceTheory1
 
 			return outputLayer;
 		}
+
+		public OutputLayer Build(IList<Cluster> clusters)
+		{
+			IList<OutputNeuron> neurons = new List<OutputNeuron>(clusters.Count);
+			foreach (var cluster in clusters)
+			{
+				OutputNeuron neuron = outputNeuronFactory.Create(cluster);
+				neurons.Add(neuron);
+			}
+
+			OutputLayer outputLayer = new OutputLayer(outputNeuronFactory, neurons);
+
+			return outputLayer;
+		}
 	}
 }

@@ -17,7 +17,7 @@ namespace AdaptiveResonanceTheory1
 
 		public int ClustersCount { get { return outputLayer.Size; } }
 
-		public IEnumerable<Cluster> Clusters { get { return PrepareClusters(); } }
+		public IList<Cluster> Clusters { get { return PrepareClusters(); } }
 
 		public float Vigilance
 		{
@@ -32,10 +32,10 @@ namespace AdaptiveResonanceTheory1
 			this.outputLayer = outputLayer;
 		}
 
-		public int ProcessData(IEnumerable<float> data, bool forceLearning)
+		public int ProcessData(IEnumerable<float> data, PresentAction presentAction)
 		{
 			int winner;
-			if (forceLearning || outputLayer.Size == 0)
+			if (presentAction == PresentAction.ForceLearning || outputLayer.Size == 0)
 			{
 				// additional conditions could be checked to avoid weird cluster addition
 				winner = outputLayer.AddNeuron(data);
@@ -54,7 +54,14 @@ namespace AdaptiveResonanceTheory1
 				}
 				catch (OutOfNeuronsException)
 				{
-					winner = outputLayer.AddNeuron(data);
+					if (presentAction == PresentAction.Present)
+					{
+						winner = outputLayer.AddNeuron(data);
+					}
+					else
+					{
+						winner = -1;
+					}
 				}
 			}
 
@@ -75,7 +82,7 @@ namespace AdaptiveResonanceTheory1
 			inputLayer.Compute(outputLayer.Winner);
 		}
 
-		private IEnumerable<Cluster> PrepareClusters()
+		private IList<Cluster> PrepareClusters()
 		{
 			var clusters = new List<Cluster>(outputLayer.Size);
 

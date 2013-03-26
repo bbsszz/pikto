@@ -50,6 +50,24 @@ namespace AdaptiveResonanceTheory1
 
 		public ART1 BuildNetwork(IList<Cluster> clusters, float vigilance = 0.5f)
 		{
+			Contract.Requires<ArgumentNullException>(clusters.Count > 0, "At least one cluster must be passed.");
+
+			InputNeuronFactory inputNeuronFactory = new InputNeuronFactory();
+			InputLayerBuilder inputLayerBuilder = new InputLayerBuilder(inputNeuronFactory);
+			InputLayer inputLayer = inputLayerBuilder.Build(clusters[0].InputSize);
+
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			OutputNeuronFactory outputNeuronFactory = new OutputNeuronFactory(inputLayer, connectionFactory);
+			OutputLayerBuilder outputLayerBuilder = new OutputLayerBuilder(outputNeuronFactory);
+			OutputLayer outputLayer = outputLayerBuilder.Build(clusters);
+
+			OrientingSubsystem orientingSubsystem = new OrientingSubsystem(inputLayer, outputLayer);
+			orientingSubsystem.Vigilance = vigilance;
+			AttentionalSubsystem attentionalSubsystem = new AttentionalSubsystem(orientingSubsystem, inputLayer, outputLayer);
+
+			ART1 network = new ART1(attentionalSubsystem);
+
+			return network;
 			throw new NotImplementedException();
 		}
 	}

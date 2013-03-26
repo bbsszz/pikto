@@ -41,13 +41,30 @@ namespace AdaptiveResonanceTheory1
 			return Create(
 				() =>
 					L / (L - 1f + sum),
-				delegate()
+				() =>
 				{
 					enumerator.MoveNext();
-					float val = enumerator.Current;
-					return val;
+					return enumerator.Current;
 				}
-				);
+			);
+		}
+
+		public OutputNeuron Create(Cluster cluster)
+		{
+			IEnumerator<float> bot = cluster.BottomUpConnections.GetEnumerator();
+			IEnumerator<float> top = cluster.TopDownConnections.GetEnumerator();
+			return Create(
+				() =>
+				{
+					bot.MoveNext();
+					return bot.Current;
+				},
+				() =>
+				{
+					top.MoveNext();
+					return top.Current;
+				}
+			);
 		}
 
 		private OutputNeuron Create(Func<float> bottomUp, Func<float> topDown)
