@@ -11,13 +11,22 @@ namespace Pikto
         #region piktogramy
         piktogramy GetPiktogram(int id);
 
-        void AddPiktogram(string name, BitmapSource image);
-        void AddPiktogram(string name, BitmapSource image, string categoryName);
+        void AddPiktogram(string name, medium obj);
+        void AddPiktogram(string name, medium obj, string categoryName);
 
-        piktogramy EditPiktogram(int id, string name = null, BitmapSource image = null, string categoryName = null);
+        piktogramy EditPiktogram(int id, string name = null, medium obj = null, string categoryName = null);
 
         void DeletePiktogram(int id);
 
+        #endregion
+
+        #region media
+        medium GetMedium(int id);
+        void AddMedium(string name, object obj);
+
+        medium EditMedium(int id, string name, object obj);
+
+        void DeleteMedium(int id);
         #endregion
 
         #region kategorie
@@ -65,10 +74,6 @@ namespace Pikto
 
         #endregion
 
-        //var piktogram = db.CreateObject<piktogramy>();
-            //piktogram.name = "dupa";
-            //db.piktogramies.AddObject(piktogram);
-            //db.SaveChanges();
 
     }
 }
