@@ -145,6 +145,38 @@
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
+    <Compile Include="Utils\ActionEnum.cs" />
+    <Compile Include="Utils\ChooseEnum.cs" />
+    <Compile Include="Utils\ContentManagementService.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Commands\Command.cs" />
+    <Compile Include="ViewModel\Commands\SettingsCommand.cs" />
+    <Compile Include="ViewModel\Commands\StartExaminationPathCommand.cs" />
+    <Compile Include="ViewModel\Commands\StartLearningPathCommand.cs" />
+    <Compile Include="ViewModel\ExaminationPathSourceViewModel.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Views\ViewTypeMainPageManager.cs" />
+    <Compile Include="Views\ViewTypeDefaultManager.cs" />
+    <Compile Include="Views\ViewTypeManager.cs" />
+    <Compile Include="Views\ViewTypeSimpleManager.cs" />
+    <Compile Include="Views\ViewTypeTestManager.cs" />
+    <Compile Include="Views\ViewTypeWizardManager.cs" />
+    <Compile Include="Views\EnumToBoolConverter.cs" />
+    <Compile Include="Views\ExaminationPathSource.xaml.cs">
+      <DependentUpon>ExaminationPathSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewType.cs" />
+    <Compile Include="Views\ViewTypeConverter.cs" />
+    <Compile Include="Views\WizardView.xaml.cs">
+      <DependentUpon>WizardView.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddPiktogram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +202,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Position3DForm\WpfInfoPosition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExaminationPathSource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,9 +326,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
