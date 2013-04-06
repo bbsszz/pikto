@@ -32,26 +32,11 @@ namespace Pikto
 
         private void button_add_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage img = new BitmapImage(new Uri(this.textBox_file.Text));
-            
-            db.AddPiktogram(this.textBox_name.Text, img, this.textBox_category.Text);
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.DefaultExt = ".png";
-
-            Nullable<bool> result = dlg.ShowDialog();
-
-            if (result == true)
-            {
-                string filename = dlg.FileName;
-                this.textBox_file.Text = filename;
-            }
-
-
+           
         }
     }
 }

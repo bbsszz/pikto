@@ -63,6 +63,7 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\..\..\..\..\Program Files\System.Data.SQLite\2010\bin\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -92,6 +93,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xna3DViewer, Version=2.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Xna3DViewer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -275,12 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Xna3DViewer\Xna3DViewer.csproj">
-      <Project>{282759F8-B913-412E-8B2F-3B6A2A84AB53}</Project>
-      <Name>Xna3DViewer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
