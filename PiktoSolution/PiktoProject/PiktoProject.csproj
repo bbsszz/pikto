@@ -97,6 +97,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddPiktogram.xaml.cs">
+      <DependentUpon>AddPiktogram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseService.cs" />
     <Compile Include="IDatabaseService.cs" />
     <Compile Include="DataModelContext.Designer.cs">
@@ -125,6 +128,10 @@
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
+    <Page Include="AddPiktogram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
