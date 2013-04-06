@@ -9,6 +9,7 @@ namespace AdaptiveResonanceTheory1
 	{
 		private IList<Connection> connections;
 
+		public IEnumerable<Connection> Connections { get { return connections; } }
 		public float Input { get; private set; }
 		public float Output { get; private set; }
 

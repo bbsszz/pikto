@@ -17,7 +17,8 @@ namespace Pikto.RecognitionPath.Classifier
 
 		public int Classify(byte[,] image, bool forceLearning = false)
 		{
-			return art1Network.Present(image.Cast<float>(), forceLearning);
+			var ci = Enumerable.Select<byte, float>(Enumerable.Cast<byte>(image), b => (float)b);
+			return art1Network.Present(ci, forceLearning);
 		}
 	}
 }

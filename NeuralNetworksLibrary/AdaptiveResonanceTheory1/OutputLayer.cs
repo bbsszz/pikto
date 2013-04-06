@@ -12,6 +12,7 @@ namespace AdaptiveResonanceTheory1
 
 		private bool firstRun;
 
+		public IEnumerable<OutputNeuron> Neurons { get { return neurons; } }
 		public int Winner { get; private set; }
 		public int Size { get { return neurons.Count; } }
 
@@ -64,6 +65,11 @@ namespace AdaptiveResonanceTheory1
 			neurons.Add(outputNeuronFactory.Create(data));
 			Winner = neurons.Count - 1;
 			return Winner;
+		}
+
+		public OutputNeuron this[int index]
+		{
+			get { return neurons[index]; }
 		}
 	}
 }

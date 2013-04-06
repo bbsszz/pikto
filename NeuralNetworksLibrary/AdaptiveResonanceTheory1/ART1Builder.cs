@@ -34,7 +34,8 @@ namespace AdaptiveResonanceTheory1
 			InputLayerBuilder inputLayerBuilder = new InputLayerBuilder(inputNeuronFactory);
 			InputLayer inputLayer = inputLayerBuilder.Build(inputSize);
 
-			OutputNeuronFactory outputNeuronFactory = new OutputNeuronFactory(inputLayer);
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			OutputNeuronFactory outputNeuronFactory = new OutputNeuronFactory(inputLayer, connectionFactory);
 			OutputLayerBuilder outputLayerBuilder = new OutputLayerBuilder(outputNeuronFactory);
 			OutputLayer outputLayer = outputLayerBuilder.Build(initialClusterCount);
 
@@ -45,6 +46,11 @@ namespace AdaptiveResonanceTheory1
 			ART1 network = new ART1(attentionalSubsystem);
 
 			return network;
+		}
+
+		public ART1 BuildNetwork(IList<Cluster> clusters, float vigilance = 0.5f)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

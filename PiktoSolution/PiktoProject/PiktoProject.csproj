@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -101,6 +102,12 @@
       <DependentUpon>AddPiktogram.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseService.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="IDatabaseService.cs" />
     <Compile Include="DataModelContext.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -122,12 +129,17 @@
       <DependentUpon>WpfInfoPosition.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecognitionPath\ArrayImage.cs" />
+    <Compile Include="RecognitionPath\ClassMapper\ClassMapper.cs" />
+    <Compile Include="RecognitionPath\ClassMapper\IClassMapper.cs" />
+    <Compile Include="RecognitionPath\ImageFacade.cs" />
+    <Compile Include="RecognitionPath\RecognitionPath.cs" />
     <Compile Include="RecognitionPath\Classifier\ART1PictogramClassifier.cs" />
     <Compile Include="RecognitionPath\Classifier\IPictogramClassifier.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\DiscretizationModule.cs" />
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
+    <Compile Include="UnsafeBitmap.cs" />
     <Page Include="AddPiktogram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +186,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Position3DForm\FormInfoPosition.resx">
       <DependentUpon>FormInfoPosition.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,13 +224,43 @@
     <Content Include="EmguCV\AForge.Math.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="EmguCV\npp32_40_17.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_calib3d231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_contrib231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="EmguCV\opencv_core231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_features2d231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_ffmpeg.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_flann231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_gpu231.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EmguCV\opencv_highgui231.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EmguCV\opencv_imgproc231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_legacy231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_ml231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmguCV\opencv_objdetect231.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EmguCV\opencv_video231.dll">
@@ -230,6 +275,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xna3DViewer\Xna3DViewer.csproj">
+      <Project>{282759F8-B913-412E-8B2F-3B6A2A84AB53}</Project>
+      <Name>Xna3DViewer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

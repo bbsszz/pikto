@@ -12,12 +12,14 @@ namespace AdaptiveResonanceTheory1
 		private readonly Random random = new Random();
 
 		private InputLayer inputLayer;
+		private ConnectionFactory connectionFactory;
 
 		readonly float weightUpperBound;
 
-		public OutputNeuronFactory(InputLayer inputLayer)
+		public OutputNeuronFactory(InputLayer inputLayer, ConnectionFactory connectionFactory)
 		{
 			this.inputLayer = inputLayer;
+			this.connectionFactory = connectionFactory;
 
 			weightUpperBound = L / (L - 1f + inputLayer.Size);
 		}
@@ -53,7 +55,7 @@ namespace AdaptiveResonanceTheory1
 			IList<Connection> connections = new List<Connection>(inputLayer.Size);
 			foreach (var inputNeuron in inputLayer.Neurons)
 			{
-				Connection connection = new Connection(inputNeuron);
+				Connection connection = connectionFactory.Create(inputNeuron);
 				connection.Weight = bottomUp();
 				connections.Add(connection);
 			}
@@ -61,7 +63,7 @@ namespace AdaptiveResonanceTheory1
 			OutputNeuron neuron = new OutputNeuron(connections);
 			foreach (var inputNeuron in inputLayer.Neurons)
 			{
-				Connection connection = new Connection(neuron);
+				Connection connection = connectionFactory.Create(neuron);
 				connection.Weight = topDown();
 				inputNeuron.AddConnection(connection);
 			}
