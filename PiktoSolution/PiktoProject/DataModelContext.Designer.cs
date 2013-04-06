@@ -21,6 +21,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_0", "categories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.category), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_bt_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_bt", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_bt), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_tb_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_tb", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_tb), true)]
+[assembly: EdmRelationshipAttribute("piktoModel", "FK_media_0_0", "media_type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Pikto.media_type), "medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.medium), true)]
+[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_01", "medium", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.medium), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
 
 #endregion
 
@@ -151,6 +153,38 @@ namespace Pikto
             }
         }
         private ObjectSet<piktogramy> _piktogramies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<medium> media
+        {
+            get
+            {
+                if ((_media == null))
+                {
+                    _media = base.CreateObjectSet<medium>("media");
+                }
+                return _media;
+            }
+        }
+        private ObjectSet<medium> _media;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<media_type> media_type
+        {
+            get
+            {
+                if ((_media_type == null))
+                {
+                    _media_type = base.CreateObjectSet<media_type>("media_type");
+                }
+                return _media_type;
+            }
+        }
+        private ObjectSet<media_type> _media_type;
 
         #endregion
         #region AddTo Methods
@@ -193,6 +227,22 @@ namespace Pikto
         public void AddTopiktogramies(piktogramy piktogramy)
         {
             base.AddObject("piktogramies", piktogramy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the media EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTomedia(medium medium)
+        {
+            base.AddObject("media", medium);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the media_type EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTomedia_type(media_type media_type)
+        {
+            base.AddObject("media_type", media_type);
         }
 
         #endregion
@@ -679,6 +729,280 @@ namespace Pikto
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="piktoModel", Name="media_type")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class media_type : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new media_type object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static media_type Createmedia_type(global::System.Int64 id)
+        {
+            media_type media_type = new media_type();
+            media_type.id = id;
+            return media_type;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_media_0_0", "medium")]
+        public EntityCollection<medium> media
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<medium>("piktoModel.FK_media_0_0", "medium");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<medium>("piktoModel.FK_media_0_0", "medium", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="piktoModel", Name="medium")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class medium : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new medium object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="media_type_id">Initial value of the media_type_id property.</param>
+        /// <param name="object">Initial value of the object property.</param>
+        public static medium Createmedium(global::System.Int64 id, global::System.Int64 media_type_id, global::System.Byte[] @object)
+        {
+            medium medium = new medium();
+            medium.id = id;
+            medium.media_type_id = media_type_id;
+            medium.@object = @object;
+            return medium;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 media_type_id
+        {
+            get
+            {
+                return _media_type_id;
+            }
+            set
+            {
+                Onmedia_type_idChanging(value);
+                ReportPropertyChanging("media_type_id");
+                _media_type_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("media_type_id");
+                Onmedia_type_idChanged();
+            }
+        }
+        private global::System.Int64 _media_type_id;
+        partial void Onmedia_type_idChanging(global::System.Int64 value);
+        partial void Onmedia_type_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] @object
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_object);
+            }
+            set
+            {
+                OnobjectChanging(value);
+                ReportPropertyChanging("object");
+                _object = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("object");
+                OnobjectChanged();
+            }
+        }
+        private global::System.Byte[] _object;
+        partial void OnobjectChanging(global::System.Byte[] value);
+        partial void OnobjectChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_media_0_0", "media_type")]
+        public media_type media_type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<media_type>("piktoModel.FK_media_0_0", "media_type").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<media_type>("piktoModel.FK_media_0_0", "media_type").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<media_type> media_typeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<media_type>("piktoModel.FK_media_0_0", "media_type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<media_type>("piktoModel.FK_media_0_0", "media_type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_01", "piktogramy")]
+        public EntityCollection<piktogramy> piktogramies
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_01", "piktogramy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_01", "piktogramy", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="piktoModel", Name="piktogramy")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -756,30 +1080,6 @@ namespace Pikto
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] image
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_image);
-            }
-            set
-            {
-                OnimageChanging(value);
-                ReportPropertyChanging("image");
-                _image = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("image");
-                OnimageChanged();
-            }
-        }
-        private global::System.Byte[] _image;
-        partial void OnimageChanging(global::System.Byte[] value);
-        partial void OnimageChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int64> category_id
         {
             get
@@ -798,6 +1098,30 @@ namespace Pikto
         private Nullable<global::System.Int64> _category_id;
         partial void Oncategory_idChanging(Nullable<global::System.Int64> value);
         partial void Oncategory_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> media_id
+        {
+            get
+            {
+                return _media_id;
+            }
+            set
+            {
+                Onmedia_idChanging(value);
+                ReportPropertyChanging("media_id");
+                _media_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("media_id");
+                Onmedia_idChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _media_id;
+        partial void Onmedia_idChanging(Nullable<global::System.Int64> value);
+        partial void Onmedia_idChanged();
 
         #endregion
     
@@ -881,6 +1205,44 @@ namespace Pikto
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<cluster_tb>("piktoModel.FK_cluster_tb_0_0", "cluster_tb", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_01", "medium")]
+        public medium medium
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<medium> mediumReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium", value);
                 }
             }
         }
