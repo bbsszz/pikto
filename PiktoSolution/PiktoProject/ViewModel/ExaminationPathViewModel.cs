@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Pikto.Utils;
+using Pikto.ViewModel.Commands;
+using System.Windows.Input;
 
 namespace Pikto.ViewModel
 {
-	class ExaminationPathViewModel : BaseViewModel
+	class ExaminationPathViewModel : WizardBaseViewModel
 	{
 		private ChooseEnum action;
 
@@ -21,6 +23,19 @@ namespace Pikto.ViewModel
 					OnPropertyChanged("Action");
 				}
 			}
+		}
+
+		public ExaminationPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
+			: base(new Command(p =>
+				{
+
+				}),
+				new Command(p =>
+				{
+
+				}),
+				cancelCmd, null)
+		{
 		}
 	}
 }

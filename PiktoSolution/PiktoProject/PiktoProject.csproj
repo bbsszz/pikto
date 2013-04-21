@@ -154,11 +154,11 @@
     <Compile Include="ViewModel\Commands\SettingsCommand.cs" />
     <Compile Include="ViewModel\Commands\StartExaminationPathCommand.cs" />
     <Compile Include="ViewModel\Commands\StartLearningPathCommand.cs" />
-    <Compile Include="ViewModel\ExaminationPathSourceViewModel.cs" />
     <Compile Include="ViewModel\ExaminationPathViewModel.cs" />
     <Compile Include="ViewModel\IContentChange.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="ViewModel\WizardBaseViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
