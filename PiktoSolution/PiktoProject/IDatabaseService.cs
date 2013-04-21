@@ -9,6 +9,7 @@ namespace Pikto
     interface IDatabaseService
     {
         #region piktogramy
+        List<piktogramy> GetAllPiktograms();
         piktogramy GetPiktogram(int id);
 
         void AddPiktogram(string name, medium obj);

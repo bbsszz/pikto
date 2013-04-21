@@ -12,6 +12,7 @@ namespace Pikto.Views
 		MainPage,
 		StartExaminationPathWizard,
 		SettingsPage,
+        StartPiktogramsManagementWizard,
 		AboutWindow,
 	}
 }

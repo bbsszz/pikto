@@ -18,11 +18,11 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_0", "category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.category), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
+[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_1_0", "category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.category), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_bt_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_bt", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_bt), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_cluster_tb_0_0", "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.piktogramy), "cluster_tb", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.cluster_tb), true)]
 [assembly: EdmRelationshipAttribute("piktoModel", "FK_media_0_0", "media_type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Pikto.media_type), "medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.medium), true)]
-[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_01", "medium", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.medium), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
+[assembly: EdmRelationshipAttribute("piktoModel", "FK_piktogramy_0_0", "medium", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Pikto.medium), "piktogramy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Pikto.piktogramy), true)]
 
 #endregion
 
@@ -141,22 +141,6 @@ namespace Pikto
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<piktogramy> piktogramies
-        {
-            get
-            {
-                if ((_piktogramies == null))
-                {
-                    _piktogramies = base.CreateObjectSet<piktogramy>("piktogramies");
-                }
-                return _piktogramies;
-            }
-        }
-        private ObjectSet<piktogramy> _piktogramies;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<medium> media
         {
             get
@@ -185,6 +169,22 @@ namespace Pikto
             }
         }
         private ObjectSet<media_type> _media_type;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<piktogramy> piktogramies
+        {
+            get
+            {
+                if ((_piktogramies == null))
+                {
+                    _piktogramies = base.CreateObjectSet<piktogramy>("piktogramies");
+                }
+                return _piktogramies;
+            }
+        }
+        private ObjectSet<piktogramy> _piktogramies;
 
         #endregion
         #region AddTo Methods
@@ -222,14 +222,6 @@ namespace Pikto
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the piktogramies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTopiktogramies(piktogramy piktogramy)
-        {
-            base.AddObject("piktogramies", piktogramy);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the media EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTomedia(medium medium)
@@ -243,6 +235,14 @@ namespace Pikto
         public void AddTomedia_type(media_type media_type)
         {
             base.AddObject("media_type", media_type);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the piktogramies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTopiktogramies(piktogramy piktogramy)
+        {
+            base.AddObject("piktogramies", piktogramy);
         }
 
         #endregion
@@ -338,18 +338,18 @@ namespace Pikto
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "piktogramy")]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_1_0", "piktogramy")]
         public EntityCollection<piktogramy> piktogramies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_0", "piktogramy");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_1_0", "piktogramy");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_0", "piktogramy", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_1_0", "piktogramy", value);
                 }
             }
         }
@@ -701,7 +701,7 @@ namespace Pikto
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int64 @new
         {
@@ -711,11 +711,14 @@ namespace Pikto
             }
             set
             {
-                OnnewChanging(value);
-                ReportPropertyChanging("new");
-                _new = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("new");
-                OnnewChanged();
+                if (_new != value)
+                {
+                    OnnewChanging(value);
+                    ReportPropertyChanging("new");
+                    _new = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("new");
+                    OnnewChanged();
+                }
             }
         }
         private global::System.Int64 _new;
@@ -981,18 +984,18 @@ namespace Pikto
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_01", "piktogramy")]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "piktogramy")]
         public EntityCollection<piktogramy> piktogramies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_01", "piktogramy");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_0", "piktogramy");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_01", "piktogramy", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<piktogramy>("piktoModel.FK_piktogramy_0_0", "piktogramy", value);
                 }
             }
         }
@@ -1133,16 +1136,16 @@ namespace Pikto
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "category")]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_1_0", "category")]
         public category category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_1_0", "category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_1_0", "category").Value = value;
             }
         }
         /// <summary>
@@ -1154,13 +1157,13 @@ namespace Pikto
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<category>("piktoModel.FK_piktogramy_1_0", "category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<category>("piktoModel.FK_piktogramy_0_0", "category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<category>("piktoModel.FK_piktogramy_1_0", "category", value);
                 }
             }
         }
@@ -1215,16 +1218,16 @@ namespace Pikto
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_01", "medium")]
+        [EdmRelationshipNavigationPropertyAttribute("piktoModel", "FK_piktogramy_0_0", "medium")]
         public medium medium
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_0", "medium").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_0", "medium").Value = value;
             }
         }
         /// <summary>
@@ -1236,13 +1239,13 @@ namespace Pikto
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<medium>("piktoModel.FK_piktogramy_0_0", "medium");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<medium>("piktoModel.FK_piktogramy_0_01", "medium", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<medium>("piktoModel.FK_piktogramy_0_0", "medium", value);
                 }
             }
         }

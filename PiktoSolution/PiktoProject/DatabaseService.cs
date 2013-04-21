@@ -12,6 +12,11 @@ namespace Pikto
     {
         piktoDB db = new piktoDB();
 
+        public List<piktogramy> GetAllPiktograms()
+        {
+            return db.piktogramies.ToList<piktogramy>();
+        }
+
         public piktogramy GetPiktogram(int id)
         {
             return db.piktogramies.SingleOrDefault(x => x.id == id);

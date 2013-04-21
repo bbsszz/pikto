@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Pikto.Views.ManagePiktogramsFirstStep"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="640">
+
+    <Grid>
+        <ListBox Height="402" HorizontalAlignment="Left" Margin="32,40,0,0" Name="listBox1" VerticalAlignment="Top" Width="293" ItemsSource="{Binding Source={StaticResource Piktograms}}" />
+    </Grid>
+</UserControl>

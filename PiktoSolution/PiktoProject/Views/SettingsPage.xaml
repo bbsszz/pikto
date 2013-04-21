@@ -8,9 +8,9 @@
 	Title="SettingsPage">
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
-        <Button Content="Zarządzaj piktogramami" Height="23" HorizontalAlignment="Center" Margin="0,0,0,0" Name="bStartPiktogramsManagementPath" VerticalAlignment="Center" Width="192" Command="{Binding StartPiktogramsManagementPathCmd}" />
-        <Button Content="Zarządzaj kategoriami" Height="23" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCategoriesManagementPath" VerticalAlignment="Center" Width="192" Command="{Binding StartCategoriesManagementPathCmd}" />
-        <Button Content="Ustawienia kamery" Height="23" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCameraCalibrationPath" VerticalAlignment="Center" Width="192" Command="{Binding StartCameraCalibrationPathCmd}" />
+        <Button Content="Zarządzaj piktogramami" Height="23" HorizontalAlignment="Center" Margin="0,0,0,0" Name="bStartPiktogramsManagementPath" VerticalAlignment="Center" Width="192" Command="{Binding ManagePiktograms}" />
+        <Button Content="Zarządzaj kategoriami" Height="23" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCategoriesManagementPath" VerticalAlignment="Center" Width="192" Command="{Binding ManageCategories}" />
+        <Button Content="Ustawienia kamery" Height="23" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCameraCalibrationPath" VerticalAlignment="Center" Width="192" Command="{Binding ManageCamera}" />
         <Button Content="Wstecz" Height="23" Margin="0,32,0,0" Name="bExit" Width="192" Command="{Binding BackCmd}" />
     </StackPanel>
 </Page>
