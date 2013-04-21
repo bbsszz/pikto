@@ -11,7 +11,7 @@ namespace Pikto.Views
 		Test,
 		MainPage,
 		StartExaminationPathWizard,
-		MainSettingsPage,
+		SettingsPage,
 		AboutWindow,
 	}
 }

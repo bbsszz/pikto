@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Pikto.ViewModel;
+using System.Windows.Input;
 
 namespace Pikto.Views
 {
@@ -10,13 +11,22 @@ namespace Pikto.Views
 	{
 		private ExaminationPathViewModel viewModel;
 
+		private Action<string> refreshStepAction;
+		private ICommand cancelCmd;
+
+		public ViewTypeExaminationPathWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+		{
+			this.refreshStepAction = refreshStepAction;
+			this.cancelCmd = cancelCmd;
+		}
+
 		protected override WizardView Create(object parameter)
 		{
 			var step = parameter as string;
 
 			if (viewModel == null)
 			{
-				viewModel = new ExaminationPathViewModel();
+				viewModel = new ExaminationPathViewModel(refreshStepAction, cancelCmd);
 			}
 
 			switch (step)

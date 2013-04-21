@@ -26,16 +26,34 @@ namespace Pikto.ViewModel
 		}
 
 		public ExaminationPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
-			: base(new Command(p =>
-				{
-
-				}),
-				new Command(p =>
-				{
-
-				}),
-				cancelCmd, null)
+			: base(cancelCmd)
 		{
+			action = ChooseEnum.New;
+		}
+
+		protected override ICommand PrepareForwardCommand()
+		{
+			return new Command(p =>
+			{
+				switch (action)
+				{
+					case ChooseEnum.New:
+
+						break;
+
+					case ChooseEnum.Existing:
+
+						break;
+				}
+			});
+		}
+
+		protected override ICommand PrepareBackwardCommand()
+		{
+			return new Command(p =>
+			{
+
+			});
 		}
 	}
 }

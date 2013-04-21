@@ -6,20 +6,31 @@ using System.Windows.Input;
 
 namespace Pikto.ViewModel
 {
-	class WizardBaseViewModel : BaseViewModel
+	abstract class WizardBaseViewModel : BaseViewModel
 	{
-		public ICommand ForwardCmd { get; private set; }
-		public ICommand BackwardCmd { get; private set; }
+		private ICommand forwardCmd;
+		private ICommand backwardCmd;
+
+		public ICommand ForwardCmd
+		{
+			get { return forwardCmd; }
+			set { forwardCmd = PrepareForwardCommand(); }
+		}
+
+		public ICommand BackwardCmd
+		{
+			get { return backwardCmd; }
+			set { backwardCmd = PrepareBackwardCommand(); }
+		}
+
 		public ICommand CancelCmd { get; private set; }
 
-		private IList<string> steps;
-
-		public WizardBaseViewModel(ICommand forwardCmd, ICommand backwardCmd, ICommand cancelCmd, IList<string> steps)
+		public WizardBaseViewModel(ICommand cancelCmd)
 		{
-			ForwardCmd = forwardCmd;
-			BackwardCmd = backwardCmd;
 			CancelCmd = cancelCmd;
-			this.steps = new List<string>(steps);
 		}
+
+		protected abstract ICommand PrepareForwardCommand();
+		protected abstract ICommand PrepareBackwardCommand();
 	}
 }

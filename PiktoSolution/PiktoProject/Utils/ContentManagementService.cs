@@ -21,6 +21,8 @@ namespace Pikto.Utils
 
 		public ICommand ShowStartExaminationPathWizardCommand { get; private set; }
 		public ICommand ShowAboutWindowCommand { get; private set; }
+
+        public ICommand ShowSettingsPageCommand { get; private set; }
 		
 
 		public ContentManagementService(AppViewModel appViewModel)
@@ -44,6 +46,12 @@ namespace Pikto.Utils
 			{
 				contentChange.SecondaryViewType = ViewType.AboutWindow;
 			});
+		}
+
+		public void RefreshSecondaryView(ViewType viewType, string step)
+		{
+			contentChange.SecondaryViewType = viewType;
+			contentChange.WizardStep = step;
 		}
 	}
 }
