@@ -12,18 +12,20 @@ namespace Pikto.Utils
 {
 	class ContentManagementService
 	{
-		private AppViewModel appViewModel;
+		private IContentChange contentChange;
 
 		public ICommand LoadMainPageCommand { get; private set; }
 		public ICommand CloseApplicationCommand { get; private set; }
 
 		public ICommand HideSecondaryWindowCommand { get; private set; }
 
-		public ICommand ShowAboutWindow { get; private set; }
+		public ICommand ShowStartExaminationPathWizardCommand { get; private set; }
+		public ICommand ShowAboutWindowCommand { get; private set; }
+		
 
 		public ContentManagementService(AppViewModel appViewModel)
 		{
-			this.appViewModel = appViewModel;
+			this.contentChange = appViewModel;
 			PrepareCommands();
 		}
 
@@ -35,11 +37,12 @@ namespace Pikto.Utils
 			});
 			HideSecondaryWindowCommand = new Command(p =>
 			{
-				appViewModel.SecondaryViewType = ViewType.Default;
+				contentChange.SecondaryViewType = ViewType.Default;
 			});
-			ShowAboutWindow = new Command(p =>
+			ShowStartExaminationPathWizardCommand = new StartExaminationPathCommand(contentChange);
+			ShowAboutWindowCommand = new Command(p =>
 			{
-				appViewModel.SecondaryViewType = ViewType.AboutWindow;
+				contentChange.SecondaryViewType = ViewType.AboutWindow;
 			});
 		}
 	}

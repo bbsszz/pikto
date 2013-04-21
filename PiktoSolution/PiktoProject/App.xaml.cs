@@ -46,7 +46,8 @@ namespace Pikto
 
 			mapping.Add(ViewType.Default, new ViewTypeDefaultManager());
 			mapping.Add(ViewType.Test, new ViewTypeTestManager());
-			mapping.Add(ViewType.MainPage, new ViewTypeMainPageManager(new StartLearningPathCommand(), new StartExaminationPathCommand(), new SettingsCommand(), contentManagementService.ShowAboutWindow, contentManagementService.CloseApplicationCommand));
+			mapping.Add(ViewType.MainPage, new ViewTypeMainPageManager(new StartLearningPathCommand(), contentManagementService.ShowStartExaminationPathWizardCommand, new SettingsCommand(), contentManagementService.ShowAboutWindowCommand, contentManagementService.CloseApplicationCommand));
+			mapping.Add(ViewType.StartExaminationPathWizard, new ViewTypeExaminationPathWizardManager());
 			mapping.Add(ViewType.AboutWindow, new ViewTypeAboutManager(contentManagementService.HideSecondaryWindowCommand));
 
 			return mapping;

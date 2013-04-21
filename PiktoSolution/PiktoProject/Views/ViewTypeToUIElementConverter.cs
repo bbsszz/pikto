@@ -22,7 +22,7 @@ namespace Pikto.Views
 		public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			ViewType viewType = (ViewType)values[0];
-			return mapping[viewType].GetView(values.Length > 1 ? values[1] : null);
+			return mapping[viewType].GetView(values.Length > 1 ? values[1] : "");
 		}
 
 		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)

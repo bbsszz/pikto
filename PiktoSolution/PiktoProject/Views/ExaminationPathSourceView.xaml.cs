@@ -17,9 +17,9 @@ namespace Pikto.Views
 	/// <summary>
 	/// Interaction logic for ExaminationPathSource.xaml
 	/// </summary>
-	public partial class ExaminationPathSource : UserControl
+	public partial class ExaminationPathSourceView : UserControl
 	{
-		public ExaminationPathSource()
+		public ExaminationPathSourceView()
 		{
 			InitializeComponent();
 		}

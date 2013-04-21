@@ -12,6 +12,6 @@
         <Button Content="&gt;&gt;&gt;" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="bForward" VerticalAlignment="Bottom" Width="75" Command="{Binding ForwardCmd}" />
         <Button Content="&lt;&lt;&lt;" Height="23" HorizontalAlignment="Right" Margin="0,0,93,12" Name="bBack" VerticalAlignment="Bottom" Width="75" Command="{Binding BackCmd}" />
         <Button Content="Anuluj" HorizontalAlignment="Right" Margin="12,0,174,12" Name="bCancel" Width="75" Height="23" VerticalAlignment="Bottom" Command="{Binding CancelCmd}" />
-        <Frame Margin="12,49,12,41" Name="stepContent" Padding="8" />
+        <Frame Margin="12,49,12,41" Name="stepContent" Padding="8" NavigationUIVisibility="Hidden" Focusable="False" />
     </Grid>
 </Page>

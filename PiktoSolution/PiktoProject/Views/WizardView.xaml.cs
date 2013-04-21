@@ -23,5 +23,10 @@ namespace Pikto.Views
 		{
 			InitializeComponent();
 		}
+
+		public object StepContent
+		{
+			set { stepContent.Content = value; }
+		}
 	}
 }

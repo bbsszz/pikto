@@ -7,10 +7,11 @@ using System.Windows;
 
 namespace Pikto.ViewModel
 {
-	class AppViewModel : BaseViewModel
+	class AppViewModel : BaseViewModel, IContentChange
 	{
 		private ViewType primaryViewType;
 		private ViewType secondaryViewType;
+		private string wizardStep;
 
 		public ViewType PrimaryViewType
 		{
@@ -32,7 +33,21 @@ namespace Pikto.ViewModel
 			{
 				if (secondaryViewType != value)
 				{
+					wizardStep = "";
 					secondaryViewType = value;
+					OnPropertyChanged("SecondaryViewType");
+				}
+			}
+		}
+
+		public string WizardStep
+		{
+			get { return wizardStep; }
+			set
+			{
+				if (wizardStep != value)
+				{
+					wizardStep = value;
 					OnPropertyChanged("SecondaryViewType");
 				}
 			}
