@@ -21,6 +21,8 @@ namespace Pikto.Utils
 
 		public ICommand ShowStartExaminationPathWizardCommand { get; private set; }
 		public ICommand ShowAboutWindowCommand { get; private set; }
+
+        public ICommand ShowSettingsPageCommand { get; private set; }
 		
 
 		public ContentManagementService(AppViewModel appViewModel)
