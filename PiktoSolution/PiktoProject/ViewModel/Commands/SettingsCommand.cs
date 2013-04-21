@@ -10,7 +10,7 @@ namespace Pikto.ViewModel.Commands
 	{
 		public bool CanExecute(object parameter)
 		{
-			throw new NotImplementedException();
+			return false; // not implemented
 		}
 
 		public event EventHandler CanExecuteChanged;

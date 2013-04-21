@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Pikto.ViewModel
 {
-	class MainViewModel : BaseViewModel
+	class AppViewModel : BaseViewModel
 	{
 		private ViewType primaryViewType;
 		private ViewType secondaryViewType;

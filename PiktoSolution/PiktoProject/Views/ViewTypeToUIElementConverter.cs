@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace Pikto.Views
 {
 	[ValueConversion(typeof(ViewType), typeof(UIElement))]
-	class ViewTypeToUIElementConverter : IValueConverter
+	class ViewTypeToUIElementConverter : IMultiValueConverter
 	{
 		IDictionary<ViewType, ViewTypeManager<UIElement>> mapping;
 
@@ -19,13 +19,13 @@ namespace Pikto.Views
 			this.mapping = mapping;
 		}
 
-		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			ViewType viewType = (ViewType)value;
-			return mapping[viewType].GetView(parameter);
+			ViewType viewType = (ViewType)values[0];
+			return mapping[viewType].GetView(values.Length > 1 ? values[1] : null);
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
 		{
 			throw new NotImplementedException("Should not be used.");
 		}

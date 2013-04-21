@@ -148,6 +148,7 @@
     <Compile Include="Utils\ActionEnum.cs" />
     <Compile Include="Utils\ChooseEnum.cs" />
     <Compile Include="Utils\ContentManagementService.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Commands\Command.cs" />
     <Compile Include="ViewModel\Commands\SettingsCommand.cs" />
@@ -155,7 +156,11 @@
     <Compile Include="ViewModel\Commands\StartLearningPathCommand.cs" />
     <Compile Include="ViewModel\ExaminationPathSourceViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewTypeAboutManager.cs" />
     <Compile Include="Views\ViewTypeMainPageManager.cs" />
     <Compile Include="Views\ViewTypeDefaultManager.cs" />
     <Compile Include="Views\ViewTypeManager.cs" />
@@ -169,11 +174,11 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="Views\AppView.xaml.cs">
+      <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewType.cs" />
-    <Compile Include="Views\ViewTypeConverter.cs" />
+    <Compile Include="Views\ViewTypeToUIElementConverter.cs" />
     <Compile Include="Views\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
@@ -205,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExaminationPathSource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,7 +222,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\AppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

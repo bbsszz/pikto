@@ -11,5 +11,6 @@ namespace Pikto.Views
 		Test,
 		MainPage,
 		MainSettingsPage,
+		AboutWindow,
 	}
 }

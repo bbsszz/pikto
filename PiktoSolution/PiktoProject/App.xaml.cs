@@ -23,31 +23,31 @@ namespace Pikto
 
 		private void BuildApplication()
 		{
+			var appViewModel = new AppViewModel();
 
-			var contentManagementService = new ContentManagementService();
-			contentManagementService.LoadMainPage = new Command(p => { });
+			var contentManagementService = new ContentManagementService(appViewModel);
 
-			var mapping = PrepareMapping();
+			var mapping = PrepareMapping(contentManagementService);
 			var viewTypeConverter = new ViewTypeToUIElementConverter(mapping);
 			Application.Current.Resources.Add("viewTypeConverter", viewTypeConverter);
 
-			var mainViewModel = new MainViewModel();
-			mainViewModel.PrimaryViewType = ViewType.MainPage;
-			mainViewModel.SecondaryViewType = ViewType.Test;
+			var mainView = new AppView();
+			mainView.DataContext = appViewModel;
 
-			var mainView = new MainView();
-			mainView.DataContext = mainViewModel;
+			appViewModel.PrimaryViewType = ViewType.MainPage;
+			appViewModel.SecondaryViewType = ViewType.Default;
 
 			mainView.Show();
 		}
 
-		private IDictionary<ViewType, ViewTypeManager<UIElement>> PrepareMapping()
+		private IDictionary<ViewType, ViewTypeManager<UIElement>> PrepareMapping(ContentManagementService contentManagementService)
 		{
 			var mapping = new Dictionary<ViewType, ViewTypeManager<UIElement>>();
 
 			mapping.Add(ViewType.Default, new ViewTypeDefaultManager());
 			mapping.Add(ViewType.Test, new ViewTypeTestManager());
-			mapping.Add(ViewType.MainPage, new ViewTypeMainPageManager(null, null, null, new Command(p => Application.Current.Shutdown())));
+			mapping.Add(ViewType.MainPage, new ViewTypeMainPageManager(new StartLearningPathCommand(), new StartExaminationPathCommand(), new SettingsCommand(), contentManagementService.ShowAboutWindow, contentManagementService.CloseApplicationCommand));
+			mapping.Add(ViewType.AboutWindow, new ViewTypeAboutManager(contentManagementService.HideSecondaryWindowCommand));
 
 			return mapping;
 		}
