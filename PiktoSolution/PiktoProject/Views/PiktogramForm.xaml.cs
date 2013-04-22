@@ -9,34 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pikto
+namespace Pikto.Views
 {
     /// <summary>
     /// Interaction logic for PiktogramForm.xaml
     /// </summary>
-    public partial class AddPiktogram : Window
+    public partial class PiktogramForm : UserControl
     {
-        DatabaseService db;
-        public AddPiktogram()
+        public PiktogramForm()
         {
             InitializeComponent();
-            db = new DatabaseService();
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void button_add_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void button1_Click_1(object sender, RoutedEventArgs e)
-        {
-           
         }
     }
 }

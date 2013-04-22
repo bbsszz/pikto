@@ -10,6 +10,7 @@ namespace Pikto
     {
         #region piktogramy
         List<piktogramy> GetAllPiktograms();
+
         piktogramy GetPiktogram(int id);
 
         void AddPiktogram(string name, medium obj);
@@ -31,6 +32,8 @@ namespace Pikto
         #endregion
 
         #region kategorie
+        List<category> GetAllCategories();
+
         category GetCategory(int id);
 
         void AddCategory(string name);

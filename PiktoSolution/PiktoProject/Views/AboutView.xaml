@@ -4,15 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="194" Width="300">
-    <Grid Background="#FF87D8FF">
-        <Label Content="Autorzy" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lAuthors" VerticalAlignment="Top" FontSize="16" />
-        <ListBox Height="Auto" Margin="37,57,35,0" Name="listBox1" VerticalAlignment="Top" IsEnabled="True">
-            <ListBoxItem Content="Paweł Kadłubowski" Focusable="False" IsHitTestVisible="False" IsTabStop="False" />
-            <ListBoxItem Content="Małgorzata Kwiatkowska" Focusable="False" IsHitTestVisible="False" IsTabStop="False" />
-            <ListBoxItem Content="Paweł Penar" Focusable="False" IsHitTestVisible="False" IsTabStop="False" />
-            <ListBoxItem Content="Maciej Słowik" Focusable="False" IsHitTestVisible="False" IsTabStop="False" />
-            <ListBoxItem Content="Cezary Walczak" Focusable="False" IsHitTestVisible="False" IsTabStop="False" />
-        </ListBox>
-        <Button Content="Ok" Margin="121,159,121,12" Name="buttonOk" VerticalAlignment="Center" HorizontalAlignment="Center" Width="58" Command="{Binding OkCmd}" />
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0.0">
+                    <GradientStop.Color>
+                        <Color A="255" R="170" G="70" B="180"/>
+                    </GradientStop.Color>
+                </GradientStop>
+                <GradientStop Offset="1.0">
+                    <GradientStop.Color>
+                        <Color A="255" R="114" G="0" B="172"/>
+                    </GradientStop.Color>
+                </GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Autorzy" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lAuthors" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+        <TextBlock Height="83" HorizontalAlignment="Left" Margin="72,49,0,0" Name="tbAuthors" VerticalAlignment="Top" Width="157" TextAlignment="Center" Foreground="White">
+            <TextBlock.Inlines>
+                Paweł Kadłubowski
+                <LineBreak/>
+                Małgorzata Kwiatkowska
+                <LineBreak/>
+                Paweł Penar
+                <LineBreak/>
+                Maciej Słowik
+                <LineBreak/>
+                Cezary Walczak
+            </TextBlock.Inlines>
+        </TextBlock>
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="114,159,0,0" Name="button1" VerticalAlignment="Top" Width="75"  Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" BorderBrush="#FF7200AC" Command="{Binding OkCmd}"/>
     </Grid>
 </UserControl>

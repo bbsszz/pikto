@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="90" d:DesignWidth="300">
     <Grid>
-        <RadioButton Content="Konfiguruj nową ścieżkę" Height="16" HorizontalAlignment="Left" Margin="12,12,0,0" Name="rbNewPath" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.New}}" />
-        <RadioButton Content="Wybierz istniejącą ścieżkę" Height="16" HorizontalAlignment="Left" Margin="12,46,0,0" Name="rbLoadPath" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.Existing}}" />
+        <RadioButton Content="Konfiguruj nową ścieżkę" Height="16" HorizontalAlignment="Left" Margin="12,12,0,0" Name="rbNewPath" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.New}}" Foreground="White" />
+        <RadioButton Content="Wybierz istniejącą ścieżkę" Height="16" HorizontalAlignment="Left" Margin="12,46,0,0" Name="rbLoadPath" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.Existing}}" Foreground="White" />
     </Grid>
 </UserControl>

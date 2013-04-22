@@ -5,12 +5,27 @@ using System.Text;
 using Pikto.Utils;
 using System.Windows.Input;
 using Pikto.ViewModel.Commands;
-using Pikto.Views;
 
 namespace Pikto.ViewModel
 {
-    class PiktogramsManagementPathViewModel : WizardBaseViewModel
+    class PiktogramFormViewModel : WizardBaseViewModel
 	{
+        private DatabaseService db;
+
+        private List<category> categories;
+
+        public List<string> Categories
+        {
+            get { return categories.Select(x => x.name.ToString()).ToList(); }
+        }
+
+        private List<piktogramy> piktograms;
+
+        public List<string> Piktograms
+        {
+            get { return piktograms.Select(x => x.name.ToString()).ToList(); }
+        }
+
         private ChooseEnum action;
 
 		public ChooseEnum Action
@@ -26,11 +41,13 @@ namespace Pikto.ViewModel
 			}
 		}
 
-        public PiktogramsManagementPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
+        public PiktogramFormViewModel(Action<string> newStepAction, ICommand cancelCmd)
 			: base(cancelCmd)
 		{
 			action = ChooseEnum.New;
-            
+            db = new DatabaseService();
+            categories = db.GetAllCategories();
+            piktograms = db.GetAllPiktograms();
 		}
 
 		protected override ICommand PrepareForwardCommand()
@@ -40,7 +57,7 @@ namespace Pikto.ViewModel
 				switch (action)
 				{
 					case ChooseEnum.New:
-      
+     
 						break;
 
 					case ChooseEnum.Existing:

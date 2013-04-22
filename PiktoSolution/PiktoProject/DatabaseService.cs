@@ -72,6 +72,12 @@ namespace Pikto
             db.SaveChanges();
         }
 
+
+        public List<category> GetAllCategories()
+        {
+            return db.categories.ToList<category>();
+        }
+
         public category GetCategory(int id)
         {
             return db.categories.SingleOrDefault(x => x.id == id);

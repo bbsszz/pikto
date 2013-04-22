@@ -5,11 +5,10 @@ using System.Text;
 using Pikto.Utils;
 using System.Windows.Input;
 using Pikto.ViewModel.Commands;
-using Pikto.Views;
 
 namespace Pikto.ViewModel
 {
-    class PiktogramsManagementPathViewModel : WizardBaseViewModel
+    class CategoriesManagementPathViewModel : WizardBaseViewModel
 	{
         private ChooseEnum action;
 
@@ -26,7 +25,7 @@ namespace Pikto.ViewModel
 			}
 		}
 
-        public PiktogramsManagementPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
+        public CategoriesManagementPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
 			: base(cancelCmd)
 		{
 			action = ChooseEnum.New;

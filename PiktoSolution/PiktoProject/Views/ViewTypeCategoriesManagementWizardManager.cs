@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Pikto.ViewModel;
 using System.Windows.Input;
+using Pikto.ViewModel;
 
 namespace Pikto.Views
 {
-    class ViewTypePiktogramsManagementWizardManager : ViewTypeWizardManager<WizardView>
+    class ViewTypeCategoriesManagementWizardManager : ViewTypeWizardManager<WizardView>
 	{
-		private PiktogramsManagementPathViewModel viewModel;
+		private CategoriesManagementPathViewModel viewModel;
 
 		private Action<string> refreshStepAction;
 		private ICommand cancelCmd;
 
-        public ViewTypePiktogramsManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+        public ViewTypeCategoriesManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
 		{
 			this.refreshStepAction = refreshStepAction;
 			this.cancelCmd = cancelCmd;
@@ -26,7 +26,7 @@ namespace Pikto.Views
 
 			if (viewModel == null)
 			{
-				viewModel = new PiktogramsManagementPathViewModel(refreshStepAction, cancelCmd);
+				viewModel = new CategoriesManagementPathViewModel(refreshStepAction, cancelCmd);
 			}
 
 			switch (step)
@@ -35,7 +35,7 @@ namespace Pikto.Views
 				case "source":
 				{
 					var view = new WizardView();
-					var innerView = new ManagePiktogramsFirstStep();
+					var innerView = new ManageCategoriesFirstStep();
                     innerView.DataContext = viewModel;
 					view.StepContent = innerView;
 					view.DataContext = viewModel;
@@ -45,7 +45,7 @@ namespace Pikto.Views
 				case "new_piktogram":
 				{
 					var view = new WizardView();
-                    var innerView = new PiktogramForm();
+                    var innerView = new CategoryForm();
                     innerView.DataContext = viewModel;
                     view.StepContent = innerView;
 					view.DataContext = viewModel;
@@ -55,7 +55,7 @@ namespace Pikto.Views
 				case "update_piktogram":
 				{
 					var view = new WizardView();
-                    var innerView = new ManagePiktogramsSecondStep();
+                    var innerView = new CategoryForm();
                     innerView.DataContext = viewModel;
                     view.StepContent = innerView;
 					view.DataContext = viewModel;

@@ -149,6 +149,9 @@
     <Compile Include="Utils\ChooseEnum.cs" />
     <Compile Include="Utils\ContentManagementService.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\CategoriesManagementPathViewModel.cs" />
+    <Compile Include="ViewModel\CategoryFormViewModel.cs" />
+    <Compile Include="ViewModel\PiktogramFormViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Commands\Command.cs" />
     <Compile Include="ViewModel\Commands\SettingsCommand.cs" />
@@ -161,19 +164,33 @@
     <Compile Include="ViewModel\IContentChange.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="ViewModel\PiktogramsManagementSecondStepViewModel.cs" />
     <Compile Include="ViewModel\PiktogramsManagementPathViewModel.cs" />
     <Compile Include="ViewModel\SettingsPageViewModel.cs" />
     <Compile Include="ViewModel\WizardBaseViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CategoryForm.xaml.cs">
+      <DependentUpon>CategoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageCategoriesFirstStep.xaml.cs">
+      <DependentUpon>ManageCategoriesFirstStep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PiktogramForm.xaml.cs">
+      <DependentUpon>PiktogramForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ManagePiktogramsFirstStep.xaml.cs">
       <DependentUpon>ManagePiktogramsFirstStep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagePiktogramsSecondStep.xaml.cs">
+      <DependentUpon>ManagePiktogramsSecondStep.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewTypeAboutManager.cs" />
+    <Compile Include="Views\ViewTypeCategoriesManagementWizardManager.cs" />
     <Compile Include="Views\ViewTypeExaminationPathWizardManager.cs" />
     <Compile Include="Views\ViewTypeMainPageManager.cs" />
     <Compile Include="Views\ViewTypeDefaultManager.cs" />
@@ -230,6 +247,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CategoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManageCategoriesFirstStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PiktogramForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExaminationPathSourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ManagePiktogramsFirstStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagePiktogramsSecondStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
