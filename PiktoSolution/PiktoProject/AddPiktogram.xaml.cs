@@ -34,7 +34,7 @@ namespace Pikto
         {
             BitmapImage img = new BitmapImage(new Uri(this.textBox_file.Text));
             
-            db.AddPiktogram(this.textBox_name.Text, img, this.textBox_category.Text);
+          //  db.AddPiktogram(this.textBox_name.Text, img, this.textBox_category.Text);
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)

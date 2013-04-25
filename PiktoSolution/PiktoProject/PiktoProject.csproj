@@ -63,6 +63,22 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\..\..\..\..\Program Files\System.Data.SQLite\2010\bin\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -114,6 +130,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModelContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MarkerRecognition\EContour.cs" />
+    <Compile Include="MarkerRecognition\EMarker.cs" />
+    <Compile Include="MarkerRecognition\MarkerPosition3D.cs" />
+    <Compile Include="MarkerRecognition\MDetector.cs" />
     <Compile Include="Position3D.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
       <SubType>Form</SubType>
@@ -140,6 +160,16 @@
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
+    <Compile Include="XnaWpfHost\DisplayModel.cs" />
+    <Compile Include="XnaWpfHost\E3DModel.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceControl.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceEventArgs.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceService.cs" />
+    <Compile Include="XnaWpfHost\HwndMouseEventArgs.cs" />
+    <Compile Include="XnaWpfHost\HwndMouseState.cs" />
+    <Compile Include="XnaWpfHost\NativeMethods.cs" />
+    <Compile Include="XnaWpfHost\ServiceContainer.cs" />
+    <Compile Include="XnaWpfHost\Tools.cs" />
     <Page Include="AddPiktogram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
