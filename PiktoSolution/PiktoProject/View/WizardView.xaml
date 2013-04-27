@@ -1,0 +1,31 @@
+﻿<Page x:Class="Pikto.View.WizardView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Width="{Binding ViewModel.ViewWidth}" Height="{Binding ViewModel.ViewHeight}"
+	Title="WizardView">
+    <Page.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0.0">
+                <GradientStop.Color>
+                    <Color A="255" R="170" G="70" B="180"/>
+                </GradientStop.Color>
+            </GradientStop>
+            <GradientStop Offset="1.0">
+                <GradientStop.Color>
+                    <Color A="255" R="114" G="0" B="172"/>
+                </GradientStop.Color>
+            </GradientStop>
+        </LinearGradientBrush>
+    </Page.Background>
+    <Grid>
+        <Label Content="Tytuł" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lTitle" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+        <Button Content="&gt;&gt;&gt;" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="bForward" VerticalAlignment="Bottom" Width="75" Command="{Binding ForwardCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
+        <Button Content="&lt;&lt;&lt;" Height="23" HorizontalAlignment="Right" Margin="0,0,93,12" Name="bBack" VerticalAlignment="Bottom" Width="75" Command="{Binding BackwardCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
+        <Button Content="Anuluj" HorizontalAlignment="Right" Margin="12,0,174,12" Name="bCancel" Width="75" Height="23" VerticalAlignment="Bottom" Command="{Binding CancelCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
+        <Frame Margin="12,48" Name="stepContent" Padding="16" NavigationUIVisibility="Hidden" Focusable="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+    </Grid>
+</Page>

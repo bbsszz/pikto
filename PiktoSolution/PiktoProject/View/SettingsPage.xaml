@@ -1,0 +1,16 @@
+﻿<Page x:Class="Pikto.View.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="SettingsPage">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+        <Button Content="Zarządzaj piktogramami"  Height="50" HorizontalAlignment="Center" Margin="0,0,0,0" Name="bStartPiktogramsManagementPath" VerticalAlignment="Center" Width="250" Command="{Binding ManagePiktograms}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontSize="20" FontWeight="SemiBold" />
+        <Button Content="Zarządzaj kategoriami"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCategoriesManagementPath" VerticalAlignment="Center" Width="250" Command="{Binding ManageCategories}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontSize="20" FontWeight="SemiBold" />
+        <Button Content="Ustawienia kamery"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCameraCalibrationPath" VerticalAlignment="Center" Width="250" Command="{Binding ManageCamera}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontSize="20" FontWeight="SemiBold" />
+        <Button Content="Wstecz"  Height="50" Margin="0,32,0,0" Name="bExit" Width="250" Command="{Binding BackCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontSize="20" FontWeight="SemiBold" />
+    </StackPanel>
+</Page>

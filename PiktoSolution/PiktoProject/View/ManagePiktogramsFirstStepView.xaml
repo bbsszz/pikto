@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Pikto.View.ManagePiktogramsFirstStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:utils="clr-namespace:Pikto.Utils"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="300">
+    <Grid>
+        <RadioButton Content="Dodaj nowy piktogram" Height="16" HorizontalAlignment="Left" Margin="12,12,0,0" Name="rbNewPiktogram" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.New}}" Foreground="White" />
+        <RadioButton Content="Zmień lub usuń istniejący piktogram" Height="16" HorizontalAlignment="Left" Margin="12,46,0,0" Name="rbEditPiktogram" VerticalAlignment="Top" IsChecked="{Binding Path=Action, Converter={StaticResource enumToBoolConverter}, ConverterParameter={x:Static utils:ChooseEnum.Existing}}" Foreground="White" />
+    </Grid>
+</UserControl>

@@ -4,10 +4,13 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using Pikto.Utils;
-using Pikto.ViewModel.Commands;
-using Pikto.Views;
 using Pikto.ViewModel;
+using Pikto.Utils;
+using Pikto.View;
+using Pikto.View.ViewManager;
+using Pikto.View.ViewManager.ViewSimpleManager;
+using Pikto.ViewModel.Command;
+using Pikto.View.ViewManager.ViewWizardManager;
 
 namespace Pikto
 {

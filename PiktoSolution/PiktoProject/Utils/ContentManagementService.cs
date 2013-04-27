@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.ViewModel;
-using Pikto.ViewModel.Commands;
-using Pikto.Views;
+using Pikto.ViewModel.Command;
+using Pikto.View;
 using System.Windows;
 
 namespace Pikto.Utils
@@ -38,16 +38,16 @@ namespace Pikto.Utils
 
 		private void PrepareCommands()
 		{
-			CloseApplicationCommand = new Command(p =>
+			CloseApplicationCommand = new BasicCommand(p =>
 			{
 				Application.Current.Shutdown();
 			});
-			HideSecondaryWindowCommand = new Command(p =>
+			HideSecondaryWindowCommand = new BasicCommand(p =>
 			{
 				contentChange.SecondaryViewType = ViewType.Default;
 			});
 
-            LoadMainPageCommand = new Command(p =>
+            LoadMainPageCommand = new BasicCommand(p =>
             {
                 contentChange.PrimaryViewType = ViewType.MainPage;
                 contentChange.SecondaryViewType = ViewType.Default;
@@ -56,7 +56,7 @@ namespace Pikto.Utils
 			ShowStartExaminationPathWizardCommand = new StartExaminationPathCommand(contentChange);
 
             
-			ShowAboutWindowCommand = new Command(p =>
+			ShowAboutWindowCommand = new BasicCommand(p =>
 			{
 				contentChange.SecondaryViewType = ViewType.AboutWindow;
 			});
