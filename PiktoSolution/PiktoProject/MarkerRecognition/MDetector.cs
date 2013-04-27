@@ -25,7 +25,8 @@ namespace Pikto
         bool markerExists;
         #endregion
         #region Constructor
-        public MDetector() {
+        public MDetector() 
+        {
             contours = new List<Contour<Point>>();
             contoursOk=new List<EContour>();
             minArea = 100;
@@ -56,8 +57,10 @@ namespace Pikto
                 oldMarker = markers[0];
                 aproxCounter = 0 ;
             }
-            else {
-                if (aproxCounter < maxAproxCounter) {
+            else 
+            {
+                if (aproxCounter < maxAproxCounter) 
+                {
                     markers.Add(oldMarker);
                     markerExists = true;
                     aproxCounter++;
