@@ -34,36 +34,23 @@ namespace Pikto.ViewModel
 
         private DatabaseService db;
 
-        public PiktogramsManagementSecondStepViewModel(Action<string> newStepAction, ICommand cancelCmd)
-            : base(cancelCmd)
+        public PiktogramsManagementSecondStepViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
+            : base(refreshStepAction, cancelCmd)
         {
             db = new DatabaseService();
             piktograms = db.GetAllPiktograms();
         }
 
-        protected override ICommand PrepareForwardCommand()
-        {
-            return new Command(p =>
-            {
-                switch (action)
-                {
-                    case ChooseEnum.New:
+		protected override IDictionary<string, ICommand> PrepareForwardCommands()
+		{
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
+		}
 
-                        break;
-
-                    case ChooseEnum.Existing:
-
-                        break;
-                }
-            });
-        }
-
-        protected override ICommand PrepareBackwardCommand()
-        {
-            return new Command(p =>
-            {
-
-            });
-        }
+		protected override IDictionary<string, ICommand> PrepareBackwardCommands()
+		{
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
+		}
     }
 }

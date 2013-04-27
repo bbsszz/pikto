@@ -30,7 +30,7 @@ namespace Pikto.Utils
             public ICommand ShowStartCameraCalibrationWizardCommand { get; private set; }
         #endregion
 
-        public ContentManagementService(AppViewModel appViewModel)
+        public ContentManagementService(IContentChange appViewModel)
 		{
 			this.contentChange = appViewModel;
 			PrepareCommands();
@@ -69,8 +69,7 @@ namespace Pikto.Utils
 
 		public void RefreshSecondaryView(ViewType viewType, string step)
 		{
-			contentChange.SecondaryViewType = viewType;
-			contentChange.WizardStep = step;
+			contentChange.SecondaryViewTypeWithStep(viewType, step);
 		}
 	}
 }

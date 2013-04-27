@@ -151,6 +151,7 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\CategoriesManagementPathViewModel.cs" />
     <Compile Include="ViewModel\CategoryFormViewModel.cs" />
+    <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PiktogramFormViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Commands\Command.cs" />
@@ -189,18 +190,18 @@
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewTypeAboutManager.cs" />
-    <Compile Include="Views\ViewTypeCategoriesManagementWizardManager.cs" />
-    <Compile Include="Views\ViewTypeExaminationPathWizardManager.cs" />
-    <Compile Include="Views\ViewTypeMainPageManager.cs" />
-    <Compile Include="Views\ViewTypeDefaultManager.cs" />
-    <Compile Include="Views\ViewTypeManager.cs" />
-    <Compile Include="Views\ViewTypePiktogramsManagementWizardManager.cs" />
-    <Compile Include="Views\ViewTypeSettingsPageManager.cs" />
-    <Compile Include="Views\ViewTypeSimpleManager.cs" />
-    <Compile Include="Views\ViewTypeTestManager.cs" />
-    <Compile Include="Views\ViewTypeWizardManager.cs" />
-    <Compile Include="Views\EnumToBoolConverter.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeAboutManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewWizardManagers\ViewTypeCategoriesManagementWizardManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewWizardManagers\ViewTypeExaminationPathWizardManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeMainPageManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeDefaultManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewTypeManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewWizardManagers\ViewTypePiktogramsManagementWizardManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeSettingsPageManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeSimpleManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewSimpleManagers\ViewTypeTestManager.cs" />
+    <Compile Include="Views\ViewManagers\ViewWizardManagers\ViewTypeWizardManager.cs" />
+    <Compile Include="Views\Converters\EnumToBoolConverter.cs" />
     <Compile Include="Views\ExaminationPathSourceView.xaml.cs">
       <DependentUpon>ExaminationPathSourceView.xaml</DependentUpon>
     </Compile>
@@ -211,7 +212,7 @@
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewType.cs" />
-    <Compile Include="Views\ViewTypeToUIElementConverter.cs" />
+    <Compile Include="Views\Converters\ViewTypeToUIElementConverter.cs" />
     <Compile Include="Views\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>

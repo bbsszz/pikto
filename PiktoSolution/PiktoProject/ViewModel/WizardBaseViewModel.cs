@@ -3,34 +3,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Pikto.ViewModel.Commands;
 
 namespace Pikto.ViewModel
 {
 	abstract class WizardBaseViewModel : BaseViewModel
 	{
-		private ICommand forwardCmd;
-		private ICommand backwardCmd;
+		private readonly IDictionary<string, ICommand> forwardCmds;
+		private readonly IDictionary<string, ICommand> backwardCmds;
+
+		private readonly ICommand justBackward;
+
+		private Stack<string> steps;
 
 		public ICommand ForwardCmd
 		{
-			get { return forwardCmd; }
-			set { forwardCmd = PrepareForwardCommand(); }
+			get
+			{
+				return forwardCmds[steps.Peek()];
+			}
 		}
 
 		public ICommand BackwardCmd
 		{
-			get { return backwardCmd; }
-			set { backwardCmd = PrepareBackwardCommand(); }
+			get
+			{
+				if (backwardCmds.ContainsKey(steps.Peek()))
+				{
+					return backwardCmds[steps.Peek()];
+				}
+				else
+				{
+					return justBackward;
+				}
+			}
 		}
 
 		public ICommand CancelCmd { get; private set; }
 
-		public WizardBaseViewModel(ICommand cancelCmd)
+		public Action<string> refreshStepAction;
+
+		public WizardBaseViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
 		{
-			CancelCmd = cancelCmd;
+			steps = new Stack<string>();
+			steps.Push("");
+			this.refreshStepAction = s =>
+				{
+					steps.Push(s);
+					refreshStepAction(s);
+				};
+
+			CancelCmd = new Command(p =>
+				{
+					cancelCmd.Execute(p);
+					Reset();
+				}, cancelCmd.CanExecute);
+
+			forwardCmds = PrepareForwardCommands();
+			backwardCmds = PrepareBackwardCommands();
+
+			justBackward = new Command(p =>
+				{
+					steps.Pop();
+					refreshStepAction(steps.Peek());
+				}, p =>
+				{
+					return steps.Count > 1;
+				});
 		}
 
-		protected abstract ICommand PrepareForwardCommand();
-		protected abstract ICommand PrepareBackwardCommand();
+		public override void Reset()
+		{
+			steps.Clear();
+			steps.Push("");
+		}
+
+		protected abstract IDictionary<string, ICommand> PrepareForwardCommands();
+		protected abstract IDictionary<string, ICommand> PrepareBackwardCommands();
 	}
 }

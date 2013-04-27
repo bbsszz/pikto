@@ -11,12 +11,11 @@ namespace Pikto.Views
 	{
 		private PiktogramsManagementPathViewModel viewModel;
 
-		private Action<string> refreshStepAction;
 		private ICommand cancelCmd;
 
         public ViewTypePiktogramsManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+			: base(refreshStepAction)
 		{
-			this.refreshStepAction = refreshStepAction;
 			this.cancelCmd = cancelCmd;
 		}
 

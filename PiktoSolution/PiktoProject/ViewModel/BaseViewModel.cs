@@ -15,5 +15,7 @@ namespace Pikto.ViewModel
 			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		public virtual void Reset() { }
 	}
 }

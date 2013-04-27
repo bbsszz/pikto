@@ -9,14 +9,20 @@ namespace Pikto.Views
 	abstract class ViewTypeWizardManager<V> : ViewTypeManager<V> where V : UIElement
 	{
 		protected IDictionary<object, V> stepsMap;
+		protected Action<string> refreshStepAction;
 
-		public ViewTypeWizardManager()
+		public ViewTypeWizardManager(Action<string> refreshStepAction)
 		{
+			this.refreshStepAction = refreshStepAction;
 			stepsMap = new Dictionary<object, V>();
 		}
 
 		public V GetView(object parameter)
 		{
+			if (parameter == null)
+			{
+				parameter = "";
+			}
 			if (!stepsMap.ContainsKey(parameter))
 			{
 				var v = Create(parameter);

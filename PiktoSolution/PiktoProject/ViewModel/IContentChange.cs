@@ -10,6 +10,8 @@ namespace Pikto.ViewModel
 	{
 		ViewType PrimaryViewType { set; }
 		ViewType SecondaryViewType { set; }
-		string WizardStep { set; }
+		string WizardStep { get; }
+
+		void SecondaryViewTypeWithStep(ViewType viewType, string step);
 	}
 }

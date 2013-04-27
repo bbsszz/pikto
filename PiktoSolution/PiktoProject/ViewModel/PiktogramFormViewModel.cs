@@ -41,8 +41,8 @@ namespace Pikto.ViewModel
 			}
 		}
 
-        public PiktogramFormViewModel(Action<string> newStepAction, ICommand cancelCmd)
-			: base(cancelCmd)
+        public PiktogramFormViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
+			: base(refreshStepAction, cancelCmd)
 		{
 			action = ChooseEnum.New;
             db = new DatabaseService();
@@ -50,29 +50,16 @@ namespace Pikto.ViewModel
             piktograms = db.GetAllPiktograms();
 		}
 
-		protected override ICommand PrepareForwardCommand()
+		protected override IDictionary<string, ICommand> PrepareForwardCommands()
 		{
-			return new Command(p =>
-			{
-				switch (action)
-				{
-					case ChooseEnum.New:
-     
-						break;
-
-					case ChooseEnum.Existing:
-
-						break;
-				}
-			});
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
 		}
 
-		protected override ICommand PrepareBackwardCommand()
+		protected override IDictionary<string, ICommand> PrepareBackwardCommands()
 		{
-			return new Command(p =>
-			{
-
-			});
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
 		}
 	}
 }

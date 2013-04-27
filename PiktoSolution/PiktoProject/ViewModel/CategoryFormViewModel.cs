@@ -34,37 +34,24 @@ namespace Pikto.ViewModel
 			}
 		}
 
-        public CategoryFormViewModel(Action<string> newStepAction, ICommand cancelCmd)
-			: base(cancelCmd)
+        public CategoryFormViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
+			: base(refreshStepAction, cancelCmd)
 		{
 			action = ChooseEnum.New;
             db = new DatabaseService();
             categories = db.GetAllCategories();
 		}
 
-		protected override ICommand PrepareForwardCommand()
+		protected override IDictionary<string, ICommand> PrepareForwardCommands()
 		{
-			return new Command(p =>
-			{
-				switch (action)
-				{
-					case ChooseEnum.New:
-     
-						break;
-
-					case ChooseEnum.Existing:
-
-						break;
-				}
-			});
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
 		}
 
-		protected override ICommand PrepareBackwardCommand()
+		protected override IDictionary<string, ICommand> PrepareBackwardCommands()
 		{
-			return new Command(p =>
-			{
-
-			});
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
 		}
 	}
 }

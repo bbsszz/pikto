@@ -10,13 +10,13 @@ namespace Pikto.Views
 	class ViewTypeExaminationPathWizardManager : ViewTypeWizardManager<WizardView>
 	{
 		private ExaminationPathViewModel viewModel;
+		private NavigationViewModel navigationViewModel;
 
-		private Action<string> refreshStepAction;
 		private ICommand cancelCmd;
 
 		public ViewTypeExaminationPathWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+			: base(refreshStepAction)
 		{
-			this.refreshStepAction = refreshStepAction;
 			this.cancelCmd = cancelCmd;
 		}
 
@@ -38,6 +38,7 @@ namespace Pikto.Views
 					var innerView = new ExaminationPathSourceView();
 					view.StepContent = innerView;
 					view.DataContext = viewModel;
+					innerView.DataContext = viewModel;
 					return view;
 				}
 
@@ -45,6 +46,7 @@ namespace Pikto.Views
 				{
 					var view = new WizardView();
 					// TODO inner content here
+					view.StepContent = "NEW PATH";
 					view.DataContext = viewModel;
 					return view;
 				}
@@ -52,6 +54,7 @@ namespace Pikto.Views
 				case "load_path":
 				{
 					var view = new WizardView();
+					view.StepContent = "LOAD PATH";
 					// TODO inner content here
 					view.DataContext = viewModel;
 					return view;

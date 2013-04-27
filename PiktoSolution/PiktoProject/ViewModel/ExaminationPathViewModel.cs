@@ -25,35 +25,47 @@ namespace Pikto.ViewModel
 			}
 		}
 
-		public ExaminationPathViewModel(Action<string> newStepAction, ICommand cancelCmd)
-			: base(cancelCmd)
+		public ExaminationPathViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
+			: base(refreshStepAction, cancelCmd)
 		{
 			action = ChooseEnum.New;
 		}
 
-		protected override ICommand PrepareForwardCommand()
+		protected override IDictionary<string, ICommand> PrepareForwardCommands()
 		{
-			return new Command(p =>
-			{
-				switch (action)
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+
+			cmds.Add("", new Command(p =>
 				{
-					case ChooseEnum.New:
+					switch (action)
+					{
+						case ChooseEnum.New:
+							refreshStepAction("new_path");
+							break;
 
-						break;
+						case ChooseEnum.Existing:
+							refreshStepAction("load_path");
+							break;
+					}
+				}));
 
-					case ChooseEnum.Existing:
+			cmds.Add("new_path", new Command(p =>
+				{
+					System.Windows.MessageBox.Show("CREATED");
+				}));
 
-						break;
-				}
-			});
+			cmds.Add("load_path", new Command(p =>
+				{
+					System.Windows.MessageBox.Show("LOADED");
+				}));
+
+			return cmds;
 		}
 
-		protected override ICommand PrepareBackwardCommand()
+		protected override IDictionary<string, ICommand> PrepareBackwardCommands()
 		{
-			return new Command(p =>
-			{
-
-			});
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			return cmds;
 		}
 	}
 }
