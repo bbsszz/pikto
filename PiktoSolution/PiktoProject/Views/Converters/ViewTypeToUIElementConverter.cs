@@ -21,8 +21,27 @@ namespace Pikto.Views
 
 		public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			ViewType viewType = (ViewType)values[0];
-			return mapping[viewType].GetView(values.Length > 1 ? values[1] : "");
+			switch (parameter as string)
+			{
+				case "Primary":
+				{
+					var viewType = (ViewType)values[0];
+					var manager = mapping[viewType];
+					return manager.GetView("");
+				}
+
+				case "Secondary":
+				{
+					var viewType = (ViewType)values[0];
+					var manager = mapping[viewType];
+					return manager.GetView(values[1]);
+				}
+
+				default:
+				{
+					throw new NotSupportedException("Container not supported.");
+				}
+			}
 		}
 
 		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)

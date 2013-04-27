@@ -151,7 +151,8 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\CategoriesManagementPathViewModel.cs" />
     <Compile Include="ViewModel\CategoryFormViewModel.cs" />
-    <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\ExaminationPathWizardNavigationViewModel.cs" />
+    <Compile Include="ViewModel\WizardNavigationViewModel.cs" />
     <Compile Include="ViewModel\PiktogramFormViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Commands\Command.cs" />

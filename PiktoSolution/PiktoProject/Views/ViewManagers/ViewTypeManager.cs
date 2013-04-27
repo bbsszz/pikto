@@ -9,5 +9,6 @@ namespace Pikto.Views
 	interface ViewTypeManager<out V> where V : UIElement
 	{
 		V GetView(object parameter);
+		void Reset();
 	}
 }

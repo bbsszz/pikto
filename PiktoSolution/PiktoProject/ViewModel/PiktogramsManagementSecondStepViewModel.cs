@@ -35,13 +35,13 @@ namespace Pikto.ViewModel
         private DatabaseService db;
 
         public PiktogramsManagementSecondStepViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
-            : base(refreshStepAction, cancelCmd)
+            //: base(refreshStepAction, cancelCmd)
         {
             db = new DatabaseService();
             piktograms = db.GetAllPiktograms();
         }
 
-		protected override IDictionary<string, ICommand> PrepareForwardCommands()
+		/*protected override IDictionary<string, ICommand> PrepareForwardCommands()
 		{
 			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
 			return cmds;
@@ -51,6 +51,6 @@ namespace Pikto.ViewModel
 		{
 			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
 			return cmds;
-		}
+		}*/
     }
 }

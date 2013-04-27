@@ -35,14 +35,14 @@ namespace Pikto.ViewModel
 		}
 
         public CategoryFormViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
-			: base(refreshStepAction, cancelCmd)
+			//: base(refreshStepAction, cancelCmd)
 		{
 			action = ChooseEnum.New;
             db = new DatabaseService();
             categories = db.GetAllCategories();
 		}
 
-		protected override IDictionary<string, ICommand> PrepareForwardCommands()
+		/*protected override IDictionary<string, ICommand> PrepareForwardCommands()
 		{
 			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
 			return cmds;
@@ -52,6 +52,6 @@ namespace Pikto.ViewModel
 		{
 			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
 			return cmds;
-		}
+		}*/
 	}
 }

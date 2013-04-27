@@ -9,8 +9,7 @@ namespace Pikto.Views
 {
 	class ViewTypeExaminationPathWizardManager : ViewTypeWizardManager<WizardView>
 	{
-		private ExaminationPathViewModel viewModel;
-		private NavigationViewModel navigationViewModel;
+		private WizardNavigationViewModel<ExaminationPathViewModel> navigationViewModel;
 
 		private ICommand cancelCmd;
 
@@ -24,21 +23,25 @@ namespace Pikto.Views
 		{
 			var step = parameter as string;
 
-			if (viewModel == null)
+			if (navigationViewModel == null)
 			{
-				viewModel = new ExaminationPathViewModel(refreshStepAction, cancelCmd);
+				var viewModel = new ExaminationPathViewModel();
+				navigationViewModel = new ExaminationPathWizardNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
 			}
 
 			switch (step)
 			{
 				case "":
-				case "source":
 				{
+					// view
 					var view = new WizardView();
 					var innerView = new ExaminationPathSourceView();
 					view.StepContent = innerView;
-					view.DataContext = viewModel;
-					innerView.DataContext = viewModel;
+
+					// view model
+					view.DataContext = navigationViewModel;
+					innerView.DataContext = navigationViewModel.ViewModel;
+
 					return view;
 				}
 
@@ -47,7 +50,7 @@ namespace Pikto.Views
 					var view = new WizardView();
 					// TODO inner content here
 					view.StepContent = "NEW PATH";
-					view.DataContext = viewModel;
+					view.DataContext = navigationViewModel;
 					return view;
 				}
 
@@ -56,7 +59,7 @@ namespace Pikto.Views
 					var view = new WizardView();
 					view.StepContent = "LOAD PATH";
 					// TODO inner content here
-					view.DataContext = viewModel;
+					view.DataContext = navigationViewModel;
 					return view;
 				}
 
@@ -66,5 +69,17 @@ namespace Pikto.Views
 				}
 			}
 		}
+
+		/*public override void Reset()
+		{
+			if (viewModel != null)
+			{
+				viewModel.Reset();
+			}
+			if (navigationViewModel != null)
+			{
+				navigationViewModel.Reset();
+			}
+		}*/
 	}
 }

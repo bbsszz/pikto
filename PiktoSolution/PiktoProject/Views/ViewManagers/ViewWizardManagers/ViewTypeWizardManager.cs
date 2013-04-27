@@ -32,5 +32,7 @@ namespace Pikto.Views
 		}
 
 		protected abstract V Create(object parameter);
+
+		public virtual void Reset() { }
 	}
 }

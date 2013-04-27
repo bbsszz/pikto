@@ -25,5 +25,7 @@ namespace Pikto.Views
 
 			return v;
 		}
+
+		public void Reset() { }
 	}
 }

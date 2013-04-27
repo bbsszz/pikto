@@ -29,14 +29,14 @@
     <Grid>
         <Frame Name="primaryContent" NavigationUIVisibility="Hidden" Focusable="False">
             <Frame.Content>
-                <MultiBinding Converter="{StaticResource viewTypeConverter}">
+                <MultiBinding Converter="{StaticResource viewTypeConverter}" ConverterParameter="Primary">
                     <Binding Path="PrimaryViewType" />
                 </MultiBinding>
             </Frame.Content>
         </Frame>
         <Frame Name="secondaryContent" NavigationUIVisibility="Hidden" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="4">
             <Frame.Content>
-                <MultiBinding Converter="{StaticResource viewTypeConverter}">
+                <MultiBinding Converter="{StaticResource viewTypeConverter}" ConverterParameter="Secondary">
                     <Binding Path="SecondaryViewType" />
                     <Binding Path="WizardStep" />
                 </MultiBinding>

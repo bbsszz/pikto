@@ -31,12 +31,7 @@ namespace Pikto.ViewModel
 			get { return secondaryViewType; }
 			set
 			{
-				if (secondaryViewType != value)
-				{
-					wizardStep = "";
-					secondaryViewType = value;
-					OnPropertyChanged("SecondaryViewType");
-				}
+				SecondaryViewTypeWithStep(value, "");
 			}
 		}
 
@@ -51,6 +46,7 @@ namespace Pikto.ViewModel
 			{
 				wizardStep = step;
 				secondaryViewType = viewType;
+				OnPropertyChanged("SecondaryViewType");
 				OnPropertyChanged("WizardStep");
 			}
 		}
