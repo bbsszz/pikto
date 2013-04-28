@@ -60,7 +60,7 @@ namespace Pikto
         private void displayImage(object s, CameraEventArgs e)
         {
             img = e.Image;
-            {
+         /*   {
                 if (mode3D)
                 {
                     pos.estimate(md.getMarkers().First());
