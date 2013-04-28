@@ -1,0 +1,16 @@
+﻿<Window x:Class="Pikto.Calibration.Calibwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="calibwindow" Height="459" Width="754">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="19*" />
+            <ColumnDefinition Width="259*" />
+        </Grid.ColumnDefinitions>
+        <Image Height="400" HorizontalAlignment="Left" Name="Main_Picturebox" Stretch="Fill" VerticalAlignment="Top" Width="400" Grid.Column="1" />
+        <Button Content="Start" Height="19" HorizontalAlignment="Left" Margin="477,29,0,0" Name="Start_BTN" VerticalAlignment="Top" Width="36" Grid.Column="1" Click="Start_BTN_Click" />
+        <Image Height="200" HorizontalAlignment="Left" Margin="444,200,0,0" Name="Sub_Picturebox" Stretch="Fill" VerticalAlignment="Top" Width="200" Grid.Column="1" />
+        <Label Content="Widok oryginalny" Grid.Column="1" Height="35" HorizontalAlignment="Left" Margin="454,164,0,0" Name="label1" VerticalAlignment="Top" Width="177" />
+        <Label Grid.Column="1" Height="32" HorizontalAlignment="Left" Margin="428,82,0,0" Name="result" VerticalAlignment="Top" Width="195" />
+    </Grid>
+</Window>

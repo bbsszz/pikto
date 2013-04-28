@@ -69,11 +69,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Calibration\calibwindow.xaml.cs">
+      <DependentUpon>calibwindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RecognitionPath\ArrayImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\DiscretizationModule.cs" />
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
+    <Page Include="Calibration\calibwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
