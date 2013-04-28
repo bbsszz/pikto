@@ -11,6 +11,16 @@
             <Setter Property="Topmost" Value="True" />
             <Setter Property="Cursor" Value="None" />
         </Style>
+        
+        <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderBrush" Value="#30FFFFFF" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="Background" Value="#4BFFFFFF" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        
         <views:EnumToBoolConverter x:Key="enumToBoolConverter" />
     </Application.Resources>
 </Application>

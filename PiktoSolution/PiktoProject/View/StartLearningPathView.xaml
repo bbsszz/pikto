@@ -1,0 +1,27 @@
+﻿<Page x:Class="Pikto.View.StartLearningPathView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="StartLearningPathView">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0.0">
+                    <GradientStop.Color>
+                        <Color A="255" R="170" G="70" B="180"/>
+                    </GradientStop.Color>
+                </GradientStop>
+                <GradientStop Offset="1.0">
+                    <GradientStop.Color>
+                        <Color A="255" R="114" G="0" B="172"/>
+                    </GradientStop.Color>
+                </GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button Content="Rozpocznij naukę" Height="49" Margin="48,33,48,0" Name="bStartLearning" VerticalAlignment="Top" Command="{Binding StartLearningCmd}" Style="{StaticResource MenuButtonStyle}" />
+    </Grid>
+</Page>

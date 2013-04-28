@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	class ViewTypeMainPageManager : ViewTypeSimpleManager<MainPage>
+	class ViewTypeMainPageManager : ViewTypeSimpleManager<MainPage, MainPageViewModel>
 	{
 		private ICommand startLearningPathCmd;
 		private ICommand startExaminationPathCmd;
@@ -24,11 +24,17 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 			this.exitCmd = exitCmd;
 		}
 
-		protected override MainPage Create()
+		protected override MainPage CreateView()
 		{
 			var mainPage = new MainPage();
-			mainPage.DataContext = new MainPageViewModel(startLearningPathCmd, startExaminationPathCmd, settingsCmd, aboutCmd, exitCmd);
+			mainPage.DataContext = ViewModel;
 			return mainPage;
+		}
+
+		protected override MainPageViewModel CreateViewModel()
+		{
+			var viewModel = new MainPageViewModel(startLearningPathCmd, startExaminationPathCmd, settingsCmd, aboutCmd, exitCmd);
+			return viewModel;
 		}
 	}
 }

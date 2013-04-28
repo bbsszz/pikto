@@ -10,11 +10,11 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 {
 	abstract class ViewTypeWizardManager<V, VM> : ViewTypeManager<V> where V : UIElement where VM : WizardBaseViewModel
 	{
-		protected IDictionary<object, V> stepsMap;
+		private IDictionary<object, V> stepsMap;
+		private WizardNavigationViewModel<VM> navigationViewModel;
+
 		protected Action<string> refreshStepAction;
 		protected ICommand cancelCmd;
-
-		private WizardNavigationViewModel<VM> navigationViewModel;
 
 		protected WizardNavigationViewModel<VM> NavigationViewModel
 		{

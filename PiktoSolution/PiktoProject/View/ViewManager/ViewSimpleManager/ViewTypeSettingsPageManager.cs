@@ -7,7 +7,7 @@ using Pikto.ViewModel;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-    class ViewTypeSettingsPageManager : ViewTypeSimpleManager<SettingsPage>
+    class ViewTypeSettingsPageManager : ViewTypeSimpleManager<SettingsPage, SettingsPageViewModel>
 	{
 		private ICommand StartPiktogramsManagementPathCmd;
 		private ICommand StartCategoriesManagementPathCmd;
@@ -22,11 +22,17 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
             this.BackCmd = backCmd;
 		}
 
-		protected override SettingsPage Create()
+		protected override SettingsPage CreateView()
 		{
 			var settingsPage = new SettingsPage();
-            settingsPage.DataContext = new SettingsPageViewModel(StartPiktogramsManagementPathCmd, StartCategoriesManagementPathCmd, StartCameraCalibrationCmd, BackCmd);
+			settingsPage.DataContext = ViewModel;
 			return settingsPage;
+		}
+
+		protected override SettingsPageViewModel CreateViewModel()
+		{
+			var viewModel = new SettingsPageViewModel(StartPiktogramsManagementPathCmd, StartCategoriesManagementPathCmd, StartCameraCalibrationCmd, BackCmd);
+			return viewModel;
 		}
 	}
 }

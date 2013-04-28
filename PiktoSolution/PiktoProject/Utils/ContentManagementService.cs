@@ -13,12 +13,14 @@ namespace Pikto.Utils
 	class ContentManagementService
 	{
 		private IContentChange contentChange;
+
         #region MainPage
             public ICommand LoadMainPageCommand { get; private set; }
 		    public ICommand CloseApplicationCommand { get; private set; }
 
 		    public ICommand HideSecondaryWindowCommand { get; private set; }
 
+			public ICommand ShowStartLearningPathCommand { get; private set; }
 		    public ICommand ShowStartExaminationPathWizardCommand { get; private set; }
 		    public ICommand ShowAboutWindowCommand { get; private set; }
         #endregion
@@ -53,9 +55,10 @@ namespace Pikto.Utils
                 contentChange.SecondaryViewType = ViewType.Default;
             });
 
+			ShowStartLearningPathCommand = new StartLearningPathCommand(contentChange);
+
 			ShowStartExaminationPathWizardCommand = new StartExaminationPathCommand(contentChange);
 
-            
 			ShowAboutWindowCommand = new BasicCommand(p =>
 			{
 				contentChange.SecondaryViewType = ViewType.AboutWindow;
