@@ -335,6 +335,9 @@
       <LastGenOutput>DataModelContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="packages.config" />
+    <None Include="pikto.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
