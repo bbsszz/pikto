@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Pikto.ViewModel;
+using Pikto.ViewModel.SimpleViewModel;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-    class ViewTypeSettingsPageManager : ViewTypeSimpleManager<SettingsPage, SettingsPageViewModel>
+    class ViewTypeSettingsPageManager : ViewTypeSimpleManager<SettingsWindow, SettingsWindowViewModel>
 	{
 		private ICommand StartPiktogramsManagementPathCmd;
 		private ICommand StartCategoriesManagementPathCmd;
@@ -22,16 +22,16 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
             this.BackCmd = backCmd;
 		}
 
-		protected override SettingsPage CreateView()
+		protected override SettingsWindow CreateView()
 		{
-			var settingsPage = new SettingsPage();
+			var settingsPage = new SettingsWindow();
 			settingsPage.DataContext = ViewModel;
 			return settingsPage;
 		}
 
-		protected override SettingsPageViewModel CreateViewModel()
+		protected override SettingsWindowViewModel CreateViewModel()
 		{
-			var viewModel = new SettingsPageViewModel(StartPiktogramsManagementPathCmd, StartCategoriesManagementPathCmd, StartCameraCalibrationCmd, BackCmd);
+			var viewModel = new SettingsWindowViewModel(StartPiktogramsManagementPathCmd, StartCategoriesManagementPathCmd, StartCameraCalibrationCmd, BackCmd);
 			return viewModel;
 		}
 	}

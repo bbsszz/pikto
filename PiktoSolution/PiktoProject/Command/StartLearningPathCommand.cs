@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.View;
+using Pikto.ViewModel;
 
-namespace Pikto.ViewModel.Command
+namespace Pikto.Command
 {
 	class StartLearningPathCommand : ICommand
 	{
@@ -25,7 +26,7 @@ namespace Pikto.ViewModel.Command
 
 		public void Execute(object parameter)
 		{
-			contentChange.SecondaryViewType = ViewType.StartLearningPath;
+			contentChange.PrimaryViewType = ViewType.LearningPath;
 		}
 	}
 }

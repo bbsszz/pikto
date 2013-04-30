@@ -9,9 +9,9 @@ namespace Pikto.ViewModel
 	interface IContentChange
 	{
 		ViewType PrimaryViewType { set; }
-		ViewType SecondaryViewType { set; }
-		string WizardStep { get; }
 
+		ViewType SecondaryViewType { get; set; }
+		string WizardStep { get; }
 		void SecondaryViewTypeWithStep(ViewType viewType, string step);
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Pikto.ViewModel.Command;
+using Pikto.Command;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
@@ -53,8 +53,8 @@ namespace Pikto.ViewModel.WizardViewModel
 			steps = new Stack<string>();
 			steps.Push("");
 
-			forwardCmds = PrepareForwardCmds();
-			backwardCmds = PrepareBackwardCmds();
+			forwardCmds = ForwardCmds();
+			backwardCmds = BackwardCmds();
 
 			standardBackward = new BasicCommand(p => PreviousStep(), p => steps.Count > 1);
 
@@ -65,8 +65,22 @@ namespace Pikto.ViewModel.WizardViewModel
 			}, cancelCmd.CanExecute);
 		}
 
-		protected abstract IDictionary<string, ICommand> PrepareForwardCmds();
-		protected abstract IDictionary<string, ICommand> PrepareBackwardCmds();
+		private IDictionary<string, ICommand> ForwardCmds()
+		{
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			PrepareForwardCmds(cmds);
+			return cmds;
+		}
+
+		private IDictionary<string, ICommand> BackwardCmds()
+		{
+			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
+			PrepareBackwardCmds(cmds);
+			return cmds;
+		}
+
+		protected abstract void PrepareForwardCmds(IDictionary<string, ICommand> commands);
+		protected virtual void PrepareBackwardCmds(IDictionary<string, ICommand> commands) { }
 
 		protected void NextStep(string newStep)
 		{

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.View;
+using Pikto.ViewModel;
 
-namespace Pikto.ViewModel.Command
+namespace Pikto.Command
 {
     class StartPiktogramsManagementPathCommand : ICommand
     {

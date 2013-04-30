@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Pikto.ViewModel;
+using Pikto.ViewModel.SimpleViewModel;
 using System.Windows.Input;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	class ViewTypeMainPageManager : ViewTypeSimpleManager<MainPage, MainPageViewModel>
+	class ViewTypeMainPageManager : ViewTypeSimpleManager<MainWindow, MainWindoViewModel>
 	{
 		private ICommand startLearningPathCmd;
 		private ICommand startExaminationPathCmd;
@@ -24,16 +24,16 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 			this.exitCmd = exitCmd;
 		}
 
-		protected override MainPage CreateView()
+		protected override MainWindow CreateView()
 		{
-			var mainPage = new MainPage();
+			var mainPage = new MainWindow();
 			mainPage.DataContext = ViewModel;
 			return mainPage;
 		}
 
-		protected override MainPageViewModel CreateViewModel()
+		protected override MainWindoViewModel CreateViewModel()
 		{
-			var viewModel = new MainPageViewModel(startLearningPathCmd, startExaminationPathCmd, settingsCmd, aboutCmd, exitCmd);
+			var viewModel = new MainWindoViewModel(startLearningPathCmd, startExaminationPathCmd, settingsCmd, aboutCmd, exitCmd);
 			return viewModel;
 		}
 	}

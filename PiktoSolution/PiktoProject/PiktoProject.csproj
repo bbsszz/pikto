@@ -11,7 +11,8 @@
     <RootNamespace>Pikto</RootNamespace>
     <AssemblyName>Pikto</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -108,6 +109,8 @@
     <Compile Include="AddPiktogram.xaml.cs">
       <DependentUpon>AddPiktogram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\MenuExaminationPathWizardCommand.cs" />
+    <Compile Include="Command\MenuStartLearningPathCommand.cs" />
     <Compile Include="DatabaseService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -150,7 +153,11 @@
     <Compile Include="Utils\ActionEnum.cs" />
     <Compile Include="Utils\ChooseEnum.cs" />
     <Compile Include="Utils\ContentManagementService.cs" />
+    <Compile Include="ViewModel\IParameterTransfer.cs" />
+    <Compile Include="ViewModel\ParameterTransfer.cs" />
     <Compile Include="ViewModel\SimpleViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\SimpleViewModel\ExaminationPathViewModel.cs" />
+    <Compile Include="ViewModel\SimpleViewModel\LearningPathViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\StartLearningPathViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\CategoriesManagementPathNavigationViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\CategoriesManagementPathViewModel.cs" />
@@ -160,14 +167,14 @@
     <Compile Include="ViewModel\WizardViewModel\WizardNavigationViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\PiktogramFormViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Command\BasicCommand.cs" />
-    <Compile Include="ViewModel\Command\SettingsCommand.cs" />
-    <Compile Include="ViewModel\Command\StartCameraCalibrationCommand.cs" />
-    <Compile Include="ViewModel\Command\StartCategoriesManagementPathCommand.cs" />
-    <Compile Include="ViewModel\Command\StartExaminationPathCommand.cs" />
-    <Compile Include="ViewModel\Command\StartLearningPathCommand.cs" />
-    <Compile Include="ViewModel\Command\StartPiktogramsManagementPathCommand.cs" />
-    <Compile Include="ViewModel\WizardViewModel\ExaminationPathViewModel.cs" />
+    <Compile Include="Command\BasicCommand.cs" />
+    <Compile Include="Command\SettingsCommand.cs" />
+    <Compile Include="Command\StartCameraCalibrationCommand.cs" />
+    <Compile Include="Command\StartCategoriesManagementPathCommand.cs" />
+    <Compile Include="Command\StartExaminationPathCommand.cs" />
+    <Compile Include="Command\StartLearningPathCommand.cs" />
+    <Compile Include="Command\StartPiktogramsManagementPathCommand.cs" />
+    <Compile Include="ViewModel\WizardViewModel\ExaminationPathWizardViewModel.cs" />
     <Compile Include="ViewModel\IContentChange.cs" />
     <Compile Include="ViewModel\SimpleViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\AppViewModel.cs" />
@@ -179,6 +186,12 @@
     </Compile>
     <Compile Include="View\CategoryForm.xaml.cs">
       <DependentUpon>CategoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExaminationPathWindow.xaml.cs">
+      <DependentUpon>ExaminationPathWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LearningPathWindow.xaml.cs">
+      <DependentUpon>LearningPathWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageCategoriesFirstStepView.xaml.cs">
       <DependentUpon>ManageCategoriesFirstStepView.xaml</DependentUpon>
@@ -192,13 +205,15 @@
     <Compile Include="View\ManagePiktogramsSecondStepView.xaml.cs">
       <DependentUpon>ManagePiktogramsSecondStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="View\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StartLearningPathView.xaml.cs">
       <DependentUpon>StartLearningPathView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeAboutManager.cs" />
+    <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeExaminationPathManager.cs" />
+    <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeLearningPathManager.cs" />
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeStartLearningPathManager.cs" />
     <Compile Include="View\ViewManager\ViewWizardManager\ViewTypeCategoriesManagementWizardManager.cs" />
     <Compile Include="View\ViewManager\ViewWizardManager\ViewTypeExaminationPathWizardManager.cs" />
@@ -211,11 +226,11 @@
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeTestManager.cs" />
     <Compile Include="View\ViewManager\ViewWizardManager\ViewTypeWizardManager.cs" />
     <Compile Include="View\Converter\EnumToBoolConverter.cs" />
-    <Compile Include="View\ExaminationPathSourceView.xaml.cs">
-      <DependentUpon>ExaminationPathSourceView.xaml</DependentUpon>
+    <Compile Include="View\ExaminationPathWizardSourceView.xaml.cs">
+      <DependentUpon>ExaminationPathWizardSourceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
@@ -261,6 +276,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ExaminationPathWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LearningPathWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageCategoriesFirstStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,11 +292,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ExaminationPathSourceView.xaml">
+    <Page Include="View\ExaminationPathWizardSourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,7 +312,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SettingsPage.xaml">
+    <Page Include="View\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

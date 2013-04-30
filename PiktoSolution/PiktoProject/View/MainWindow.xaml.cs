@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Pikto.View
 {
 	/// <summary>
-	/// Interaction logic for ExaminationPathSource.xaml
+	/// Interaction logic for MainPage.xaml
 	/// </summary>
-	public partial class ExaminationPathSourceView : UserControl
+	public partial class MainWindow : Page
 	{
-		public ExaminationPathSourceView()
+		public MainWindow()
 		{
 			InitializeComponent();
 		}

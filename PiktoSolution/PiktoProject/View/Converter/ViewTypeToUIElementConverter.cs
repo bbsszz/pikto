@@ -46,7 +46,7 @@ namespace Pikto.View
 
 		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
 		{
-			throw new NotImplementedException("Should not be used.");
+			throw new NotImplementedException("This method should not be used.");
 		}
 	}
 }

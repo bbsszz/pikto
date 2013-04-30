@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Pikto.Utils;
 using System.Windows.Input;
-using Pikto.ViewModel.Command;
 
 namespace Pikto.ViewModel.WizardViewModel
 {

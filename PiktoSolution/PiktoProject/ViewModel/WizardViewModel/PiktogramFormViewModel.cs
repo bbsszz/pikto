@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Pikto.Utils;
 using System.Windows.Input;
-using Pikto.ViewModel.Command;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
@@ -42,24 +41,11 @@ namespace Pikto.ViewModel.WizardViewModel
 		}
 
         public PiktogramFormViewModel(Action<string> refreshStepAction, ICommand cancelCmd)
-			//: base(refreshStepAction, cancelCmd)
 		{
 			action = ChooseEnum.New;
             db = new DatabaseService();
             categories = db.GetAllCategories();
             piktograms = db.GetAllPiktograms();
 		}
-
-		/*protected override IDictionary<string, ICommand> PrepareForwardCommands()
-		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-			return cmds;
-		}
-
-		protected override IDictionary<string, ICommand> PrepareBackwardCommands()
-		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-			return cmds;
-		}*/
 	}
 }

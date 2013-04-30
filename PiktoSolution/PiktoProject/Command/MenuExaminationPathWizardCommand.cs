@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Pikto.ViewModel;
 using Pikto.View;
 
-namespace Pikto.ViewModel.Command
+namespace Pikto.Command
 {
-	class StartExaminationPathCommand : ICommand
+	class MenuExaminationPathWizardCommand : ICommand
 	{
 		private IContentChange contentChange;
 
-		public StartExaminationPathCommand(IContentChange contentChange)
+		public MenuExaminationPathWizardCommand(IContentChange contentChange)
 		{
 			this.contentChange = contentChange;
 		}
@@ -25,7 +26,7 @@ namespace Pikto.ViewModel.Command
 
 		public void Execute(object parameter)
 		{
-			contentChange.SecondaryViewType = ViewType.StartExaminationPathWizard;
+			contentChange.SecondaryViewType = ViewType.ExaminationPathWizard;
 		}
 	}
 }

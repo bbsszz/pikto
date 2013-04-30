@@ -5,7 +5,7 @@ using System.Text;
 using Pikto.View;
 using System.Windows;
 
-namespace Pikto.ViewModel
+namespace Pikto.ViewModel.SimpleViewModel
 {
 	class AppViewModel : BaseViewModel, IContentChange
 	{
@@ -21,7 +21,9 @@ namespace Pikto.ViewModel
 				if (primaryViewType != value)
 				{
 					primaryViewType = value;
+					secondaryViewType = ViewType.Default;
 					OnPropertyChanged("PrimaryViewType");
+					OnPropertyChanged("SecondaryViewType");
 				}
 			}
 		}
@@ -44,8 +46,8 @@ namespace Pikto.ViewModel
 		{
 			if (step != wizardStep || viewType != secondaryViewType)
 			{
-				wizardStep = step;
 				secondaryViewType = viewType;
+				wizardStep = step;
 				OnPropertyChanged("SecondaryViewType");
 				OnPropertyChanged("WizardStep");
 			}

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace Pikto.ViewModel
+namespace Pikto.ViewModel.SimpleViewModel
 {
 	class AboutViewModel : BaseViewModel
 	{

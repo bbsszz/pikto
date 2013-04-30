@@ -8,11 +8,14 @@ using Pikto.ViewModel.WizardViewModel;
 
 namespace Pikto.View.ViewManager.ViewWizardManager
 {
-	class ViewTypeExaminationPathWizardManager : ViewTypeWizardManager<WizardView, ExaminationPathViewModel>
+	class ViewTypeExaminationPathWizardManager : ViewTypeWizardManager<WizardView, ExaminationPathWizardViewModel>
 	{
-		public ViewTypeExaminationPathWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+		private ICommand startExaminationPathCmd;
+
+		public ViewTypeExaminationPathWizardManager(Action<string> refreshStepAction, ICommand cancelCmd, ICommand startExaminationPathCmd)
 			: base(refreshStepAction, cancelCmd)
 		{
+			this.startExaminationPathCmd = startExaminationPathCmd;
 		}
 
 		protected override WizardView CreateView(object parameter)
@@ -25,7 +28,7 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 				{
 					// view
 					var view = new WizardView();
-					var innerView = new ExaminationPathSourceView();
+					var innerView = new ExaminationPathWizardSourceView();
 					view.StepContent = innerView;
 
 					// view model
@@ -60,10 +63,10 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			}
 		}
 
-		protected override WizardNavigationViewModel<ExaminationPathViewModel> CreateViewModel()
+		protected override WizardNavigationViewModel<ExaminationPathWizardViewModel> CreateViewModel()
 		{
-			var viewModel = new ExaminationPathViewModel();
-			var navigationViewModel = new ExaminationPathWizardNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
+			var viewModel = new ExaminationPathWizardViewModel();
+			var navigationViewModel = new ExaminationPathWizardNavigationViewModel(viewModel, refreshStepAction, cancelCmd, startExaminationPathCmd);
 			return navigationViewModel;
 		}
 	}

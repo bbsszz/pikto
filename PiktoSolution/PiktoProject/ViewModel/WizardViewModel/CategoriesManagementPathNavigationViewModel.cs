@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Pikto.ViewModel.Command;
+using Pikto.Command;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
 	class CategoriesManagementPathNavigationViewModel : WizardNavigationViewModel<CategoriesManagementPathViewModel>
 	{
-		public CategoriesManagementPathNavigationViewModel(CategoriesManagementPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
+		public CategoriesManagementPathNavigationViewModel(
+			CategoriesManagementPathViewModel viewModel, 
+			Action<string> refreshStepAction, 
+			ICommand cancelCmd)
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
 		}
 
-		protected override IDictionary<string, ICommand> PrepareForwardCmds()
+		protected override void PrepareForwardCmds(IDictionary<string, ICommand> commands)
 		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-
-			cmds.Add("", new BasicCommand(p =>
+			commands.Add("", new BasicCommand(p =>
 			{
 				throw new NotImplementedException();
 			}));
-
-			return cmds;
-		}
-
-		protected override IDictionary<string, ICommand> PrepareBackwardCmds()
-		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-			return cmds;
 		}
 	}
 }

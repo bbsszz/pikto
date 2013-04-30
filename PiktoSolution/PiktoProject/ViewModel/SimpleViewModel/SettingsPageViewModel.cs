@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace Pikto.ViewModel
+namespace Pikto.ViewModel.SimpleViewModel
 {
-    class SettingsPageViewModel : BaseViewModel
+    class SettingsWindowViewModel : BaseViewModel
     {
-        public ICommand ManagePiktograms { get; private set; }
-        public ICommand ManageCategories { get; private set; }
-        public ICommand ManageCamera { get; private set; }
+        public ICommand ManagePictogramsCmd { get; private set; }
+        public ICommand ManageCategoriesCmd { get; private set; }
+        public ICommand ManageCameraCmd { get; private set; }
         public ICommand BackCmd { get; private set; }
 
-        public SettingsPageViewModel(ICommand managePiktograms, ICommand manageCategories, ICommand manageCamera, ICommand backCmd)
+        public SettingsWindowViewModel(ICommand managePictogramsCmd, ICommand manageCategoriesCmd, ICommand manageCameraCmd, ICommand backCmd)
         {
-            ManagePiktograms = managePiktograms;
-            ManageCategories = manageCategories;
-            ManageCamera = manageCamera;
+            ManagePictogramsCmd = managePictogramsCmd;
+            ManageCategoriesCmd = manageCategoriesCmd;
+            ManageCameraCmd = manageCameraCmd;
             BackCmd = backCmd;
         }
     }

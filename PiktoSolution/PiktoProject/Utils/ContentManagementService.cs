@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.ViewModel;
-using Pikto.ViewModel.Command;
 using Pikto.View;
 using System.Windows;
+using Pikto.Command;
 
 namespace Pikto.Utils
 {
 	class ContentManagementService
 	{
 		private IContentChange contentChange;
+		private IParameterTransfer parameterTransfer;
 
         #region MainPage
             public ICommand LoadMainPageCommand { get; private set; }
@@ -20,9 +21,13 @@ namespace Pikto.Utils
 
 		    public ICommand HideSecondaryWindowCommand { get; private set; }
 
-			public ICommand ShowStartLearningPathCommand { get; private set; }
-		    public ICommand ShowStartExaminationPathWizardCommand { get; private set; }
-		    public ICommand ShowAboutWindowCommand { get; private set; }
+			public ICommand MenuStartLearningPathCommand { get; private set; }
+			public ICommand MenuExaminationPathWizardCommand { get; private set; }
+
+			public ICommand StartLearningPathCommand { get; private set; }
+			public ICommand StartExaminationPathCommand { get; private set; }
+
+		    public ICommand AboutWindowCommand { get; private set; }
         #endregion
 
         #region SettingsPage
@@ -32,9 +37,10 @@ namespace Pikto.Utils
             public ICommand ShowStartCameraCalibrationWizardCommand { get; private set; }
         #endregion
 
-        public ContentManagementService(IContentChange appViewModel)
+        public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
 		{
 			this.contentChange = appViewModel;
+			this.parameterTransfer = parameterTransfer;
 			PrepareCommands();
 		}
 
@@ -55,11 +61,13 @@ namespace Pikto.Utils
                 contentChange.SecondaryViewType = ViewType.Default;
             });
 
-			ShowStartLearningPathCommand = new StartLearningPathCommand(contentChange);
+			MenuStartLearningPathCommand = new MenuStartLearningPathCommand(contentChange);
+			MenuExaminationPathWizardCommand = new MenuExaminationPathWizardCommand(contentChange);
 
-			ShowStartExaminationPathWizardCommand = new StartExaminationPathCommand(contentChange);
+			StartLearningPathCommand = new StartLearningPathCommand(contentChange);
+			StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, parameterTransfer);
 
-			ShowAboutWindowCommand = new BasicCommand(p =>
+			AboutWindowCommand = new BasicCommand(p =>
 			{
 				contentChange.SecondaryViewType = ViewType.AboutWindow;
 			});

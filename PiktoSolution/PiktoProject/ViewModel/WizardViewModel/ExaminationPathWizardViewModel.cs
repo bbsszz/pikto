@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Pikto.Utils;
-using Pikto.ViewModel.Command;
 using System.Windows.Input;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-	class ExaminationPathViewModel : WizardBaseViewModel
+	class ExaminationPathWizardViewModel : WizardBaseViewModel
 	{
 		private ChooseEnum action;
 

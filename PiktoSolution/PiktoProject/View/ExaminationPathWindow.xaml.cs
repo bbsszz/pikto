@@ -14,14 +14,14 @@ using System.Windows.Shapes;
 
 namespace Pikto.View
 {
-    /// <summary>
-    /// Interaction logic for SettingsPage.xaml
-    /// </summary>
-    public partial class SettingsPage : Page
-    {
-        public SettingsPage()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for ExaminationPathWindow.xaml
+	/// </summary>
+	public partial class ExaminationPathWindow : Page
+	{
+		public ExaminationPathWindow()
+		{
+			InitializeComponent();
+		}
+	}
 }

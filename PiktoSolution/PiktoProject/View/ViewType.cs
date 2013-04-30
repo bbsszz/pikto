@@ -10,11 +10,17 @@ namespace Pikto.View
 		Default,
 		Test,
 		MainPage,
+
 		StartLearningPath,
-		StartExaminationPathWizard,
+		ExaminationPathWizard,
+		AboutWindow,
+
+		LearningPath,
+		ExaminationPath,
+
+
 		SettingsPage,
         StartPiktogramsManagementWizard,
         StartCategoriesManagementWizard,
-		AboutWindow,
 	}
 }

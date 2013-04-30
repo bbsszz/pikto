@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using Pikto.ViewModel;
-using Pikto.ViewModel.Command;
+using Pikto.ViewModel.SimpleViewModel;
+using Pikto.Command;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {

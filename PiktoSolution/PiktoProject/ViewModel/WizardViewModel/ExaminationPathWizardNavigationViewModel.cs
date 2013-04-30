@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Pikto.ViewModel.Command;
+using Pikto.Command;
 using Pikto.Utils;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-	class ExaminationPathWizardNavigationViewModel : WizardNavigationViewModel<ExaminationPathViewModel>
+	class ExaminationPathWizardNavigationViewModel : WizardNavigationViewModel<ExaminationPathWizardViewModel>
 	{
-		public ExaminationPathWizardNavigationViewModel(ExaminationPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
+		private ICommand startExaminationPathCmd;
+
+		public ExaminationPathWizardNavigationViewModel(
+			ExaminationPathWizardViewModel viewModel,
+			Action<string> refreshStepAction,
+			ICommand cancelCmd, 
+			ICommand startExaminationPathCmd)
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
+			this.startExaminationPathCmd = startExaminationPathCmd;
 		}
 
-		protected override IDictionary<string, ICommand> PrepareForwardCmds()
+		protected override void PrepareForwardCmds(IDictionary<string, ICommand> commands)
 		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-
-			cmds.Add("", new BasicCommand(p =>
+			commands.Add("", new BasicCommand(p =>
 			{
 				switch (ViewModel.Action)
 				{
@@ -33,23 +38,15 @@ namespace Pikto.ViewModel.WizardViewModel
 				}
 			}));
 
-			cmds.Add("new_path", new BasicCommand(p =>
+			commands.Add("new_path", new BasicCommand(p =>
 			{
-				System.Windows.MessageBox.Show("CREATED");
+				startExaminationPathCmd.Execute("Param from new_path");
 			}));
 
-			cmds.Add("load_path", new BasicCommand(p =>
+			commands.Add("load_path", new BasicCommand(p =>
 			{
-				System.Windows.MessageBox.Show("LOADED");
+				startExaminationPathCmd.Execute("Param from load_path");
 			}));
-
-			return cmds;
-		}
-
-		protected override IDictionary<string, ICommand> PrepareBackwardCmds()
-		{
-			IDictionary<string, ICommand> cmds = new Dictionary<string, ICommand>();
-			return cmds;
 		}
 	}
 }
