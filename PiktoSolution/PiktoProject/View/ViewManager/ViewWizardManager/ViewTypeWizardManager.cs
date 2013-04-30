@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Pikto.View.ViewManager.ViewWizardManager
 {
-	abstract class ViewTypeWizardManager<V, VM> : ViewTypeManager<V> where V : UIElement where VM : WizardBaseViewModel
+	abstract class ViewTypeWizardManager<V, VM> : ViewTypeManager<V> where V : FrameworkElement where VM : WizardBaseViewModel
 	{
 		private IDictionary<object, V> stepsMap;
 		private WizardNavigationViewModel<VM> navigationViewModel;
@@ -43,15 +43,27 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			}
 			if (!stepsMap.ContainsKey(parameter))
 			{
-				var v = CreateView(parameter);
-				stepsMap.Add(parameter, v);
+				var view = CreateView(parameter);
+				view.Loaded += view_Loaded;
+				view.Unloaded += view_Unloaded;
+				stepsMap.Add(parameter, view);
 			}
 			return stepsMap[parameter];
+		}
+
+		private void view_Loaded(object sender, RoutedEventArgs e)
+		{
+			navigationViewModel.Loaded();
+		}
+
+		void view_Unloaded(object sender, RoutedEventArgs e)
+		{
+			navigationViewModel.Unloaded();
 		}
 
 		protected abstract V CreateView(object parameter);
 		protected abstract WizardNavigationViewModel<VM> CreateViewModel();
 
-		public virtual void Reset() { }
+		public virtual void Loaded() { }
 	}
 }

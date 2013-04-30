@@ -6,9 +6,9 @@ using System.Windows;
 
 namespace Pikto.View.ViewManager
 {
-	interface ViewTypeManager<out V> where V : UIElement
+	interface ViewTypeManager<out V> where V : FrameworkElement
 	{
 		V GetView(object parameter);
-		void Reset();
+		void Loaded();
 	}
 }

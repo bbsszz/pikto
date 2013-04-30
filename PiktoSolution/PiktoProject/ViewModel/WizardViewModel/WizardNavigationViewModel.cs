@@ -42,7 +42,6 @@ namespace Pikto.ViewModel.WizardViewModel
 			}
 		}
 
-		//public ICommand FinishCmd { get; private set; }
 		public ICommand CancelCmd { get; private set; }
 
 		public WizardNavigationViewModel(VM viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
@@ -58,11 +57,7 @@ namespace Pikto.ViewModel.WizardViewModel
 
 			standardBackward = new BasicCommand(p => PreviousStep(), p => steps.Count > 1);
 
-			CancelCmd = new BasicCommand(p =>
-			{
-				Reset();
-				cancelCmd.Execute(p);
-			}, cancelCmd.CanExecute);
+			CancelCmd = cancelCmd;
 		}
 
 		private IDictionary<string, ICommand> ForwardCmds()
@@ -98,13 +93,14 @@ namespace Pikto.ViewModel.WizardViewModel
 			OnPropertyChanged("BackwardCmd");
 		}
 
-		public override void Reset()
+		public override void Loaded()
 		{
-			steps.Clear();
-			steps.Push("");
-			ViewModel.Reset();
-			OnPropertyChanged("ForwardCmd");
-			OnPropertyChanged("BackwardCmd");
+			ViewModel.Loaded();
+		}
+
+		public override void Unloaded()
+		{
+			ViewModel.Unloaded();
 		}
 	}
 }

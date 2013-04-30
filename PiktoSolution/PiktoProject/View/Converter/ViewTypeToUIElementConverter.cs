@@ -9,12 +9,12 @@ using Pikto.View.ViewManager;
 
 namespace Pikto.View
 {
-	[ValueConversion(typeof(ViewType), typeof(UIElement))]
+	[ValueConversion(typeof(ViewType), typeof(FrameworkElement))]
 	class ViewTypeToUIElementConverter : IMultiValueConverter
 	{
-		IDictionary<ViewType, ViewTypeManager<UIElement>> mapping;
+		IDictionary<ViewType, ViewTypeManager<FrameworkElement>> mapping;
 
-		public ViewTypeToUIElementConverter(IDictionary<ViewType, ViewTypeManager<UIElement>> mapping)
+		public ViewTypeToUIElementConverter(IDictionary<ViewType, ViewTypeManager<FrameworkElement>> mapping)
 		{
 			this.mapping = mapping;
 		}

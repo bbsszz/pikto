@@ -15,29 +15,28 @@ namespace Pikto.Utils
 		private IContentChange contentChange;
 		private IParameterTransfer parameterTransfer;
 
-        #region MainPage
-            public ICommand LoadMainPageCommand { get; private set; }
-		    public ICommand CloseApplicationCommand { get; private set; }
+		public ICommand LoadMainPageCommand { get; private set; }
+		public ICommand HideSecondaryWindowCommand { get; private set; }
 
-		    public ICommand HideSecondaryWindowCommand { get; private set; }
+		#region MainPage
+		public ICommand OpenLearningPathPromptCommand { get; private set; }
+		public ICommand OpenExaminationPathWizardCommand { get; private set; }
+		public ICommand OpenSettingsWindowCommand { get; private set; }
+		public ICommand ShowAboutWindowCommand { get; private set; }
+		public ICommand CloseApplicationCommand { get; private set; }
+		#endregion
 
-			public ICommand MenuStartLearningPathCommand { get; private set; }
-			public ICommand MenuExaminationPathWizardCommand { get; private set; }
+		#region SettingsPage
+		public ICommand ShowStartPiktogramsManagementPathWizardCommand { get; private set; }
+		public ICommand ShowStartCategoriesManagementPathWizardCommand { get; private set; }
+		public ICommand ShowStartCameraCalibrationWizardCommand { get; private set; }
+		#endregion
 
-			public ICommand StartLearningPathCommand { get; private set; }
-			public ICommand StartExaminationPathCommand { get; private set; }
+		public ICommand StartLearningPathCommand { get; private set; }
+		public ICommand StartExaminationPathCommand { get; private set; }
+		public ParameterPipe<string> ToExaminationPathPipe { get; private set; }
 
-		    public ICommand AboutWindowCommand { get; private set; }
-        #endregion
-
-        #region SettingsPage
-            public ICommand ShowSettingsPageCommand { get; private set; }
-            public ICommand ShowStartPiktogramsManagementPathWizardCommand { get; private set; }
-            public ICommand ShowStartCategoriesManagementPathWizardCommand { get; private set; }
-            public ICommand ShowStartCameraCalibrationWizardCommand { get; private set; }
-        #endregion
-
-        public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
+		public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
 		{
 			this.contentChange = appViewModel;
 			this.parameterTransfer = parameterTransfer;
@@ -46,36 +45,23 @@ namespace Pikto.Utils
 
 		private void PrepareCommands()
 		{
-			CloseApplicationCommand = new BasicCommand(p =>
-			{
-				Application.Current.Shutdown();
-			});
-			HideSecondaryWindowCommand = new BasicCommand(p =>
-			{
-				contentChange.SecondaryViewType = ViewType.Default;
-			});
+			LoadMainPageCommand = new ShowMainWindowCommand(contentChange);
+			HideSecondaryWindowCommand = new HideSecondaryWindowCommand(contentChange);
 
-            LoadMainPageCommand = new BasicCommand(p =>
-            {
-                contentChange.PrimaryViewType = ViewType.MainPage;
-                contentChange.SecondaryViewType = ViewType.Default;
-            });
-
-			MenuStartLearningPathCommand = new MenuStartLearningPathCommand(contentChange);
-			MenuExaminationPathWizardCommand = new MenuExaminationPathWizardCommand(contentChange);
+			OpenLearningPathPromptCommand = new OpenLearningPathPromptCommand(contentChange);
+			OpenExaminationPathWizardCommand = new OpenExaminationPathWizardCommand(contentChange);
+			OpenSettingsWindowCommand = new OpenSettingsWindowCommand(contentChange);
+			ShowAboutWindowCommand = new ShowAboutCommand(contentChange);
+			CloseApplicationCommand = new CloseApplicationCommand();
 
 			StartLearningPathCommand = new StartLearningPathCommand(contentChange);
-			StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, parameterTransfer);
+			ToExaminationPathPipe = new ParameterPipe<string>();
+			StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, ToExaminationPathPipe);
 
-			AboutWindowCommand = new BasicCommand(p =>
-			{
-				contentChange.SecondaryViewType = ViewType.AboutWindow;
-			});
 
-            ShowSettingsPageCommand = new SettingsCommand(contentChange);
-            ShowStartPiktogramsManagementPathWizardCommand = new StartPiktogramsManagementPathCommand(contentChange);
-            ShowStartCategoriesManagementPathWizardCommand = new StartCategoriesManagementPathCommand(contentChange);
-            ShowStartCameraCalibrationWizardCommand = new StartCameraCalibrationCommand(contentChange);
+			ShowStartPiktogramsManagementPathWizardCommand = new StartPiktogramsManagementPathCommand(contentChange);
+			ShowStartCategoriesManagementPathWizardCommand = new StartCategoriesManagementPathCommand(contentChange);
+			ShowStartCameraCalibrationWizardCommand = new StartCameraCalibrationCommand(contentChange);
 		}
 
 		public void RefreshSecondaryView(ViewType viewType, string step)

@@ -40,9 +40,9 @@ namespace Pikto.ViewModel.WizardViewModel
 			piktograms = db.GetAllPiktograms();
 		}
 
-		public override void Reset()
+		public override void Loaded()
 		{
-			base.Reset();
+			base.Loaded();
 			Action = ChooseEnum.New;
 		}
 

@@ -8,9 +8,9 @@ using Pikto.Command;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	class ViewTypeTestManager : ViewTypeManager<UIElement>
+	class ViewTypeTestManager : ViewTypeManager<FrameworkElement>
 	{
-		public UIElement GetView(object parameter)
+		public FrameworkElement GetView(object parameter)
 		{
 			/*var viewModel = new ExaminationPathSourceViewModel();
 
@@ -26,6 +26,6 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 			return v;
 		}
 
-		public void Reset() { }
+		public void Loaded() { }
 	}
 }

@@ -4,19 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.ViewModel;
-using Pikto.View;
+using System.Windows;
 
 namespace Pikto.Command
 {
-	class MenuExaminationPathWizardCommand : ICommand
+	class CloseApplicationCommand : ICommand
 	{
-		private IContentChange contentChange;
-
-		public MenuExaminationPathWizardCommand(IContentChange contentChange)
-		{
-			this.contentChange = contentChange;
-		}
-
 		public bool CanExecute(object parameter)
 		{
 			return true;
@@ -26,7 +19,7 @@ namespace Pikto.Command
 
 		public void Execute(object parameter)
 		{
-			contentChange.SecondaryViewType = ViewType.ExaminationPathWizard;
+			Application.Current.Shutdown();
 		}
 	}
 }

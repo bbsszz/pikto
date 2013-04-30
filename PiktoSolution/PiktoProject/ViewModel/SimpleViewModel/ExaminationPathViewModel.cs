@@ -7,11 +7,16 @@ namespace Pikto.ViewModel.SimpleViewModel
 {
 	class ExaminationPathViewModel : BaseViewModel
 	{
-		private IParameterTransfer parameterTransfer;
+		private IParameterOutput<string> parameterOutput;
 
-		public ExaminationPathViewModel(IParameterTransfer parameterTransfer)
+		public ExaminationPathViewModel(IParameterOutput<string> parameterOutput)
 		{
-			this.parameterTransfer = parameterTransfer;
+			this.parameterOutput = parameterOutput;
+		}
+
+		public override void Loaded()
+		{
+			System.Windows.MessageBox.Show(parameterOutput.Parameter);
 		}
 	}
 }

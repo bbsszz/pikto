@@ -9,11 +9,11 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 {
 	class ViewTypeExaminationPathManager : ViewTypeSimpleManager<ExaminationPathWindow, ExaminationPathViewModel>
 	{
-		private IParameterTransfer parameterTransfer;
+		private IParameterOutput<string> parameterOutput;
 
-		public ViewTypeExaminationPathManager(IParameterTransfer parameterTransfer)
+		public ViewTypeExaminationPathManager(IParameterOutput<string> parameterOutput)
 		{
-			this.parameterTransfer = parameterTransfer;
+			this.parameterOutput = parameterOutput;
 		}
 
 		protected override ExaminationPathWindow CreateView()
@@ -25,7 +25,7 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 
 		protected override ExaminationPathViewModel CreateViewModel()
 		{
-			var viewModel = new ExaminationPathViewModel(parameterTransfer);
+			var viewModel = new ExaminationPathViewModel(parameterOutput);
 			return viewModel;
 		}
 	}

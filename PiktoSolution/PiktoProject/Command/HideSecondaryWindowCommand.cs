@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Pikto.View;
 using Pikto.ViewModel;
+using Pikto.View;
 
 namespace Pikto.Command
 {
-	class StartExaminationPathCommand : ICommand
+	class HideSecondaryWindowCommand : ICommand
 	{
 		private IContentChange contentChange;
-		private IParameterInput<string> parameterInput;
 
-		public StartExaminationPathCommand(IContentChange contentChange, IParameterInput<string> parameterInput)
+		public HideSecondaryWindowCommand(IContentChange contentChange)
 		{
 			this.contentChange = contentChange;
-			this.parameterInput = parameterInput;
 		}
 
 		public bool CanExecute(object parameter)
@@ -28,8 +26,7 @@ namespace Pikto.Command
 
 		public void Execute(object parameter)
 		{
-			parameterInput.Parameter = parameter as string;
-			contentChange.PrimaryViewType = ViewType.ExaminationPath;
+			contentChange.SecondaryViewType = ViewType.Default;
 		}
 	}
 }

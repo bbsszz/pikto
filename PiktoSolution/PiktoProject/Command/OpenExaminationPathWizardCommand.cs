@@ -8,11 +8,11 @@ using Pikto.View;
 
 namespace Pikto.Command
 {
-	class MenuStartLearningPathCommand : ICommand
+	class OpenExaminationPathWizardCommand : ICommand
 	{
 		private IContentChange contentChange;
 
-		public MenuStartLearningPathCommand(IContentChange contentChange)
+		public OpenExaminationPathWizardCommand(IContentChange contentChange)
 		{
 			this.contentChange = contentChange;
 		}
@@ -26,7 +26,7 @@ namespace Pikto.Command
 
 		public void Execute(object parameter)
 		{
-			contentChange.SecondaryViewType = ViewType.StartLearningPath;
+			contentChange.SecondaryViewType = ViewType.ExaminationPathWizard;
 		}
 	}
 }

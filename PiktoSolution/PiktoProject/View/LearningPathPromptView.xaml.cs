@@ -17,9 +17,9 @@ namespace Pikto.View
 	/// <summary>
 	/// Interaction logic for StartLearningPathView.xaml
 	/// </summary>
-	public partial class StartLearningPathView : Page
+	public partial class LearningPathPromptView : Page
 	{
-		public StartLearningPathView()
+		public LearningPathPromptView()
 		{
 			InitializeComponent();
 		}

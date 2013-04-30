@@ -6,13 +6,13 @@ using System.Windows;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	class ViewTypeDefaultManager : ViewTypeManager<UIElement>
+	class ViewTypeDefaultManager : ViewTypeManager<FrameworkElement>
 	{
-		public UIElement GetView(object parameter)
+		public FrameworkElement GetView(object parameter)
 		{
 			return null;
 		}
 
-		public void Reset() { }
+		public void Loaded() { }
 	}
 }

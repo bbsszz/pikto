@@ -7,7 +7,7 @@ using Pikto.ViewModel;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	abstract class ViewTypeSimpleManager<V, VM> : ViewTypeManager<V> where V : UIElement where VM : BaseViewModel
+	abstract class ViewTypeSimpleManager<V, VM> : ViewTypeManager<V> where V : FrameworkElement where VM : BaseViewModel
 	{
 		private V view;
 		private VM viewModel;
@@ -29,6 +29,8 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 			if (view == null)
 			{
 				view = CreateView();
+				view.Loaded += (s, e) => viewModel.Loaded();
+				view.Unloaded += (s, e) => viewModel.Unloaded();
 			}
 			return view;
 		}
@@ -36,6 +38,6 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 		protected abstract V CreateView();
 		protected abstract VM CreateViewModel();
 
-		public void Reset() { }
+		public void Loaded() { }
 	}
 }

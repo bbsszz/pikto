@@ -7,14 +7,14 @@ using Pikto.ViewModel.SimpleViewModel;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-    class ViewTypeSettingsPageManager : ViewTypeSimpleManager<SettingsWindow, SettingsWindowViewModel>
+    class ViewTypeSettingsWindowManager : ViewTypeSimpleManager<SettingsWindow, SettingsWindowViewModel>
 	{
 		private ICommand StartPiktogramsManagementPathCmd;
 		private ICommand StartCategoriesManagementPathCmd;
 		private ICommand StartCameraCalibrationCmd;
 		private ICommand BackCmd;
 
-        public ViewTypeSettingsPageManager(ICommand startPiktogramsManagementPathCmd, ICommand startCategoriesManagementPathCmd, ICommand startCameraCalibrationCmd, ICommand backCmd)
+        public ViewTypeSettingsWindowManager(ICommand startPiktogramsManagementPathCmd, ICommand startCategoriesManagementPathCmd, ICommand startCameraCalibrationCmd, ICommand backCmd)
 		{
             this.StartPiktogramsManagementPathCmd = startPiktogramsManagementPathCmd;
             this.StartCategoriesManagementPathCmd = startCategoriesManagementPathCmd;
