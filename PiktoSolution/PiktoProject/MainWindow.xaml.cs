@@ -36,7 +36,11 @@ namespace Pikto
         private DispatcherTimer timer;
         MDetector md;
         MarkerPosition3D pos;
-        DisplayModel dispModel;
+        DisplayMove dispMove;
+        DisplayXNA dispLayout;
+        Model3dDisplay disp3DModel;
+        DisplayComponent displayContent;
+        CameraImageDisplay camImgDisp;
         Image<Bgr, Byte> img;
         public MainWindow()
         {
@@ -120,6 +124,8 @@ namespace Pikto
 
            Camera camera = new Camera();
            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
+           dispMove.setRectangleScreen(300, 300);
+           dispMove.playMove();
         }
         private void buttonXNA_Click(object sender, RoutedEventArgs e)
         {
@@ -157,12 +163,24 @@ namespace Pikto
 
         private void xnaLoad(object sender, GraphicsDeviceEventArgs e)
         {
-            dispModel = new DisplayModel(xnaHost, e.GraphicsDevice);
+            dispLayout = new DisplayXNA();
+            dispLayout.setGraphicDevice(xnaHost, e.GraphicsDevice);
+
+            camImgDisp = new CameraImageDisplay(dispLayout);
+            //disp3DModel = new Model3dDisplay(camImgDisp);
+            //isplayContent = disp3DModel;
+
+            dispMove = new DisplayMove(camImgDisp);
+            dispMove.setMove("Bear");
+            displayContent = dispMove;
         }
 
         private void renderXna(object sender, GraphicsDeviceEventArgs e)
         {
-            dispModel.setTexture2D(img.ToBitmap());
+            camImgDisp.setCameraImage(img.ToBitmap());
+            
+            displayContent.displaySetContent();
+            /*
             md.findMarkers(img.Convert<Gray, Byte>());
             if (md.isMarker()) 
             {
@@ -171,6 +189,7 @@ namespace Pikto
                 list.Add(new E3DModel("ship1",pos.getTransformatinMatrix(),80.0f));
                 dispModel.setModels(list);
             }
+             * */
         }
 
 
