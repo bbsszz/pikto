@@ -21,6 +21,8 @@ namespace Pikto
     {
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
+			var tmpMainWindow = new MainWindow();
+			tmpMainWindow.Show();
 			BuildApplication();
 		}
 

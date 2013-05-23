@@ -38,7 +38,7 @@ namespace Pikto
             }
             try
             {
-                video = content.Load<Video>(name);
+                //video = content.Load<Video>(name);
                 loadOk = true;
             }
             catch (ArgumentNullException e)
