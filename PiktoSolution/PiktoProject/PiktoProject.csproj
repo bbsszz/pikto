@@ -65,7 +65,26 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Video, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Video.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\..\..\..\..\Program Files\System.Data.SQLite\2010\bin\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -128,7 +147,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModelContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Position3D.cs" />
+    <Compile Include="MarkerRecognition\EContour.cs" />
+    <Compile Include="MarkerRecognition\EMarker.cs" />
+    <Compile Include="MarkerRecognition\MarkerPosition3D.cs" />
+    <Compile Include="MarkerRecognition\MDetector.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +176,21 @@
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
+    <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
+    <Compile Include="XnaWpfHost\DisplayComponent.cs" />
+    <Compile Include="XnaWpfHost\DisplayDecorator.cs" />
+    <Compile Include="XnaWpfHost\DisplayMove.cs" />
+    <Compile Include="XnaWpfHost\DisplayXNA.cs" />
+    <Compile Include="XnaWpfHost\E3DModel.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceControl.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceEventArgs.cs" />
+    <Compile Include="XnaWpfHost\GraphicsDeviceService.cs" />
+    <Compile Include="XnaWpfHost\HwndMouseEventArgs.cs" />
+    <Compile Include="XnaWpfHost\HwndMouseState.cs" />
+    <Compile Include="XnaWpfHost\Model3dDisplay.cs" />
+    <Compile Include="XnaWpfHost\NativeMethods.cs" />
+    <Compile Include="XnaWpfHost\ServiceContainer.cs" />
+    <Compile Include="XnaWpfHost\Tools.cs" />
     <Compile Include="Utils\ActionEnum.cs" />
     <Compile Include="Utils\ChooseEnum.cs" />
     <Compile Include="Utils\ContentManagementService.cs" />
@@ -262,7 +299,6 @@
     <Compile Include="Camera.cs" />
     <Compile Include="CameraEventArgs.cs" />
     <Compile Include="EmguTools.cs" />
-    <Compile Include="ExtendContour.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -333,9 +369,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Marker.cs" />
-    <Compile Include="MarkerDetector.cs" />
-    <Compile Include="PossibleMarkersNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

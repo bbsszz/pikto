@@ -34,22 +34,20 @@ namespace Pikto
 		private ImageFacade imageFacade;
 
         private DispatcherTimer timer;
-        MarkerDetector md;
-        Xna3DViewer.AugmentedRealityForm arForm;
-
-        ImageViewer v;
-        Position3DForm.Window1 f;
-        Position3D pos;
-        bool mode3D;
+        MDetector md;
+        MarkerPosition3D pos;
+        DisplayMove dispMove;
+        DisplayXNA dispLayout;
+        Model3dDisplay disp3DModel;
+        DisplayComponent displayContent;
+        CameraImageDisplay camImgDisp;
         Image<Bgr, Byte> img;
         public MainWindow()
         {
             InitializeComponent();
-            md = new MarkerDetector();
-            arForm = new Xna3DViewer.AugmentedRealityForm();
-            mode3D = false;
-            pos = new Position3D();
-
+            md = new MDetector();
+            pos = new MarkerPosition3D(80.0f, 640.0f, 640, 480);
+            img = new Image<Bgr, byte>(640, 480, new Bgr(255, 0, 0));
 			var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.7f);
 			var discretizer = new DiscretizationModule(64);
 			var classifier = new ART1PictogramClassifier(network);
@@ -60,16 +58,13 @@ namespace Pikto
 
         private void displayImage1(object s, CameraEventArgs e)
         {
-            cameraImage.Source = Camera.ToBitmapSource(e.Image);
+           
         }
 
         private void displayImage(object s, CameraEventArgs e)
         {
-            md.findMarkers(e.Image.Convert<Gray, Byte>());
-          //  img = e.Image;
-
-            if (md.getMarkerCount() == 1)
-            {
+            img = e.Image;
+         /*   {
                 if (mode3D)
                 {
                     pos.estimate(md.getMarkers().First());
@@ -110,11 +105,12 @@ namespace Pikto
                 else
                     cameraImage.Source = Camera.ToBitmapSource(e.Image);
             }
+             */ 
         }
 
 		private int CheckCluster(Image<Gray, byte> image)
 		{
-			iPictogram.Source = Camera.ToBitmapSource(image);
+			//iPictogram.Source = Camera.ToBitmapSource(image);
 			imageFacade.Image = image.Bitmap;
 			imageFacade.Lock();
 			int cluster = recognitionPath.Recognize(imageFacade);
@@ -127,19 +123,17 @@ namespace Pikto
         {
 
            Camera camera = new Camera();
-            v = new ImageViewer();
-            f = new Position3DForm.Window1();
-            f.setModelPoints(pos.modelPoints);
-            f.Show();
-            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
+           camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
+           dispMove.setRectangleScreen(300, 300);
+           dispMove.playMove();
         }
         private void buttonXNA_Click(object sender, RoutedEventArgs e)
         {
-            mode3D = true;
+           
             
             Camera camera = new Camera();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
-            arForm.Show();
+        
         }
 
      
@@ -165,6 +159,37 @@ namespace Pikto
 
             FindCorners.Form1 frm = new FindCorners.Form1();
             frm.Show();
+        }
+
+        private void xnaLoad(object sender, GraphicsDeviceEventArgs e)
+        {
+            dispLayout = new DisplayXNA();
+            dispLayout.setGraphicDevice(xnaHost, e.GraphicsDevice);
+
+            camImgDisp = new CameraImageDisplay(dispLayout);
+            //disp3DModel = new Model3dDisplay(camImgDisp);
+            //isplayContent = disp3DModel;
+
+            dispMove = new DisplayMove(camImgDisp);
+            dispMove.setMove("Bear");
+            displayContent = dispMove;
+        }
+
+        private void renderXna(object sender, GraphicsDeviceEventArgs e)
+        {
+            camImgDisp.setCameraImage(img.ToBitmap());
+            
+            displayContent.displaySetContent();
+            /*
+            md.findMarkers(img.Convert<Gray, Byte>());
+            if (md.isMarker()) 
+            {
+                pos.estimate(md.markers[0]);
+                List<E3DModel> list = new List<E3DModel>();
+                list.Add(new E3DModel("ship1",pos.getTransformatinMatrix(),80.0f));
+                dispModel.setModels(list);
+            }
+             * */
         }
 
 
