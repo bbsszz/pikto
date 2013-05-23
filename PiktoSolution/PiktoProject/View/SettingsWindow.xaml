@@ -8,9 +8,9 @@
 	Title="SettingsPage">
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
-        <Button Content="Zarządzaj piktogramami"  Height="50" HorizontalAlignment="Center" Margin="0,0,0,0" Name="bStartPiktogramsManagementPath" VerticalAlignment="Center" Width="250" Command="{Binding ManagePiktograms}" Style="{StaticResource MenuButtonStyle}" />
-        <Button Content="Zarządzaj kategoriami"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCategoriesManagementPath" VerticalAlignment="Center" Width="250" Command="{Binding ManageCategories}" Style="{StaticResource MenuButtonStyle}" />
-        <Button Content="Ustawienia kamery"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bStartCameraCalibrationPath" VerticalAlignment="Center" Width="250" Command="{Binding ManageCamera}" Style="{StaticResource MenuButtonStyle}" />
-        <Button Content="Wstecz"  Height="50" Margin="0,32,0,0" Name="bExit" Width="250" Command="{Binding BackCmd}" Style="{StaticResource MenuButtonStyle}" />
+        <Button Content="Zarządzaj piktogramami"  Height="50" HorizontalAlignment="Center" Margin="0,0,0,0" Name="bOpenPictogramsManagementWizard" VerticalAlignment="Center" Width="250" Command="{Binding OpenPictogramsManagementWizardCmd}" Style="{StaticResource MenuButtonStyle}" />
+        <Button Content="Zarządzaj kategoriami"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bOpenCategoriesManagementWizard" VerticalAlignment="Center" Width="250" Command="{Binding OpenCategoriesManagementWizardCmd}" Style="{StaticResource MenuButtonStyle}" />
+        <Button Content="Ustawienia kamery"  Height="50" HorizontalAlignment="Center" Margin="0,32,0,0" Name="bOpenCameraCalibrationTool" VerticalAlignment="Center" Width="250" Command="{Binding OpenCameraCalibrationToolCmd}" Style="{StaticResource MenuButtonStyle}" />
+        <Button Content="Wstecz"  Height="50" Margin="0,32,0,0" Name="bReturnToMainWindow" Width="250" Command="{Binding ReturnToMainWindowCmd}" Style="{StaticResource MenuButtonStyle}" />
     </StackPanel>
 </Page>

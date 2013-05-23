@@ -8,9 +8,9 @@ using Pikto.Command;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-	class PictogramsManagementPathNavigationViewModel : WizardNavigationViewModel<PiktogramsManagementPathViewModel>
+	class PictogramsManagementPathNavigationViewModel : WizardNavigationViewModel<PictogramsManagementPathViewModel>
 	{
-		public PictogramsManagementPathNavigationViewModel(PiktogramsManagementPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
+		public PictogramsManagementPathNavigationViewModel(PictogramsManagementPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
 		}
@@ -28,13 +28,18 @@ namespace Pikto.ViewModel.WizardViewModel
 					}
 					case ChooseEnum.Existing:
 					{
-						// do nothing yet
+						NextStep("update_picto");
 						break;
 					}
 				}
 			}));
 
 			commands.Add("new_picto", new BasicCommand(p =>
+			{
+
+			}));
+
+			commands.Add("update_picto", new BasicCommand(p =>
 			{
 
 			}));

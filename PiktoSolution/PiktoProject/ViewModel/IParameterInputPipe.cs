@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Pikto.ViewModel
 {
-	interface IParameterOutput<T> where T : class
+	interface IParameterInputPipe<T> where T : class
 	{
-		T Parameter { get; }
+		T Parameter { set; }
 	}
 }

@@ -29,15 +29,23 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 			if (view == null)
 			{
 				view = CreateView();
-				view.Loaded += (s, e) => viewModel.Loaded();
-				view.Unloaded += (s, e) => viewModel.Unloaded();
+				view.Loaded += view_Loaded;
+				view.Unloaded += view_Unloaded;
 			}
 			return view;
 		}
 
+		void view_Loaded(object sender, RoutedEventArgs e)
+		{
+			viewModel.Loaded();
+		}
+
+		void view_Unloaded(object sender, RoutedEventArgs e)
+		{
+			viewModel.Unloaded();
+		}
+
 		protected abstract V CreateView();
 		protected abstract VM CreateViewModel();
-
-		public void Loaded() { }
 	}
 }

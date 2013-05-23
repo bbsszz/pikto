@@ -20,8 +20,7 @@ namespace Pikto.View
 		LearningPath,
 		ExaminationPath,
 
-
-        StartPiktogramsManagementWizard,
-        StartCategoriesManagementWizard,
+        PictogramsManagementWizard,
+        CategoriesManagementWizard,
 	}
 }

@@ -16,9 +16,9 @@ namespace Pikto.ViewModel.SimpleViewModel
 
 		public MainWindowViewModel(
 			ICommand openLearningPathPromptCmd,
-			ICommand openExaminationPathWizardCmd, 
+			ICommand openExaminationPathWizardCmd,
 			ICommand openSettingsCmd,
-			ICommand showAboutCmd, 
+			ICommand showAboutCmd,
 			ICommand exitCmd)
 		{
 			OpenLearningPathPromptCmd = openLearningPathPromptCmd;

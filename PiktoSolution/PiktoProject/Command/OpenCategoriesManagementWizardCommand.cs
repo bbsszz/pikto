@@ -8,11 +8,11 @@ using Pikto.ViewModel;
 
 namespace Pikto.Command
 {
-    class StartPiktogramsManagementPathCommand : ICommand
+    class OpenCategoriesManagementWizardCommand : ICommand
     {
         private IContentChange contentChange;
 
-        public StartPiktogramsManagementPathCommand(IContentChange contentChange)
+        public OpenCategoriesManagementWizardCommand(IContentChange contentChange)
 		{
 			this.contentChange = contentChange;
 		}
@@ -26,7 +26,7 @@ namespace Pikto.Command
 
         public void Execute(object parameter)
         {
-            contentChange.SecondaryViewType = ViewType.StartPiktogramsManagementWizard;
+            contentChange.SecondaryViewType = ViewType.CategoriesManagementWizard;
         }
     }
 }

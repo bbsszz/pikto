@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pikto.ViewModel;
 using System.Windows.Input;
-using Pikto.View;
 using Pikto.ViewModel.WizardViewModel;
 
 namespace Pikto.View.ViewManager.ViewWizardManager
 {
-    class ViewTypeCategoriesManagementWizardManager : ViewTypeWizardManager<WizardView, CategoriesManagementPathViewModel>
+    class ViewTypePictogramsManagementWizardManager : ViewTypeWizardManager<WizardView, PictogramsManagementPathViewModel>
 	{
-        public ViewTypeCategoriesManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+        public ViewTypePictogramsManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
 			: base(refreshStepAction, cancelCmd)
 		{
 		}
@@ -23,21 +23,21 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			{
 				case "":
 				{
-					var view = new ManageCategoriesActionView();
+					var view = new ManagePictogramsActionView();
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
 
-				case "new_category":
+				case "new_picto":
 				{
-					var view = new ManageCategoriesChooseView();
+                    var view = new ManagePictogramsPictoInfoView();
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
 
-				case "update_category":
+				case "update_picto":
 				{
-                    var view = new ManageCategoriesChooseView();
+                    var view = new ManagePictogramsChooseView();
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
@@ -61,10 +61,10 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			WizardView.StepContent = content;
 		}
 
-		protected override WizardNavigationViewModel<CategoriesManagementPathViewModel> CreateViewModel()
+		protected override WizardNavigationViewModel<PictogramsManagementPathViewModel> CreateViewModel()
 		{
-			var viewModel = new CategoriesManagementPathViewModel();
-			var navigationViewModel = new CategoriesManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
+			var viewModel = new PictogramsManagementPathViewModel();
+			var navigationViewModel = new PictogramsManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
 			return navigationViewModel;
 		}
 	}

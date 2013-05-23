@@ -9,17 +9,21 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 {
     class ViewTypeSettingsWindowManager : ViewTypeSimpleManager<SettingsWindow, SettingsWindowViewModel>
 	{
-		private ICommand StartPiktogramsManagementPathCmd;
-		private ICommand StartCategoriesManagementPathCmd;
-		private ICommand StartCameraCalibrationCmd;
-		private ICommand BackCmd;
+		private ICommand openPictogramsManagementWizardCmd;
+		private ICommand openCategoriesManagementWizardCmd;
+		private ICommand openCameraCalibrationToolCmd;
+		private ICommand returnToMainWindowCmd;
 
-        public ViewTypeSettingsWindowManager(ICommand startPiktogramsManagementPathCmd, ICommand startCategoriesManagementPathCmd, ICommand startCameraCalibrationCmd, ICommand backCmd)
+		public ViewTypeSettingsWindowManager(
+			ICommand openPictogramsManagementWizardCmd,
+			ICommand openCategoriesManagementWizardCmd,
+			ICommand openCameraCalibrationToolCmd,
+			ICommand returnToMainWindowCmd)
 		{
-            this.StartPiktogramsManagementPathCmd = startPiktogramsManagementPathCmd;
-            this.StartCategoriesManagementPathCmd = startCategoriesManagementPathCmd;
-            this.StartCameraCalibrationCmd = startCameraCalibrationCmd;
-            this.BackCmd = backCmd;
+			this.openPictogramsManagementWizardCmd = openPictogramsManagementWizardCmd;
+            this.openCategoriesManagementWizardCmd = openCategoriesManagementWizardCmd;
+            this.openCameraCalibrationToolCmd = openCameraCalibrationToolCmd;
+            this.returnToMainWindowCmd = returnToMainWindowCmd;
 		}
 
 		protected override SettingsWindow CreateView()
@@ -31,7 +35,7 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 
 		protected override SettingsWindowViewModel CreateViewModel()
 		{
-			var viewModel = new SettingsWindowViewModel(StartPiktogramsManagementPathCmd, StartCategoriesManagementPathCmd, StartCameraCalibrationCmd, BackCmd);
+			var viewModel = new SettingsWindowViewModel(openPictogramsManagementWizardCmd, openCategoriesManagementWizardCmd, openCameraCalibrationToolCmd, returnToMainWindowCmd);
 			return viewModel;
 		}
 	}

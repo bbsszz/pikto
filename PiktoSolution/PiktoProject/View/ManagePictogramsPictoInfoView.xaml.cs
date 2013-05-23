@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Pikto.View
 {
     /// <summary>
-    /// Interaction logic for ManagePiktogramsSecondStep.xaml
+    /// Interaction logic for PiktogramForm.xaml
     /// </summary>
-    public partial class ManagePiktogramsSecondStepView : UserControl
+    public partial class ManagePictogramsPictoInfoView : UserControl
     {
-        public ManagePiktogramsSecondStepView()
+        public ManagePictogramsPictoInfoView()
         {
             InitializeComponent();
         }

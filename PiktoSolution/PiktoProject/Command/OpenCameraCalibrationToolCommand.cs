@@ -7,11 +7,11 @@ using Pikto.ViewModel;
 
 namespace Pikto.Command
 {
-    class StartCameraCalibrationCommand : ICommand
+    class OpenCameraCalibrationToolCommand : ICommand
     {
         private IContentChange contentChange;
 
-        public StartCameraCalibrationCommand(IContentChange contentChange)
+        public OpenCameraCalibrationToolCommand(IContentChange contentChange)
 		{
 			this.contentChange = contentChange;
 		}

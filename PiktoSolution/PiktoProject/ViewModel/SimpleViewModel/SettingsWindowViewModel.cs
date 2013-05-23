@@ -8,17 +8,21 @@ namespace Pikto.ViewModel.SimpleViewModel
 {
     class SettingsWindowViewModel : BaseViewModel
     {
-        public ICommand ManagePictogramsCmd { get; private set; }
-        public ICommand ManageCategoriesCmd { get; private set; }
-        public ICommand ManageCameraCmd { get; private set; }
-        public ICommand BackCmd { get; private set; }
+        public ICommand OpenPictogramsManagementWizardCmd { get; private set; }
+        public ICommand OpenCategoriesManagementWizardCmd { get; private set; }
+		public ICommand OpenCameraCalibrationToolCmd { get; private set; }
+        public ICommand ReturnToMainWindowCmd { get; private set; }
 
-        public SettingsWindowViewModel(ICommand managePictogramsCmd, ICommand manageCategoriesCmd, ICommand manageCameraCmd, ICommand backCmd)
+		public SettingsWindowViewModel(
+			ICommand openPictogramsManagementWizardCmd,
+			ICommand openCategoriesManagementWizardCmd,
+			ICommand openCameraCalibrationToolCmd,
+			ICommand returnToMainWindowCmd)
         {
-            ManagePictogramsCmd = managePictogramsCmd;
-            ManageCategoriesCmd = manageCategoriesCmd;
-            ManageCameraCmd = manageCameraCmd;
-            BackCmd = backCmd;
+			OpenPictogramsManagementWizardCmd = openPictogramsManagementWizardCmd;
+            OpenCategoriesManagementWizardCmd = openCategoriesManagementWizardCmd;
+            OpenCameraCalibrationToolCmd = openCameraCalibrationToolCmd;
+            ReturnToMainWindowCmd = returnToMainWindowCmd;
         }
     }
 }

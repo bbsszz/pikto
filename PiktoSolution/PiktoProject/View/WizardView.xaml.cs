@@ -17,7 +17,7 @@ namespace Pikto.View
 	/// <summary>
 	/// Interaction logic for WizardView.xaml
 	/// </summary>
-	public partial class WizardView : Page
+	public partial class WizardView : Page, IWizardView
 	{
 		public WizardView()
 		{

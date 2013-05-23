@@ -9,9 +9,9 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 {
 	class ViewTypeExaminationPathManager : ViewTypeSimpleManager<ExaminationPathWindow, ExaminationPathViewModel>
 	{
-		private IParameterOutput<string> parameterOutput;
+		private IParameterOutputPipe<string> parameterOutput;
 
-		public ViewTypeExaminationPathManager(IParameterOutput<string> parameterOutput)
+		public ViewTypeExaminationPathManager(IParameterOutputPipe<string> parameterOutput)
 		{
 			this.parameterOutput = parameterOutput;
 		}

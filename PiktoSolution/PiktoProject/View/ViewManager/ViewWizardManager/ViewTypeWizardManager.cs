@@ -10,7 +10,8 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 {
 	abstract class ViewTypeWizardManager<V, VM> : ViewTypeManager<V> where V : FrameworkElement where VM : WizardBaseViewModel
 	{
-		private IDictionary<object, V> stepsMap;
+		private IDictionary<object, object> stepsViewMap;
+		private V wizardView;
 		private WizardNavigationViewModel<VM> navigationViewModel;
 
 		protected Action<string> refreshStepAction;
@@ -28,11 +29,16 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			}
 		}
 
+		protected V WizardView
+		{
+			get { return wizardView; }
+		}
+
 		public ViewTypeWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
 		{
 			this.refreshStepAction = refreshStepAction;
 			this.cancelCmd = cancelCmd;
-			stepsMap = new Dictionary<object, V>();
+			stepsViewMap = new Dictionary<object, object>();
 		}
 
 		public V GetView(object parameter)
@@ -41,14 +47,19 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			{
 				parameter = "";
 			}
-			if (!stepsMap.ContainsKey(parameter))
+			if (wizardView == null)
+			{
+				wizardView = CreateWizardView();
+				wizardView.Loaded += view_Loaded;
+				wizardView.Unloaded += view_Unloaded;
+			}
+			if (!stepsViewMap.ContainsKey(parameter))
 			{
 				var view = CreateView(parameter);
-				view.Loaded += view_Loaded;
-				view.Unloaded += view_Unloaded;
-				stepsMap.Add(parameter, view);
+				stepsViewMap.Add(parameter, view);
 			}
-			return stepsMap[parameter];
+			ChangeStepContent(stepsViewMap[parameter]);
+			return wizardView;
 		}
 
 		private void view_Loaded(object sender, RoutedEventArgs e)
@@ -61,9 +72,9 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 			navigationViewModel.Unloaded();
 		}
 
-		protected abstract V CreateView(object parameter);
+		protected abstract object CreateView(object parameter);
+		protected abstract V CreateWizardView();
+		protected abstract void ChangeStepContent(object content);
 		protected abstract WizardNavigationViewModel<VM> CreateViewModel();
-
-		public virtual void Loaded() { }
 	}
 }

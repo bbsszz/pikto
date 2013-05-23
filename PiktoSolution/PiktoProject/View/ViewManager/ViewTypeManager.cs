@@ -9,6 +9,5 @@ namespace Pikto.View.ViewManager
 	interface ViewTypeManager<out V> where V : FrameworkElement
 	{
 		V GetView(object parameter);
-		void Loaded();
 	}
 }

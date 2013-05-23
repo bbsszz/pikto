@@ -26,5 +26,10 @@ namespace Pikto.ViewModel.WizardViewModel
 
 		public double ViewWidth { get { return 420.0; } }
 		public double ViewHeight { get { return 300.0; } }
+
+		public override void Loaded()
+		{
+			Action = ChooseEnum.New;
+		}
 	}
 }

@@ -7,16 +7,16 @@ namespace Pikto.ViewModel.SimpleViewModel
 {
 	class ExaminationPathViewModel : BaseViewModel
 	{
-		private IParameterOutput<string> parameterOutput;
+		private IParameterOutputPipe<string> parameterOutputPipe;
 
-		public ExaminationPathViewModel(IParameterOutput<string> parameterOutput)
+		public ExaminationPathViewModel(IParameterOutputPipe<string> parameterOutputPipe)
 		{
-			this.parameterOutput = parameterOutput;
+			this.parameterOutputPipe = parameterOutputPipe;
 		}
 
 		public override void Loaded()
 		{
-			System.Windows.MessageBox.Show(parameterOutput.Parameter);
+			System.Windows.MessageBox.Show(parameterOutputPipe.Parameter);
 		}
 	}
 }

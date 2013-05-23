@@ -157,60 +157,60 @@
     <Compile Include="Utils\ActionEnum.cs" />
     <Compile Include="Utils\ChooseEnum.cs" />
     <Compile Include="Utils\ContentManagementService.cs" />
-    <Compile Include="ViewModel\IParameterInput.cs" />
-    <Compile Include="ViewModel\IParameterOutput.cs" />
+    <Compile Include="ViewModel\IParameterInputPipe.cs" />
+    <Compile Include="ViewModel\IParameterOutputPipe.cs" />
     <Compile Include="ViewModel\IParameterTransfer.cs" />
-    <Compile Include="ViewModel\ParameterPipe.cs" />
+    <Compile Include="ViewModel\SingleParameterPipe.cs" />
     <Compile Include="ViewModel\ParameterTransfer.cs" />
+    <Compile Include="ViewModel\QueuedParameterPipe.cs" />
     <Compile Include="ViewModel\SimpleViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\ExaminationPathViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\LearningPathViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\LearningPathPromptViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\CategoriesManagementPathNavigationViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\CategoriesManagementPathViewModel.cs" />
-    <Compile Include="ViewModel\WizardViewModel\CategoryFormViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\ExaminationPathWizardNavigationViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\PictogramsManagementPathNavigationViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\WizardNavigationViewModel.cs" />
-    <Compile Include="ViewModel\WizardViewModel\PiktogramFormViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="Command\BasicCommand.cs" />
     <Compile Include="Command\OpenSettingsWindowCommand.cs" />
-    <Compile Include="Command\StartCameraCalibrationCommand.cs" />
-    <Compile Include="Command\StartCategoriesManagementPathCommand.cs" />
+    <Compile Include="Command\OpenCameraCalibrationToolCommand.cs" />
+    <Compile Include="Command\OpenCategoriesManagementWizardCommand.cs" />
     <Compile Include="Command\StartExaminationPathCommand.cs" />
     <Compile Include="Command\StartLearningPathCommand.cs" />
-    <Compile Include="Command\StartPiktogramsManagementPathCommand.cs" />
+    <Compile Include="Command\OpenPictogramsManagementWizardCommand.cs" />
     <Compile Include="ViewModel\WizardViewModel\ExaminationPathWizardViewModel.cs" />
     <Compile Include="ViewModel\IContentChange.cs" />
     <Compile Include="ViewModel\SimpleViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\AppViewModel.cs" />
-    <Compile Include="ViewModel\WizardViewModel\PiktogramsManagementPathViewModel.cs" />
+    <Compile Include="ViewModel\WizardViewModel\PictogramsManagementPathViewModel.cs" />
     <Compile Include="ViewModel\SimpleViewModel\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\WizardBaseViewModel.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CategoryForm.xaml.cs">
-      <DependentUpon>CategoryForm.xaml</DependentUpon>
+    <Compile Include="View\ManageCategoriesChooseView.xaml.cs">
+      <DependentUpon>ManageCategoriesChooseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ExaminationPathWindow.xaml.cs">
       <DependentUpon>ExaminationPathWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\IWizardView.cs" />
     <Compile Include="View\LearningPathWindow.xaml.cs">
       <DependentUpon>LearningPathWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManageCategoriesFirstStepView.xaml.cs">
-      <DependentUpon>ManageCategoriesFirstStepView.xaml</DependentUpon>
+    <Compile Include="View\ManageCategoriesActionView.xaml.cs">
+      <DependentUpon>ManageCategoriesActionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PiktogramForm.xaml.cs">
-      <DependentUpon>PiktogramForm.xaml</DependentUpon>
+    <Compile Include="View\ManagePictogramsPictoInfoView.xaml.cs">
+      <DependentUpon>ManagePictogramsPictoInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagePiktogramsFirstStepView.xaml.cs">
-      <DependentUpon>ManagePiktogramsFirstStepView.xaml</DependentUpon>
+    <Compile Include="View\ManagePictogramsActionView.xaml.cs">
+      <DependentUpon>ManagePictogramsActionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagePiktogramsSecondStepView.xaml.cs">
-      <DependentUpon>ManagePiktogramsSecondStepView.xaml</DependentUpon>
+    <Compile Include="View\ManagePictogramsChooseView.xaml.cs">
+      <DependentUpon>ManagePictogramsChooseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -227,7 +227,7 @@
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeMainWindowManager.cs" />
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeDefaultManager.cs" />
     <Compile Include="View\ViewManager\ViewTypeManager.cs" />
-    <Compile Include="View\ViewManager\ViewWizardManager\ViewTypePiktogramsManagementWizardManager.cs" />
+    <Compile Include="View\ViewManager\ViewWizardManager\ViewTypePictogramsManagementWizardManager.cs" />
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeSettingsWindowManager.cs" />
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeSimpleManager.cs" />
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeTestManager.cs" />
@@ -279,7 +279,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CategoryForm.xaml">
+    <Page Include="View\ManageCategoriesChooseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,11 +291,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManageCategoriesFirstStepView.xaml">
+    <Page Include="View\ManageCategoriesActionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PiktogramForm.xaml">
+    <Page Include="View\ManagePictogramsPictoInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,11 +311,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagePiktogramsFirstStepView.xaml">
+    <Page Include="View\ManagePictogramsActionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagePiktogramsSecondStepView.xaml">
+    <Page Include="View\ManagePictogramsChooseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

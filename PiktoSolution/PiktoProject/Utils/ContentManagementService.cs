@@ -27,14 +27,15 @@ namespace Pikto.Utils
 		#endregion
 
 		#region SettingsPage
-		public ICommand ShowStartPiktogramsManagementPathWizardCommand { get; private set; }
-		public ICommand ShowStartCategoriesManagementPathWizardCommand { get; private set; }
-		public ICommand ShowStartCameraCalibrationWizardCommand { get; private set; }
+		public ICommand OpenPictogramsManagementWizardCommand { get; private set; }
+		public ICommand OpenCategoriesManagementWizardCommand { get; private set; }
+		public ICommand OpenCameraCalibrationToolCommand { get; private set; }
+		public ICommand ReturnToMainWindowCommand { get; private set; }
 		#endregion
 
 		public ICommand StartLearningPathCommand { get; private set; }
 		public ICommand StartExaminationPathCommand { get; private set; }
-		public ParameterPipe<string> ToExaminationPathPipe { get; private set; }
+		public SingleParameterPipe<string> ToExaminationPathPipe { get; private set; } // the type should be changed appropriately
 
 		public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
 		{
@@ -49,19 +50,23 @@ namespace Pikto.Utils
 			HideSecondaryWindowCommand = new HideSecondaryWindowCommand(contentChange);
 
 			OpenLearningPathPromptCommand = new OpenLearningPathPromptCommand(contentChange);
+			{
+				StartLearningPathCommand = new StartLearningPathCommand(contentChange);
+			}
 			OpenExaminationPathWizardCommand = new OpenExaminationPathWizardCommand(contentChange);
+			{
+				ToExaminationPathPipe = new SingleParameterPipe<string>();
+				StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, ToExaminationPathPipe);
+			}
 			OpenSettingsWindowCommand = new OpenSettingsWindowCommand(contentChange);
+			{
+				OpenPictogramsManagementWizardCommand = new OpenPictogramsManagementWizardCommand(contentChange);
+				OpenCategoriesManagementWizardCommand = new OpenCategoriesManagementWizardCommand(contentChange);
+				OpenCameraCalibrationToolCommand = new OpenCameraCalibrationToolCommand(contentChange);
+				ReturnToMainWindowCommand = LoadMainPageCommand;
+			}
 			ShowAboutWindowCommand = new ShowAboutCommand(contentChange);
 			CloseApplicationCommand = new CloseApplicationCommand();
-
-			StartLearningPathCommand = new StartLearningPathCommand(contentChange);
-			ToExaminationPathPipe = new ParameterPipe<string>();
-			StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, ToExaminationPathPipe);
-
-
-			ShowStartPiktogramsManagementPathWizardCommand = new StartPiktogramsManagementPathCommand(contentChange);
-			ShowStartCategoriesManagementPathWizardCommand = new StartCategoriesManagementPathCommand(contentChange);
-			ShowStartCameraCalibrationWizardCommand = new StartCameraCalibrationCommand(contentChange);
 		}
 
 		public void RefreshSecondaryView(ViewType viewType, string step)

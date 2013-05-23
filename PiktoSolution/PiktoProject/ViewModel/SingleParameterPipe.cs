@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Pikto.ViewModel
 {
-	class ParameterPipe<T> : IParameterInput<T>, IParameterOutput<T> where T : class
+	class SingleParameterPipe<T> : IParameterInputPipe<T>, IParameterOutputPipe<T> where T : class
 	{
 		private T parameter;
 
-		public ParameterPipe()
+		public SingleParameterPipe()
 		{
 			parameter = null;
 		}

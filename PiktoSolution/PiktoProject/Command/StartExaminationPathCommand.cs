@@ -11,12 +11,12 @@ namespace Pikto.Command
 	class StartExaminationPathCommand : ICommand
 	{
 		private IContentChange contentChange;
-		private IParameterInput<string> parameterInput;
+		private IParameterInputPipe<string> parameterInputPipe;
 
-		public StartExaminationPathCommand(IContentChange contentChange, IParameterInput<string> parameterInput)
+		public StartExaminationPathCommand(IContentChange contentChange, IParameterInputPipe<string> parameterInputPipe)
 		{
 			this.contentChange = contentChange;
-			this.parameterInput = parameterInput;
+			this.parameterInputPipe = parameterInputPipe;
 		}
 
 		public bool CanExecute(object parameter)
@@ -28,7 +28,7 @@ namespace Pikto.Command
 
 		public void Execute(object parameter)
 		{
-			parameterInput.Parameter = parameter as string;
+			parameterInputPipe.Parameter = parameter as string;
 			contentChange.PrimaryViewType = ViewType.ExaminationPath;
 		}
 	}

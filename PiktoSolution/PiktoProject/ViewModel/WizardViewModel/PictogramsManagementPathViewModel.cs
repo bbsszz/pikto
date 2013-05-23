@@ -8,8 +8,15 @@ using Pikto.View;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-    class PiktogramsManagementPathViewModel : WizardBaseViewModel
+    class PictogramsManagementPathViewModel : WizardBaseViewModel
 	{
+		private List<category> categories;
+
+		public List<string> Categories
+		{
+			get { return categories.Select(x => x.name.ToString()).ToList(); }
+		}
+
 		private List<piktogramy> piktograms;
 
 		public List<string> Piktograms
@@ -34,9 +41,10 @@ namespace Pikto.ViewModel.WizardViewModel
 
 		private DatabaseService db;
 
-		public PiktogramsManagementPathViewModel()
+		public PictogramsManagementPathViewModel()
 		{
 			db = new DatabaseService();
+			categories = db.GetAllCategories();
 			piktograms = db.GetAllPiktograms();
 		}
 

@@ -50,7 +50,7 @@ namespace Pikto.ViewModel.WizardViewModel
 			this.refreshStepAction = refreshStepAction;
 
 			steps = new Stack<string>();
-			steps.Push("");
+			ClearSteps();
 
 			forwardCmds = ForwardCmds();
 			backwardCmds = BackwardCmds();
@@ -96,11 +96,20 @@ namespace Pikto.ViewModel.WizardViewModel
 		public override void Loaded()
 		{
 			ViewModel.Loaded();
+			ClearSteps();
+			OnPropertyChanged("ForwardCmd");
+			OnPropertyChanged("BackwardCmd");
 		}
 
 		public override void Unloaded()
 		{
 			ViewModel.Unloaded();
+		}
+
+		private void ClearSteps()
+		{
+			steps.Clear();
+			steps.Push("");
 		}
 	}
 }
