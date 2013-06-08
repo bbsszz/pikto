@@ -5,6 +5,7 @@ using System.Text;
 using Pikto.Utils;
 using System.Windows.Input;
 using Pikto.View;
+using Pikto.Database;
 
 namespace Pikto.ViewModel.WizardViewModel
 {

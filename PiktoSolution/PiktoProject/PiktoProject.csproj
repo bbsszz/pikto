@@ -41,26 +41,23 @@
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.4.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Framework\Release\AForge.dll</HintPath>
+      <HintPath>..\..\Libs\AForge.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Math, Version=2.2.4.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Framework\Release\AForge.Math.dll</HintPath>
+      <HintPath>..\..\Libs\AForge.Math.dll</HintPath>
     </Reference>
     <Reference Include="AdaptiveResonanceTheory1">
       <HintPath>..\..\Libs\AdaptiveResonanceTheory1.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV, Version=2.3.0.1416, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>EmguCV\Emgu.CV.dll</HintPath>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\..\Libs\EmguCV\Emgu.CV.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV.UI, Version=2.3.0.1416, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>EmguCV\Emgu.CV.UI.dll</HintPath>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\..\Libs\EmguCV\Emgu.CV.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.Util, Version=2.3.0.1416, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>EmguCV\Emgu.Util.dll</HintPath>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\..\Libs\EmguCV\Emgu.Util.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
@@ -134,15 +131,15 @@
     <Compile Include="Command\OpenLearningPathPromptCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Command\ShowMainWindowCommand.cs" />
-    <Compile Include="DatabaseService.cs" />
+    <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDatabaseService.cs" />
-    <Compile Include="DataModelContext.Designer.cs">
+    <Compile Include="Database\IDatabaseService.cs" />
+    <Compile Include="Database\DataModelContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModelContext.edmx</DependentUpon>
@@ -393,11 +390,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="DataModelContext.edmx">
+    <EntityDeploy Include="Database\DataModelContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModelContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="packages.config" />
+    <None Include="Configuration\packages.config" />
     <None Include="pikto.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -408,72 +405,58 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmguCV\Emgu.CV.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\Emgu.CV.UI.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\Emgu.Util.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\AForge.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\AForge.Math.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\npp32_40_17.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_calib3d231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_contrib231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_core231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_features2d231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_ffmpeg.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_flann231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_gpu231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_highgui231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_imgproc231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_legacy231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_ml231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_objdetect231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EmguCV\opencv_video231.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="..\..\Libs\EmguCV\npp32_40_17.dll">
+      <Link>Libs\npp32_40_17.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_calib3d231.dll">
+      <Link>Libs\opencv_calib3d231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_contrib231.dll">
+      <Link>Libs\opencv_contrib231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_core231.dll">
+      <Link>Libs\opencv_core231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_features2d231.dll">
+      <Link>Libs\opencv_features2d231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_ffmpeg.dll">
+      <Link>Libs\opencv_ffmpeg.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_flann231.dll">
+      <Link>Libs\opencv_flann231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_gpu231.dll">
+      <Link>Libs\opencv_gpu231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_highgui231.dll">
+      <Link>Libs\opencv_highgui231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_imgproc231.dll">
+      <Link>Libs\opencv_imgproc231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_legacy231.dll">
+      <Link>Libs\opencv_legacy231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_ml231.dll">
+      <Link>Libs\opencv_ml231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_objdetect231.dll">
+      <Link>Libs\opencv_objdetect231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\EmguCV\opencv_video231.dll">
+      <Link>Libs\opencv_video231.dll</Link>
+    </None>
+    <None Include="..\..\Libs\x86\SQLite.Interop.dll">
+      <Link>Libs\SQLite.Interop.dll</Link>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

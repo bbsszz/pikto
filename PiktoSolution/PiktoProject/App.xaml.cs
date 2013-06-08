@@ -19,11 +19,16 @@ namespace Pikto
     /// </summary>
     public partial class App : Application
     {
+		private AppView mainView;
+
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
+			// temporary window
 			var tmpMainWindow = new MainWindow();
 			tmpMainWindow.Show();
+
 			BuildApplication();
+			mainView.Show();
 		}
 
 		private void BuildApplication()
@@ -37,13 +42,11 @@ namespace Pikto
 			var viewTypeConverter = new ViewTypeToUIElementConverter(mapping);
 			Application.Current.Resources.Add("viewTypeConverter", viewTypeConverter);
 
-			var mainView = new AppView();
+			mainView = new AppView();
 			mainView.DataContext = appViewModel;
 
 			appViewModel.PrimaryViewType = ViewType.MainWindow;
 			appViewModel.SecondaryViewType = ViewType.Default;
-
-			mainView.Show();
 		}
 
 		private IDictionary<ViewType, ViewTypeManager<FrameworkElement>> PrepareMapping(ContentManagementService cms, IParameterTransfer parameterTransfer)
