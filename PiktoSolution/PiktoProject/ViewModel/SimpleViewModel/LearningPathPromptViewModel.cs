@@ -6,11 +6,11 @@ using System.Windows.Input;
 
 namespace Pikto.ViewModel.SimpleViewModel
 {
-	class StartLearningPathViewModel : BaseViewModel
+	class LearningPathPromptViewModel : BaseViewModel
 	{
 		public ICommand StartLearningPathCmd { get; private set; }
 
-		public StartLearningPathViewModel(ICommand startLearningPathCmd)
+		public LearningPathPromptViewModel(ICommand startLearningPathCmd)
 		{
 			StartLearningPathCmd = startLearningPathCmd;
 		}

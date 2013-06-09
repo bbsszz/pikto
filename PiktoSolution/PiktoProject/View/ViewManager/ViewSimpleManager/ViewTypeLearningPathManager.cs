@@ -7,25 +7,18 @@ using System.Windows.Input;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
-	class ViewTypeLearningPathManager : ViewTypeSimpleManager<LearningPathPromptView, StartLearningPathViewModel>
+	class ViewTypeLearningPathManager : ViewTypeSimpleManager<LearningPathWindow, LearningPathViewModel>
 	{
-		private ICommand startLearningPathCmd;
-
-		public ViewTypeLearningPathManager(ICommand startLearningPathCmd)
+		protected override LearningPathWindow CreateView()
 		{
-			this.startLearningPathCmd = startLearningPathCmd;
-		}
-
-		protected override LearningPathPromptView CreateView()
-		{
-			var view = new LearningPathPromptView();
+			var view = new LearningPathWindow();
 			view.DataContext = ViewModel;
 			return view;
 		}
 
-		protected override StartLearningPathViewModel CreateViewModel()
+		protected override LearningPathViewModel CreateViewModel()
 		{
-			var viewModel = new StartLearningPathViewModel(startLearningPathCmd);
+			var viewModel = new LearningPathViewModel();
 			return viewModel;
 		}
 	}
