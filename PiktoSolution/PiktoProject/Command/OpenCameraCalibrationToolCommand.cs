@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Pikto.ViewModel;
+using Pikto.View;
 
 namespace Pikto.Command
 {
@@ -18,14 +19,14 @@ namespace Pikto.Command
 
         public bool CanExecute(object parameter)
         {
-            return false; // not implemented
+			return true;
         }
 
         public event EventHandler CanExecuteChanged;
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+			contentChange.PrimaryViewType = ViewType.CalibrationWindow;
         }
     }
 }

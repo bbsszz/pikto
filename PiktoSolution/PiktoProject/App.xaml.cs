@@ -53,22 +53,22 @@ namespace Pikto
 		{
 			var mapping = new Dictionary<ViewType, ViewTypeManager<FrameworkElement>>();
 
-			mapping.Add(ViewType.Default, new ViewTypeDefaultManager());
-			mapping.Add(ViewType.Test, new ViewTypeTestManager());
+			mapping[ViewType.Default] = new ViewTypeDefaultManager();
+			mapping[ViewType.Test] = new ViewTypeTestManager();
 
-			mapping.Add(ViewType.MainWindow, new ViewTypeMainWindowManager(cms.OpenLearningPathPromptCommand, cms.OpenExaminationPathWizardCommand, cms.OpenSettingsWindowCommand, cms.ShowAboutWindowCommand, cms.CloseApplicationCommand));
+			mapping[ViewType.MainWindow] = new ViewTypeMainWindowManager(cms.OpenLearningPathPromptCommand, cms.OpenExaminationPathWizardCommand, cms.OpenSettingsWindowCommand, cms.ShowAboutWindowCommand, cms.CloseApplicationCommand);
 			
-			mapping.Add(ViewType.LearningPathPrompt, new ViewTypeLearningPathManager(cms.StartLearningPathCommand));
-			mapping.Add(ViewType.ExaminationPathWizard, new ViewTypeExaminationPathWizardManager(vt => { cms.RefreshSecondaryView(ViewType.ExaminationPathWizard, vt); }, cms.HideSecondaryWindowCommand, cms.StartExaminationPathCommand));
-			mapping.Add(ViewType.SettingsWindow, new ViewTypeSettingsWindowManager(cms.OpenPictogramsManagementWizardCommand, cms.OpenCategoriesManagementWizardCommand, cms.OpenCameraCalibrationToolCommand, cms.ReturnToMainWindowCommand));
-			mapping.Add(ViewType.AboutWindow, new ViewTypeAboutManager(cms.HideSecondaryWindowCommand));
+			mapping[ViewType.LearningPathPrompt] = new ViewTypeLearningPathManager(cms.StartLearningPathCommand);
+			mapping[ViewType.ExaminationPathWizard] = new ViewTypeExaminationPathWizardManager(vt => { cms.RefreshSecondaryView(ViewType.ExaminationPathWizard, vt); }, cms.HideSecondaryWindowCommand, cms.StartExaminationPathCommand);
+			mapping[ViewType.SettingsWindow] = new ViewTypeSettingsWindowManager(cms.OpenPictogramsManagementWizardCommand, cms.OpenCategoriesManagementWizardCommand, cms.OpenCameraCalibrationToolCommand, cms.ReturnToMainWindowCommand);
+			mapping[ViewType.AboutWindow] = new ViewTypeAboutManager(cms.HideSecondaryWindowCommand);
             
-			mapping.Add(ViewType.LearningPath, new ViewTypeLearningPathPromptManager());
-			mapping.Add(ViewType.ExaminationPath, new ViewTypeExaminationPathManager(cms.ToExaminationPathPipe));
+			mapping[ViewType.LearningPath] = new ViewTypeLearningPathPromptManager();
+			mapping[ViewType.ExaminationPath] = new ViewTypeExaminationPathManager(cms.ToExaminationPathPipe);
 
-
-            mapping.Add(ViewType.PictogramsManagementWizard, new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand));
-            mapping.Add(ViewType.CategoriesManagementWizard, new ViewTypeCategoriesManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.CategoriesManagementWizard, vt); }, cms.HideSecondaryWindowCommand));
+            mapping[ViewType.PictogramsManagementWizard] = new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand);
+            mapping[ViewType.CategoriesManagementWizard] = new ViewTypeCategoriesManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.CategoriesManagementWizard, vt); }, cms.HideSecondaryWindowCommand);
+			mapping[ViewType.CalibrationWindow] = new ViewTypeCalibrationManager();
 
 			return mapping;
 		}

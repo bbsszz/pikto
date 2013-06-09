@@ -173,6 +173,11 @@
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
+    <Compile Include="ViewModel\SimpleViewModel\CalibrationToolViewModel.cs" />
+    <Compile Include="View\CalibrationToolView.xaml.cs">
+      <DependentUpon>CalibrationToolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
     <Compile Include="XnaWpfHost\DisplayComponent.cs" />
     <Compile Include="XnaWpfHost\DisplayDecorator.cs" />
@@ -309,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CalibrationToolView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
