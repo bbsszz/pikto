@@ -113,6 +113,7 @@ namespace Pikto
 			//iPictogram.Source = Camera.ToBitmapSource(image);
 			imageFacade.Image = image.Bitmap;
 			imageFacade.Lock();
+            
 			int cluster = recognitionPath.Recognize(imageFacade);
 			imageFacade.Unlock();
 			Console.WriteLine(cluster);
@@ -124,7 +125,7 @@ namespace Pikto
 
            Camera camera = new Camera();
            camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
-           dispMove.setRectangleScreen(300, 300);
+         //  dispMove.setRectangleScreen(300, 300);
            dispMove.playMove();
         }
         private void buttonXNA_Click(object sender, RoutedEventArgs e)

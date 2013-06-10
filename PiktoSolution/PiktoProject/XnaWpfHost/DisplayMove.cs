@@ -13,22 +13,53 @@ using AForge.Math;
 
 namespace Pikto
 {
-    class DisplayMove:DisplayDecorator
+    //defauld mode: Center
+    //start Screen: (x:centerScreenX,y:centerScreenY,w:0,h:0)
+
+    class DisplayMove : DisplayDecorator
     {
+        public enum Mode { Center, LeftTop, RightButton }
         private ContentManager content = null;
         Video video;
         VideoPlayer player;
         Texture2D videoTexture;
         bool loadOk;
         Rectangle screen;
-        public DisplayMove(DisplayComponent d) : base(d) 
+        Mode currentMode;
+        int maxWidth;
+        int maxHeight;
+        int step;
+        bool moveStop;
+        public DisplayMove(DisplayComponent d)
+            : base(d)
         {
             player = new VideoPlayer();
             loadOk = false;
-            screen = new Rectangle(graficDevice.Viewport.X,
-                  graficDevice.Viewport.Y,
-                  graficDevice.Viewport.Width,
-                  graficDevice.Viewport.Height);
+            step = 2;
+            currentMode = Mode.Center;
+            int centerX = (graficDevice.Viewport.Width - graficDevice.Viewport.X) / 2;
+            int centerY = (graficDevice.Viewport.Height - graficDevice.Viewport.Y) / 2;
+            screen = new Rectangle(centerX, centerY, 0, 0);
+            maxHeight = 500;
+            maxWidth = 400;
+            moveStop = true;
+        }
+        public void setMode(Mode m)
+        {
+            currentMode = m;
+            if (currentMode == Mode.RightButton)
+            {
+                screen.X = graficDevice.Viewport.Width;
+                screen.Y = graficDevice.Viewport.Height;
+            }
+        }
+        public void setStep(int s)
+        {
+            step = s;
+        }
+        public bool getMoveStop()
+        {
+            return moveStop;
         }
         public void setMove(string name)
         {
@@ -38,46 +69,76 @@ namespace Pikto
             }
             try
             {
-                //video = content.Load<Video>(name);
+                video = content.Load<Video>(name);
                 loadOk = true;
+
             }
             catch (ArgumentNullException e)
-            { 
-            
+            {
+
             }
             player = new VideoPlayer();
         }
-        public void setRectangleScreen(int w,int h)
+        public void setMaxScreen(int w, int h)
         {
-            screen.Width = w;
-            screen.Height = h;
-        }
-        public void setRectangleScreen(int x,int y,int w, int h)
-        {
-            screen.X = x;
-            screen.Y = y;
-            screen.Width = w;
-            screen.Height = h;
+            maxWidth = w;
+            maxHeight = h;
         }
         public void playMove()
         {
             if (player.State == MediaState.Stopped && loadOk)
             {
-                player.IsLooped = true;
+                // player.IsLooped = true;
                 player.Play(video);
+                moveStop = false;
             }
         }
         public override void displaySetContent()
         {
             base.displaySetContent();
-            if (player.State != MediaState.Stopped)
+            if (displayEnable)
             {
-                videoTexture = player.GetTexture();
-                if (videoTexture != null)
+                if (player.State != MediaState.Stopped)
                 {
-                    mainSpriteBatch.Begin();
-                    mainSpriteBatch.Draw(videoTexture, screen, Color.White);
-                    mainSpriteBatch.End();
+                    if (screen.Width < maxWidth && screen.Height < maxHeight)
+                    {
+                        switch (currentMode)
+                        {
+                            case Mode.Center:
+                                screen.X -= step;
+                                screen.Y -= step;
+                                screen.Width += 2 * step;
+                                screen.Height += 2 * step;
+                                break;
+                            case Mode.LeftTop:
+                                screen.X = 0;
+                                screen.Y = 0;
+                                screen.Width += step;
+                                screen.Height += step;
+                                break;
+                            case Mode.RightButton:
+                                screen.X -= step;
+                                screen.Y -= step;
+                                screen.Width = graficDevice.Viewport.Width - screen.X;
+                                screen.Height = graficDevice.Viewport.Height - screen.Y;
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                    videoTexture = player.GetTexture();
+                    if (videoTexture != null)
+                    {
+                        mainSpriteBatch.Begin();
+                        mainSpriteBatch.Draw(videoTexture, screen, Color.White);
+                        mainSpriteBatch.End();
+                    }
+                }
+                else
+                {
+                    moveStop = true;
                 }
             }
         }

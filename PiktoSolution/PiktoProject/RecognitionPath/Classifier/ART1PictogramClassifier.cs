@@ -12,7 +12,7 @@ namespace Pikto.RecognitionPath.Classifier
 
 		public ART1PictogramClassifier(ART1 art1Network)
 		{
-			this.art1Network = art1Network;
+			this.art1Network = art1Network;           
 		}
 
 		public int Classify(byte[,] image, bool forceLearning = false)

@@ -8,18 +8,24 @@ using System.Collections.ObjectModel;
 using Microsoft.Xna.Framework.Graphics;
 namespace Pikto
 {
-    abstract class DisplayDecorator:DisplayComponent
+    abstract class DisplayDecorator : DisplayComponent
     {
         protected DisplayComponent disp;
-
+        protected bool displayEnable;
         public DisplayDecorator(DisplayComponent d)
         {
             disp = d;
-            graficDevice=d.graficDevice;
+            graficDevice = d.graficDevice;
             graficDeviceControl = d.graficDeviceControl;
-            mainSpriteBatch=d.mainSpriteBatch;
-            watch=d.watch;
+            mainSpriteBatch = d.mainSpriteBatch;
+            watch = d.watch;
+            displayEnable = false;
         }
+        public void setDisplayEnable(bool state)
+        {
+            displayEnable = state;
+        }
+
         public override void displaySetContent()
         {
             if (disp != null)

@@ -39,6 +39,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdaptiveResonanceTheory1">
+      <HintPath>..\..\Libs\AdaptiveResonanceTheory1.dll</HintPath>
+    </Reference>
     <Reference Include="AForge, Version=2.2.4.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\AForge.dll</HintPath>
@@ -46,9 +49,6 @@
     <Reference Include="AForge.Math, Version=2.2.4.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\AForge.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="AdaptiveResonanceTheory1">
-      <HintPath>..\..\Libs\AdaptiveResonanceTheory1.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV">
       <HintPath>..\..\Libs\EmguCV\Emgu.CV.dll</HintPath>
@@ -151,6 +151,7 @@
     <Compile Include="PictoModel\CategoryType.cs" />
     <Compile Include="PictoModel\ExaminationPathType.cs" />
     <Compile Include="PictoModel\PictogramType.cs" />
+    <Compile Include="PiktoViewManager.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
       <SubType>Form</SubType>
     </Compile>
