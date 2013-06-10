@@ -30,22 +30,33 @@ namespace Pikto.ViewModel.WizardViewModel
 				{
 					case ChooseEnum.New:
 						NextStep("new_path");
+						ViewModel.HandleNewPath();
 						break;
 
 					case ChooseEnum.Existing:
 						NextStep("load_path");
+						ViewModel.HandleLoadPath();
 						break;
 				}
 			}));
 
 			commands.Add("new_path", new BasicCommand(p =>
 			{
-				startExaminationPathCmd.Execute("Param from new_path");
+				var param = ViewModel.ChosenExaminationPathFromNewPath;
+				startExaminationPathCmd.Execute(param);
 			}));
 
 			commands.Add("load_path", new BasicCommand(p =>
 			{
-				startExaminationPathCmd.Execute("Param from load_path");
+				var param = ViewModel.ChosenExaminationPathFromLoadPath;
+				if (param == null)
+				{
+					System.Windows.MessageBox.Show("Wybierz ścieżkę egzaminacyjną.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+				}
+				else
+				{
+					startExaminationPathCmd.Execute(param);
+				}
 			}));
 		}
 	}

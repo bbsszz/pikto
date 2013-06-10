@@ -8,5 +8,6 @@ namespace Pikto.ViewModel.WizardViewModel
 {
 	abstract class WizardBaseViewModel : BaseViewModel
 	{
+		//public virtual void StepChanged(string stepName) { }
 	}
 }

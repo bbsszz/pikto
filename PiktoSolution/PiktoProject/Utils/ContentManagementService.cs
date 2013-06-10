@@ -7,6 +7,7 @@ using Pikto.ViewModel;
 using Pikto.View;
 using System.Windows;
 using Pikto.Command;
+using Pikto.PictoModel;
 
 namespace Pikto.Utils
 {
@@ -35,7 +36,7 @@ namespace Pikto.Utils
 
 		public ICommand StartLearningPathCommand { get; private set; }
 		public ICommand StartExaminationPathCommand { get; private set; }
-		public SingleParameterPipe<string> ToExaminationPathPipe { get; private set; } // the type should be changed appropriately
+		public SingleParameterPipe<ExaminationPathType> ToExaminationPathPipe { get; private set; } // the type should be changed appropriately
 
 		public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
 		{
@@ -55,7 +56,7 @@ namespace Pikto.Utils
 			}
 			OpenExaminationPathWizardCommand = new OpenExaminationPathWizardCommand(contentChange);
 			{
-				ToExaminationPathPipe = new SingleParameterPipe<string>();
+				ToExaminationPathPipe = new SingleParameterPipe<ExaminationPathType>();
 				StartExaminationPathCommand = new StartExaminationPathCommand(contentChange, ToExaminationPathPipe);
 			}
 			OpenSettingsWindowCommand = new OpenSettingsWindowCommand(contentChange);

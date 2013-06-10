@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using Pikto.ViewModel.SimpleViewModel;
 using Pikto.ViewModel;
+using Pikto.PictoModel;
 
 namespace Pikto.View.ViewManager.ViewSimpleManager
 {
 	class ViewTypeExaminationPathManager : ViewTypeSimpleManager<ExaminationPathWindow, ExaminationPathViewModel>
 	{
-		private IParameterOutputPipe<string> parameterOutput;
+		private IParameterOutputPipe<ExaminationPathType> parameterOutput;
 
-		public ViewTypeExaminationPathManager(IParameterOutputPipe<string> parameterOutput)
+		public ViewTypeExaminationPathManager(IParameterOutputPipe<ExaminationPathType> parameterOutput)
 		{
 			this.parameterOutput = parameterOutput;
 		}

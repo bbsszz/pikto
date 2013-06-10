@@ -5,15 +5,16 @@ using System.Text;
 using System.Windows.Input;
 using Pikto.View;
 using Pikto.ViewModel;
+using Pikto.PictoModel;
 
 namespace Pikto.Command
 {
 	class StartExaminationPathCommand : ICommand
 	{
 		private IContentChange contentChange;
-		private IParameterInputPipe<string> parameterInputPipe;
+		private IParameterInputPipe<ExaminationPathType> parameterInputPipe;
 
-		public StartExaminationPathCommand(IContentChange contentChange, IParameterInputPipe<string> parameterInputPipe)
+		public StartExaminationPathCommand(IContentChange contentChange, IParameterInputPipe<ExaminationPathType> parameterInputPipe)
 		{
 			this.contentChange = contentChange;
 			this.parameterInputPipe = parameterInputPipe;
@@ -28,7 +29,7 @@ namespace Pikto.Command
 
 		public void Execute(object parameter)
 		{
-			parameterInputPipe.Parameter = parameter as string;
+			parameterInputPipe.Parameter = parameter as ExaminationPathType;
 			contentChange.PrimaryViewType = ViewType.ExaminationPath;
 		}
 	}

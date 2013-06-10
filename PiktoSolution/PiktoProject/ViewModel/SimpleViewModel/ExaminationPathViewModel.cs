@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pikto.PictoModel;
 
 namespace Pikto.ViewModel.SimpleViewModel
 {
 	class ExaminationPathViewModel : BaseViewModel
 	{
-		private IParameterOutputPipe<string> parameterOutputPipe;
+		private IParameterOutputPipe<ExaminationPathType> parameterOutputPipe;
+		private ExaminationPathType currentExaminationPath;
 
-		public ExaminationPathViewModel(IParameterOutputPipe<string> parameterOutputPipe)
+		public ExaminationPathViewModel(IParameterOutputPipe<ExaminationPathType> parameterOutputPipe)
 		{
 			this.parameterOutputPipe = parameterOutputPipe;
 		}
 
 		public override void Loaded()
 		{
-			System.Windows.MessageBox.Show(parameterOutputPipe.Parameter);
+			currentExaminationPath = parameterOutputPipe.Parameter;
 		}
 	}
 }

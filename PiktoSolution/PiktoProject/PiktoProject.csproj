@@ -148,6 +148,8 @@
     <Compile Include="MarkerRecognition\EMarker.cs" />
     <Compile Include="MarkerRecognition\MarkerPosition3D.cs" />
     <Compile Include="MarkerRecognition\MDetector.cs" />
+    <Compile Include="PictoModel\ExaminationPathType.cs" />
+    <Compile Include="PictoModel\PictogramType.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,8 +176,13 @@
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
     <Compile Include="ViewModel\SimpleViewModel\CalibrationToolViewModel.cs" />
+    <Compile Include="ViewModel\WizardViewModel\ChooseExaminationPathViewModel.cs" />
+    <Compile Include="ViewModel\WizardViewModel\ManageExaminationPathsViewModel.cs" />
     <Compile Include="View\CalibrationToolView.xaml.cs">
       <DependentUpon>CalibrationToolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseExaminationPathView.xaml.cs">
+      <DependentUpon>ChooseExaminationPathView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
@@ -321,6 +328,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ChooseExaminationPathView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageCategoriesChooseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -460,9 +471,7 @@
       <Link>Libs\SQLite.Interop.dll</Link>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
