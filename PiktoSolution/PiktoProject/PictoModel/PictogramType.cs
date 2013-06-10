@@ -7,7 +7,7 @@ namespace Pikto.PictoModel
 {
 	class PictogramType
 	{
-		public string Name { get; private set; }
-		//...
+		public string Name { get; set; }
+        public CategoryType Categories { get; set; }
 	}
 }

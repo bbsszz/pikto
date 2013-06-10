@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Pikto.View.ManagePictogramsPictoInfoView"
+﻿<UserControl x:Class="Pikto.View.ManagePictogramsNewView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,9 +7,15 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Label Content="Nazwa piktogramu" Height="28" HorizontalAlignment="Left" Margin="24,30,0,0" Name="lName" VerticalAlignment="Top" Foreground="White" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="140,30,0,0" Name="tbName" VerticalAlignment="Top" Width="120" />
-        <Label Content="Kategorie" Height="28" HorizontalAlignment="Left" Margin="24,76,0,0" Name="lCategories" VerticalAlignment="Top" Foreground="White" />
-        <ListBox Height="67" HorizontalAlignment="Left" Margin="140,76,0,0" Name="lbCategories" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="158,30,0,0" Name="tbName" VerticalAlignment="Top" Width="120" Text="{Binding Path=PictoName}"/>
+        <Label Content="Kategoria" Height="28" HorizontalAlignment="Left" Margin="24,76,0,0" Name="lCategories" VerticalAlignment="Top" Foreground="White" />
+        <ListBox Margin="24,110,22,12" x:Name="lbCategories" ItemsSource="{Binding CategoriesList}" SelectedIndex="{Binding SelectedIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Label Content="Plik" Height="28" HorizontalAlignment="Left" Margin="24,176,0,0" Name="lFile" VerticalAlignment="Top" Foreground="White" />
         <Button Content="Wybierz plik" Height="23" HorizontalAlignment="Left" Margin="138,177,0,0" Name="bFile" VerticalAlignment="Top" Width="75"  BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
     </Grid>

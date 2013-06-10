@@ -17,9 +17,9 @@ namespace Pikto.View
     /// <summary>
     /// Interaction logic for PiktogramForm.xaml
     /// </summary>
-    public partial class ManagePictogramsPictoInfoView : UserControl
+    public partial class ManagePictogramsNewView : UserControl
     {
-        public ManagePictogramsPictoInfoView()
+        public ManagePictogramsNewView()
         {
             InitializeComponent();
         }

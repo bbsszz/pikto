@@ -30,7 +30,7 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 
 				case "new_picto":
 				{
-                    var view = new ManagePictogramsPictoInfoView();
+                    var view = new ManagePictogramsNewView();
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
@@ -41,6 +41,13 @@ namespace Pikto.View.ViewManager.ViewWizardManager
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
+
+                case "picto_camera":
+                {
+                    var view = new ManagePictogramsGetPictoFromCameraView();
+                    view.DataContext = NavigationViewModel.ViewModel;
+                    return view;
+                }
 
 				default:
 				{

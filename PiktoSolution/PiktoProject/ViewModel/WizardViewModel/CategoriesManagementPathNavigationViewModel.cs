@@ -53,7 +53,6 @@ namespace Pikto.ViewModel.WizardViewModel
 
             commands.Add("update_category", new BasicCommand(p =>
             {
-                
                 var param = ViewModel.ChosenCategory;
                 if (param == null)
                 {

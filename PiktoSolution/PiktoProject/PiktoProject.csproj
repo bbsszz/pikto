@@ -192,6 +192,9 @@
     <Compile Include="View\ManageCategoriesEditView.xaml.cs">
       <DependentUpon>ManageCategoriesEditView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagePictogramsGetPictoFromCameraView.xaml.cs">
+      <DependentUpon>ManagePictogramsGetPictoFromCameraView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
     <Compile Include="XnaWpfHost\DisplayComponent.cs" />
@@ -257,8 +260,8 @@
     <Compile Include="View\ManageCategoriesActionView.xaml.cs">
       <DependentUpon>ManageCategoriesActionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagePictogramsPictoInfoView.xaml.cs">
-      <DependentUpon>ManagePictogramsPictoInfoView.xaml</DependentUpon>
+    <Compile Include="View\ManagePictogramsNewView.xaml.cs">
+      <DependentUpon>ManagePictogramsNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManagePictogramsActionView.xaml.cs">
       <DependentUpon>ManagePictogramsActionView.xaml</DependentUpon>
@@ -364,7 +367,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagePictogramsPictoInfoView.xaml">
+    <Page Include="View\ManagePictogramsGetPictoFromCameraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagePictogramsNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

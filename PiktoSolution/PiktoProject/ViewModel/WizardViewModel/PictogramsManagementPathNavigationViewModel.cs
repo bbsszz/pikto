@@ -24,6 +24,8 @@ namespace Pikto.ViewModel.WizardViewModel
 					case ChooseEnum.New:
 					{
 						NextStep("new_picto");
+                        ViewModel.HandleCategories();
+                        ViewModel.PreparePictogram();
 						break;
 					}
 					case ChooseEnum.Existing:
@@ -32,11 +34,23 @@ namespace Pikto.ViewModel.WizardViewModel
 						break;
 					}
 				}
+
+                ViewModel.HandleCategories();
 			}));
 
 			commands.Add("new_picto", new BasicCommand(p =>
 			{
-
+                if (ViewModel.ChosenCategory==null || ViewModel.PictoName==null)
+                {
+                    System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+                else
+                {
+                    ViewModel.PutName();
+                    ViewModel.PutCategory();
+                    NextStep("picto_camera");
+                }
+                
 			}));
 
 			commands.Add("update_picto", new BasicCommand(p =>
