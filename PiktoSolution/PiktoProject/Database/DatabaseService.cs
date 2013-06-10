@@ -22,7 +22,7 @@ namespace Pikto.Database
             return db.piktogramies.SingleOrDefault(x => x.id == id);
         }
 
-        List<piktogramy> GetAllPiktogramsWithCategory(string categoryName)
+        public List<piktogramy> GetAllPiktogramsWithCategory(string categoryName)
         {
             category cat = GetAllCategories().FirstOrDefault(x=>x.name==categoryName);
             return db.piktogramies.Where(x => x.category == cat).ToList();
@@ -115,6 +115,7 @@ namespace Pikto.Database
         {
             category cat = GetCategory(id);
             db.categories.DeleteObject(cat);
+            db.SaveChanges();
         }
 
         public map GetMap(int id)
@@ -174,6 +175,7 @@ namespace Pikto.Database
         {
             cluster_bt cluster = GetClusterBT(id);
             db.cluster_bt.DeleteObject(cluster);
+            db.SaveChanges();
         }
 
         public cluster_tb GetClusterTB(int id)
@@ -277,6 +279,7 @@ namespace Pikto.Database
         {
             medium media = GetMedium(id);
             db.media.DeleteObject(media);
+            db.SaveChanges();
         }
     }
 }

@@ -10,9 +10,11 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 {
     class ViewTypeCategoriesManagementWizardManager : ViewTypeWizardManager<WizardView, CategoriesManagementPathViewModel>
 	{
-        public ViewTypeCategoriesManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+        ICommand finishCmd;
+        public ViewTypeCategoriesManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd, ICommand finishedCmd)
 			: base(refreshStepAction, cancelCmd)
 		{
+            finishCmd = finishedCmd;
 		}
 
 		protected override object CreateView(object parameter)
@@ -30,7 +32,7 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 
 				case "new_category":
 				{
-					var view = new ManageCategoriesChooseView();
+					var view = new ManageCategoriesNewView();
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
@@ -41,6 +43,14 @@ namespace Pikto.View.ViewManager.ViewWizardManager
                     view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
+
+
+                case "edit_category":
+                {
+                    var view = new ManageCategoriesEditView();
+                    view.DataContext = NavigationViewModel.ViewModel;
+                    return view;
+                }
 
 				default:
 				{
@@ -64,7 +74,7 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 		protected override WizardNavigationViewModel<CategoriesManagementPathViewModel> CreateViewModel()
 		{
 			var viewModel = new CategoriesManagementPathViewModel();
-			var navigationViewModel = new CategoriesManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
+			var navigationViewModel = new CategoriesManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd, finishCmd);
 			return navigationViewModel;
 		}
 	}

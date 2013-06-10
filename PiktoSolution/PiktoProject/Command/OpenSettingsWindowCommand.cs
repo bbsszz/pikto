@@ -27,6 +27,7 @@ namespace Pikto.Command
 		public void Execute(object parameter)
 		{
             contentChange.PrimaryViewType = ViewType.SettingsWindow;
+            contentChange.SecondaryViewType = ViewType.Default;
 		}
 	}
 }

@@ -148,6 +148,7 @@
     <Compile Include="MarkerRecognition\EMarker.cs" />
     <Compile Include="MarkerRecognition\MarkerPosition3D.cs" />
     <Compile Include="MarkerRecognition\MDetector.cs" />
+    <Compile Include="PictoModel\CategoryType.cs" />
     <Compile Include="PictoModel\ExaminationPathType.cs" />
     <Compile Include="PictoModel\PictogramType.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
@@ -183,6 +184,12 @@
     </Compile>
     <Compile Include="View\ChooseExaminationPathView.xaml.cs">
       <DependentUpon>ChooseExaminationPathView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageCategoriesChooseView.xaml.cs">
+      <DependentUpon>ManageCategoriesChooseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageCategoriesEditView.xaml.cs">
+      <DependentUpon>ManageCategoriesEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
@@ -236,8 +243,8 @@
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManageCategoriesChooseView.xaml.cs">
-      <DependentUpon>ManageCategoriesChooseView.xaml</DependentUpon>
+    <Compile Include="View\ManageCategoriesNewView.xaml.cs">
+      <DependentUpon>ManageCategoriesNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ExaminationPathWindow.xaml.cs">
       <DependentUpon>ExaminationPathWindow.xaml</DependentUpon>
@@ -333,6 +340,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageCategoriesChooseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageCategoriesEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageCategoriesNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

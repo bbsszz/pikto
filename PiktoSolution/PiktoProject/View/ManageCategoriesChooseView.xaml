@@ -6,9 +6,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="210" d:DesignWidth="300">
     <Grid>
-        <Label Content="Nazwa kategorii" Height="28" HorizontalAlignment="Left" Margin="24,30,0,0" Name="lName" VerticalAlignment="Top" Foreground="White" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="140,30,0,0" Name="tbName" VerticalAlignment="Top" Width="120" />
-        <Label Content="Piktogramy" Height="28" HorizontalAlignment="Left" Margin="24,76,0,0" Name="lPiktograms" VerticalAlignment="Top" Foreground="White" />
-        <ListBox Height="112" HorizontalAlignment="Left" Margin="140,76,0,0" Name="lbPiktograms" VerticalAlignment="Top" Width="120" />
+        <ListBox Margin="12" x:Name="lbCategories" ItemsSource="{Binding CategoriesList}" SelectedIndex="{Binding SelectedIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
