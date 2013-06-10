@@ -58,6 +58,13 @@ namespace Pikto.View.ViewManager.ViewWizardManager
                     return view;
                 }
 
+                case "edit_picto":
+                {
+                    var view = new ManagePictogramsEditView();
+                    view.DataContext = NavigationViewModel.ViewModel;
+                    return view;
+                }
+
 				default:
 				{
 					throw new InvalidOperationException("Step not supported in the wizard.");

@@ -193,6 +193,9 @@
     <Compile Include="View\ManagePictogramsChooseMediaView.xaml.cs">
       <DependentUpon>ManagePictogramsChooseMediaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagePictogramsEditView.xaml.cs">
+      <DependentUpon>ManagePictogramsEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagePictogramsGetPictoFromCameraView.xaml.cs">
       <DependentUpon>ManagePictogramsGetPictoFromCameraView.xaml</DependentUpon>
     </Compile>
@@ -365,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagePictogramsChooseMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagePictogramsEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

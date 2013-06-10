@@ -23,9 +23,14 @@ namespace Pikto.Database
             return db.piktogramies.SingleOrDefault(x => x.id == id);
         }
 
+        public piktogramy GetPiktogram(string name)
+        {
+            return db.piktogramies.FirstOrDefault(x => x.name == name);
+        }
+
         public List<piktogramy> GetAllPiktogramsWithCategory(string categoryName)
         {
-            category cat = GetAllCategories().FirstOrDefault(x=>x.name==categoryName);
+            category cat = GetAllCategories().FirstOrDefault(x => x.name == categoryName);
             return db.piktogramies.Where(x => x.category == cat).ToList();
         }
 
@@ -108,6 +113,32 @@ namespace Pikto.Database
             piktogramy pikt = GetPiktogram(id);
             pikt.name = name ?? pikt.name;
             pikt.media_id = obj.id;
+
+            if (categoryName != null)
+            {
+                category cat = GetCategory(categoryName);
+                pikt.category_id = cat.id;
+            }
+
+            db.SaveChanges();
+            return pikt;
+        }
+
+        public piktogramy EditPiktogram(string name, MediaTypeEnum mediumName, object mediumObject = null, string categoryName = null, object image = null)
+        {
+            piktogramy pikt = GetPiktogram(name);
+            pikt.name = name ?? pikt.name;
+
+            pikt.media_id = this.AddMedium(mediumName.ToString(), mediumObject);
+            byte[] img;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image as BitmapSource));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                img = ms.ToArray();
+            }
+            pikt.image = img;
 
             if (categoryName != null)
             {

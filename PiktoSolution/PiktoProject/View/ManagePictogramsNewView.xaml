@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Label Content="Nazwa piktogramu" Height="28" HorizontalAlignment="Left" Margin="24,30,0,0" Name="lName" VerticalAlignment="Top" Foreground="White" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="158,30,0,0" Name="tbName" VerticalAlignment="Top" Width="120" Text="{Binding Path=PictoName}"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="158,30,0,0" Name="tbName" VerticalAlignment="Top" Width="120" Text="{Binding Path=PictoName}" IsEnabled="{Binding Path=NewPictogram}"/>
         <Label Content="Kategoria" Height="28" HorizontalAlignment="Left" Margin="24,76,0,0" Name="lCategories" VerticalAlignment="Top" Foreground="White" />
         <ListBox Margin="24,110,22,12" x:Name="lbCategories" ItemsSource="{Binding CategoriesList}" SelectedIndex="{Binding SelectedIndex}">
             <ListBox.ItemTemplate>

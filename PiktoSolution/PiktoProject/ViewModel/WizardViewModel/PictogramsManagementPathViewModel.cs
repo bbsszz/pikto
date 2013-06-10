@@ -27,12 +27,11 @@ namespace Pikto.ViewModel.WizardViewModel
 
         public List<CategoryType> CategoriesList { get; private set; }
 
-        //private List<piktogramy> piktograms;
-
-        //public List<string> Piktograms
-        //{
-        //    get { return piktograms.Select(x => x.name.ToString()).ToList(); }
-        //}
+        
+        public List<PictogramType> Piktograms
+        {
+            get { return db.GetAllPiktograms().Select(x => new PictogramType(x)).ToList(); }
+        }
 
         public PictogramType Piktogram { get; private set; }
 
@@ -66,6 +65,20 @@ namespace Pikto.ViewModel.WizardViewModel
 			}
 		}
 
+        private ActionEnum editAction;
+        public ActionEnum EditAction
+        {
+            get { return editAction; }
+            set
+            {
+                if (editAction != value)
+                {
+                    editAction = value;
+                    OnPropertyChanged("EditAction");
+                }
+            }
+        }
+
 		private DatabaseService db;
 
         public int SelectedIndex
@@ -89,6 +102,23 @@ namespace Pikto.ViewModel.WizardViewModel
             }
         }
 
+        public PictogramType ChosenPictogram
+        {
+            get
+            {
+                if (SelectedIndex >= 0)
+                {
+                    return Piktograms[SelectedIndex];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool NewPictogram { get; set; }
+
         public string ObjectName { get; set; }
 
         public string PictoName { get; set; }
@@ -96,8 +126,6 @@ namespace Pikto.ViewModel.WizardViewModel
 		public PictogramsManagementPathViewModel()
 		{
 			db = new DatabaseService();
-            //categories = db.GetAllCategories();
-            //piktograms = db.GetAllPiktograms();
             SelectedIndex = -1;
 		}
 
@@ -148,6 +176,25 @@ namespace Pikto.ViewModel.WizardViewModel
             Piktogram = new PictogramType();
         }
 
+        public void PreparePictogramToEdit()
+        {
+            Piktogram = ChosenPictogram;
+            PictoName = Piktogram.Name;
+            OnPropertyChanged("PictoName");
+        }
+
+        public void SetAsNew()
+        {
+            NewPictogram = true;
+            OnPropertyChanged("NewPictogram");
+        }
+
+        public void SetAsOld()
+        {
+            NewPictogram = false;
+            OnPropertyChanged("NewPictogram");
+        }
+
         public void PutName()
         {
             Piktogram.Name = PictoName;
@@ -168,6 +215,7 @@ namespace Pikto.ViewModel.WizardViewModel
         internal void AddPiktogram()
         {
             db.AddPiktogram(Piktogram.Name, Piktogram.MediumType, Piktogram.Medium, Piktogram.Categories.Name, Piktogram.Image);
+            OnPropertyChanged("Piktograms");
         }
 
         public ICommand SaveImageCmd { get; set; }
@@ -193,6 +241,18 @@ namespace Pikto.ViewModel.WizardViewModel
             OnPropertyChanged("CutImage");
         }
 
-        
+
+
+        internal void DeletePictogram()
+        {
+            db.DeletePiktogram((int)db.GetPiktogram(ChosenPictogram.Name).id);
+            OnPropertyChanged("Piktograms");
+        }
+
+        internal void EditPictogram()
+        {
+            db.EditPiktogram(Piktogram.Name, Piktogram.MediumType, Piktogram.Medium, Piktogram.Categories.Name, Piktogram.Image);
+            OnPropertyChanged("Piktograms");
+        }
     }
 }

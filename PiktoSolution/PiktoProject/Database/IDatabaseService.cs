@@ -13,6 +13,7 @@ namespace Pikto.Database
         List<piktogramy> GetAllPiktograms();
 
         piktogramy GetPiktogram(int id);
+        piktogramy GetPiktogram(string name);
 
         List<piktogramy> GetAllPiktogramsWithCategory(string categoryName);
 
@@ -23,6 +24,7 @@ namespace Pikto.Database
 
 
         piktogramy EditPiktogram(int id, string name = null, medium obj = null, string categoryName = null);
+        piktogramy EditPiktogram(string name, MediaTypeEnum mediumName, object mediumObject = null, string categoryName = null, object image = null);
 
         void DeletePiktogram(int id);
 

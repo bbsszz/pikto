@@ -6,8 +6,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid Height="479" Width="386">
-        <ListBox Height="233" HorizontalAlignment="Left" Margin="12,49,0,0" Name="listBox1" VerticalAlignment="Top" Width="174" ItemsSource="{Binding Piktograms}" />
-        <Button Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="12,22,0,0" Name="bAddPiktogram" VerticalAlignment="Top" Width="75" Command="{Binding AddPiktogramCmd}"/>
+    <Grid>
+        <ListBox Margin="12" x:Name="lbPiktograms" ItemsSource="{Binding Piktograms}" SelectedIndex="{Binding SelectedIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

@@ -31,11 +31,13 @@ namespace Pikto.ViewModel.WizardViewModel
 						NextStep("new_picto");
                         ViewModel.HandleCategories();
                         ViewModel.PreparePictogram();
+                        ViewModel.SetAsNew();
 						break;
 					}
 					case ChooseEnum.Existing:
 					{
 						NextStep("update_picto");
+                        ViewModel.SetAsOld();
 						break;
 					}
 				}
@@ -74,8 +76,16 @@ namespace Pikto.ViewModel.WizardViewModel
                 else
                 {
                     ViewModel.PutObject();
-                    ViewModel.AddPiktogram();
-                    System.Windows.MessageBox.Show("Dodawanie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                    if (ViewModel.NewPictogram)
+                    {
+                        ViewModel.AddPiktogram();
+                        System.Windows.MessageBox.Show("Dodawanie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        ViewModel.EditPictogram();
+                        System.Windows.MessageBox.Show("Edycja piktogramu zakończona powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                    }
                     finishCmd.Execute(null);
                 }
                 
@@ -83,8 +93,39 @@ namespace Pikto.ViewModel.WizardViewModel
 
 			commands.Add("update_picto", new BasicCommand(p =>
 			{
-
+                var param = ViewModel.ChosenPictogram;
+                if (param == null)
+                {
+                    System.Windows.MessageBox.Show("Wybierz piktogram.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+                else
+                {
+                    NextStep("edit_picto");
+                }
 			}));
+
+            commands.Add("edit_picto", new BasicCommand(p =>
+            {
+                switch (ViewModel.EditAction)
+                {
+                    case ActionEnum.Update:
+                        {
+                            ViewModel.PreparePictogramToEdit();
+                            NextStep("new_picto");
+                            break;
+                        }
+                    case ActionEnum.Delete:
+                        {
+                            ViewModel.DeletePictogram();
+                            System.Windows.MessageBox.Show("Usunięcie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                            finishCmd.Execute(null);
+                            break;
+                        }
+                }
+
+            }));
+
+           
 		}
 	}
 }
