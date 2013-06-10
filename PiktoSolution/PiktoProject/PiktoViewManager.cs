@@ -81,7 +81,7 @@ namespace Pikto
         {
             cameraSceneLayer.setCameraImage(cameraImg);
         }
-        public void viewSceneMarker(int id, System.Drawing.Bitmap cameraImg)
+        public void viewSceneMarker(int id,AForge.Math.Matrix4x4 mtxProj, System.Drawing.Bitmap cameraImg)
         {
             if (videoMode)
             {
@@ -107,7 +107,10 @@ namespace Pikto
                     }
                     if (pictoObjectType[id] == "3dobject")
                     {
+                        List<E3DModel> list = new List<E3DModel>();
+                        list.Add(new E3DModel(pictoObjectName[id],mtxProj, 80.0f));
                         view3DModelLayerAndCameraLayer();
+                        model3dSceneLayer.setModels(list);
 
                     }
 
