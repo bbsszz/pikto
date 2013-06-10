@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
+using Pikto.Utils;
 
 namespace Pikto.Database
 {
@@ -17,6 +18,9 @@ namespace Pikto.Database
 
         void AddPiktogram(string name, medium obj);
         void AddPiktogram(string name, medium obj, string categoryName);
+        void AddPiktogram(string name, MediaTypeEnum mediumName, object mediumObject, string categoryName);
+        void AddPiktogram(string name, MediaTypeEnum mediumName, object mediumObject, string categoryName, object image);
+
 
         piktogramy EditPiktogram(int id, string name = null, medium obj = null, string categoryName = null);
 
@@ -26,7 +30,7 @@ namespace Pikto.Database
 
         #region media
         medium GetMedium(int id);
-        void AddMedium(string name, object obj);
+        int AddMedium(string name, object obj);
 
         medium EditMedium(int id, string name, object obj);
 

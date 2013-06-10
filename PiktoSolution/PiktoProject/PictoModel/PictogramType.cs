@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows.Media.Imaging;
+using Pikto.Utils;
 
 namespace Pikto.PictoModel
 {
@@ -9,5 +7,8 @@ namespace Pikto.PictoModel
 	{
 		public string Name { get; set; }
         public CategoryType Categories { get; set; }
+        public BitmapSource Image { get; set; }
+        public string Medium { get; set; }
+        public MediaTypeEnum MediumType { get; set; }
 	}
 }

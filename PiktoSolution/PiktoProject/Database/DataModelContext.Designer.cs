@@ -1125,6 +1125,30 @@ namespace Pikto.Database
         private Nullable<global::System.Int64> _media_id;
         partial void Onmedia_idChanging(Nullable<global::System.Int64> value);
         partial void Onmedia_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] image
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_image);
+            }
+            set
+            {
+                OnimageChanging(value);
+                ReportPropertyChanging("image");
+                _image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("image");
+                OnimageChanged();
+            }
+        }
+        private global::System.Byte[] _image;
+        partial void OnimageChanging(global::System.Byte[] value);
+        partial void OnimageChanged();
 
         #endregion
     

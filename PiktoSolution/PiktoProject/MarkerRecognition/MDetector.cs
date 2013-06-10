@@ -227,7 +227,7 @@ namespace Pikto
                    
                     return a;
         }
-        private Image<Gray, Byte> threshold
+        public Image<Gray, Byte> threshold
           (Image<Gray, Byte> imgGray, int thresh, int maxVal)
         {
             return imgGray.ThresholdBinary

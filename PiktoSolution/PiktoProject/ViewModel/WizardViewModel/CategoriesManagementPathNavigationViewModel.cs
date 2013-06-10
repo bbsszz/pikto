@@ -12,6 +12,7 @@ namespace Pikto.ViewModel.WizardViewModel
 	{
 
         ICommand finishCmd;
+        public string WizardTitle { get; set; }
 
 		public CategoriesManagementPathNavigationViewModel(
 			CategoriesManagementPathViewModel viewModel, 
@@ -20,6 +21,7 @@ namespace Pikto.ViewModel.WizardViewModel
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
             finishCmd = finishedCmd;
+            WizardTitle = "Zarządzanie kategoriami";
 		}
 
 

@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
-            
+             d:DesignHeight="350" d:DesignWidth="580">
+    <Grid Width="581">
+        <Image Height="240" HorizontalAlignment="Left" Margin="12,38,0,0" Name="originalImage" Stretch="Fill" VerticalAlignment="Top" Width="320" Source="{Binding Path=LifeImage}"/>
+        <Image Height="200" HorizontalAlignment="Left" Margin="366,78,0,0" Name="cutImage" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="{Binding Path=CutImage}" />
+        <Button Content="Zapisz" Height="36" HorizontalAlignment="Left" Margin="231,309,0,0" Name="saveButton" VerticalAlignment="Top" Width="116" Style="{StaticResource MenuButtonStyle}" Command="{Binding SaveImageCmd}"/>
+        <Label Content="{Binding Path=Info}" Height="28" HorizontalAlignment="Left" Margin="357,311,0,0" Name="labelInfo" VerticalAlignment="Top" Foreground="White" />
     </Grid>
 </UserControl>

@@ -59,5 +59,12 @@ namespace Pikto.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap noImage {
+            get {
+                object obj = ResourceManager.GetObject("noImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Runtime.Serialization.Formatters.Binary;
+using Pikto.Utils;
 
 namespace Pikto.Database
 {
@@ -51,6 +52,53 @@ namespace Pikto.Database
             }
             piktogram.category_id = cat.id;
 
+            db.piktogramies.AddObject(piktogram);
+            db.SaveChanges();
+        }
+
+        public void AddPiktogram(string name, MediaTypeEnum mediumName, object mediumObject, string categoryName)
+        {
+            var piktogram = db.CreateObject<piktogramy>();
+            piktogram.name = name;
+            piktogram.media_id = this.AddMedium(mediumName.ToString(), mediumObject);
+
+            category cat = GetCategory(categoryName);
+            if (cat == null)
+            {
+                AddCategory(categoryName);
+                cat = GetCategory(categoryName);
+            }
+            piktogram.category_id = cat.id;
+
+            db.piktogramies.AddObject(piktogram);
+            db.SaveChanges();
+        }
+
+        public void AddPiktogram(string name, MediaTypeEnum mediumName, object mediumObject, string categoryName, object image)
+        {
+            var piktogram = db.CreateObject<piktogramy>();
+            piktogram.name = name;
+            piktogram.media_id = this.AddMedium(mediumName.ToString(), mediumObject);
+
+            category cat = GetCategory(categoryName);
+            if (cat == null)
+            {
+                AddCategory(categoryName);
+                cat = GetCategory(categoryName);
+            }
+            piktogram.category_id = cat.id;
+            byte[] img;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image as BitmapSource));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                img = ms.ToArray();
+            }
+            piktogram.image = img;
+            // bardzo brzydko!
+            piktogram.id = GetAllPiktograms().Count;
+            // koniec brzydko
             db.piktogramies.AddObject(piktogram);
             db.SaveChanges();
         }
@@ -211,10 +259,10 @@ namespace Pikto.Database
             return db.media.SingleOrDefault(x => x.id == id);
         }
 
-        public void AddMedium(string name, object obj)
+        public int AddMedium(string name, object obj)
         {
             var media = db.CreateObject<medium>();
-            if (name == "image")
+            if (name == "Image")
             {
                 byte[] img;
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
@@ -227,7 +275,7 @@ namespace Pikto.Database
                 media.media_type_id = 1;
                 media.@object = img;
             }
-            else if (name == "video")
+            else if (name == "Movie")
             {
                 media.media_type_id = 2;
                 media.@object = System.Text.Encoding.UTF8.GetBytes(obj as string);
@@ -240,7 +288,9 @@ namespace Pikto.Database
                 bf.Serialize(ms, obj);
                 media.@object = ms.ToArray();
             }
-            
+            db.media.AddObject(media);
+            db.SaveChanges();
+            return (int)media.id;
         }
 
         public medium EditMedium(int id, string name, object obj)

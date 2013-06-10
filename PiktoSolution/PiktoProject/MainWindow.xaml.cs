@@ -139,8 +139,8 @@ namespace Pikto
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            AddPiktogram addPiktogram = new AddPiktogram();
-            addPiktogram.Show();
+            //AddPiktogram addPiktogram = new AddPiktogram();
+            //addPiktogram.Show();
 
 
         }

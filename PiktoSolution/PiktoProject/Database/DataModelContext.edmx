@@ -96,6 +96,7 @@
           <Property Name="name" Type="nvarchar" />
           <Property Name="category_id" Type="integer" />
           <Property Name="media_id" Type="integer" />
+          <Property Name="image" Type="blob" />
         </EntityType>
         <Association Name="FK_cluster_bt_0_0">
           <End Role="piktogramy" Type="piktoModel.Store.piktogramy" Multiplicity="0..1" />
@@ -246,7 +247,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Type="String" Name="name" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="category_id" />
           <Property Type="Int64" Name="media_id" />
@@ -254,6 +255,7 @@
           <NavigationProperty Name="cluster_bt" Relationship="piktoModel.FK_cluster_bt_0_0" FromRole="piktogramy" ToRole="cluster_bt" />
           <NavigationProperty Name="cluster_tb" Relationship="piktoModel.FK_cluster_tb_0_0" FromRole="piktogramy" ToRole="cluster_tb" />
           <NavigationProperty Name="medium" Relationship="piktoModel.FK_piktogramy_0_0" FromRole="piktogramy" ToRole="medium" />
+          <Property Type="Binary" Name="image" MaxLength="2147483647" FixedLength="false" />
         </EntityType>
         <Association Name="FK_piktogramy_1_0">
           <End Type="piktoModel.category" Role="category" Multiplicity="0..1" />
@@ -375,6 +377,7 @@
           <EntitySetMapping Name="piktogramies">
             <EntityTypeMapping TypeName="piktoModel.piktogramy">
               <MappingFragment StoreEntitySet="piktogramy">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="media_id" ColumnName="media_id" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="name" ColumnName="name" />

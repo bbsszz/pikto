@@ -10,11 +10,16 @@ namespace Pikto.ViewModel.WizardViewModel
 {
 	class PictogramsManagementPathNavigationViewModel : WizardNavigationViewModel<PictogramsManagementPathViewModel>
 	{
-		public PictogramsManagementPathNavigationViewModel(PictogramsManagementPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd)
+        ICommand finishCmd;
+		public PictogramsManagementPathNavigationViewModel(PictogramsManagementPathViewModel viewModel, Action<string> refreshStepAction, ICommand cancelCmd, ICommand finishedCmd)
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
+            WizardTitle = "Zarządzanie piktogramami";
+            finishCmd = finishedCmd;
 		}
-			
+
+        public string WizardTitle { get; set; }
+
 		protected override void PrepareForwardCmds(IDictionary<string, ICommand> commands)
 		{
 			commands.Add("", new BasicCommand(p =>
@@ -48,10 +53,33 @@ namespace Pikto.ViewModel.WizardViewModel
                 {
                     ViewModel.PutName();
                     ViewModel.PutCategory();
+                    ViewModel.HandleCamera();
                     NextStep("picto_camera");
                 }
                 
 			}));
+
+            commands.Add("picto_camera", new BasicCommand(p =>
+            {
+                ViewModel.StopHandlingCamera();
+                NextStep("picto_medium");
+            }));
+
+            commands.Add("picto_medium", new BasicCommand(p =>
+            {
+                if (ViewModel.MediaType == null || ViewModel.ObjectName == null)
+                {
+                    System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+                else
+                {
+                    ViewModel.PutObject();
+                    ViewModel.AddPiktogram();
+                    System.Windows.MessageBox.Show("Dodawanie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                    finishCmd.Execute(null);
+                }
+                
+            }));
 
 			commands.Add("update_picto", new BasicCommand(p =>
 			{

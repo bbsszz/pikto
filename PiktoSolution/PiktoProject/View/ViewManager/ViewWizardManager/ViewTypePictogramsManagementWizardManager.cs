@@ -10,9 +10,11 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 {
     class ViewTypePictogramsManagementWizardManager : ViewTypeWizardManager<WizardView, PictogramsManagementPathViewModel>
 	{
-        public ViewTypePictogramsManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd)
+        ICommand finishCmd;
+        public ViewTypePictogramsManagementWizardManager(Action<string> refreshStepAction, ICommand cancelCmd, ICommand finishedCmd)
 			: base(refreshStepAction, cancelCmd)
 		{
+            finishCmd = finishedCmd;
 		}
 
 		protected override object CreateView(object parameter)
@@ -49,6 +51,13 @@ namespace Pikto.View.ViewManager.ViewWizardManager
                     return view;
                 }
 
+                case "picto_medium":
+                {
+                    var view = new ManagePictogramsChooseMediaView();
+                    view.DataContext = NavigationViewModel.ViewModel;
+                    return view;
+                }
+
 				default:
 				{
 					throw new InvalidOperationException("Step not supported in the wizard.");
@@ -71,7 +80,7 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 		protected override WizardNavigationViewModel<PictogramsManagementPathViewModel> CreateViewModel()
 		{
 			var viewModel = new PictogramsManagementPathViewModel();
-			var navigationViewModel = new PictogramsManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd);
+            var navigationViewModel = new PictogramsManagementPathNavigationViewModel(viewModel, refreshStepAction, cancelCmd, finishCmd);
 			return navigationViewModel;
 		}
 	}

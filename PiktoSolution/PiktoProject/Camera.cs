@@ -10,6 +10,7 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
+using System.Drawing;
 
 namespace Pikto
 {
@@ -63,6 +64,20 @@ namespace Pikto
                 DeleteObject(ptr); //release the HBitmap
                 return bs;
             }
+        }
+
+        public static BitmapSource ToBitmapSource(Bitmap source)
+        {
+            IntPtr ptr = source.GetHbitmap(); //obtain the Hbitmap
+
+            BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                ptr,
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
+
+            DeleteObject(ptr); //release the HBitmap
+            return bs;
         }
     }
 }

@@ -22,7 +22,7 @@
         </LinearGradientBrush>
     </Page.Background>
     <Grid>
-        <Label Content="Tytuł" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lTitle" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+        <Label Content="{Binding Path=WizardTitle}" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lTitle" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
         <Button Content="&gt;&gt;&gt;" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="bForward" VerticalAlignment="Bottom" Width="75" Command="{Binding ForwardCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
         <Button Content="&lt;&lt;&lt;" Height="23" HorizontalAlignment="Right" Margin="0,0,93,12" Name="bBack" VerticalAlignment="Bottom" Width="75" Command="{Binding BackwardCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />
         <Button Content="Anuluj" HorizontalAlignment="Right" Margin="12,0,174,12" Name="bCancel" Width="75" Height="23" VerticalAlignment="Bottom" Command="{Binding CancelCmd}" BorderBrush="#30FFFFFF" Foreground="White" BorderThickness="0.5" Background="#4BFFFFFF" FontWeight="SemiBold" />

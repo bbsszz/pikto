@@ -122,9 +122,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddPiktogram.xaml.cs">
-      <DependentUpon>AddPiktogram.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Command\CloseApplicationCommand.cs" />
     <Compile Include="Command\HideSecondaryWindowCommand.cs" />
     <Compile Include="Command\OpenExaminationPathWizardCommand.cs" />
@@ -177,6 +174,7 @@
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
     <Compile Include="UnsafeBitmap.cs" />
+    <Compile Include="Utils\MediaTypeEnum.cs" />
     <Compile Include="ViewModel\SimpleViewModel\CalibrationToolViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\ChooseExaminationPathViewModel.cs" />
     <Compile Include="ViewModel\WizardViewModel\ManageExaminationPathsViewModel.cs" />
@@ -191,6 +189,9 @@
     </Compile>
     <Compile Include="View\ManageCategoriesEditView.xaml.cs">
       <DependentUpon>ManageCategoriesEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagePictogramsChooseMediaView.xaml.cs">
+      <DependentUpon>ManagePictogramsChooseMediaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManagePictogramsGetPictoFromCameraView.xaml.cs">
       <DependentUpon>ManagePictogramsGetPictoFromCameraView.xaml</DependentUpon>
@@ -304,10 +305,6 @@
     <Compile Include="View\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddPiktogram.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -364,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageCategoriesActionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagePictogramsChooseMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -494,7 +495,12 @@
       <Link>Libs\SQLite.Interop.dll</Link>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\noImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noImage.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

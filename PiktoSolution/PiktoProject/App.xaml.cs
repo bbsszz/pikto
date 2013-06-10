@@ -66,7 +66,7 @@ namespace Pikto
 			mapping[ViewType.LearningPath] = new ViewTypeLearningPathManager();
 			mapping[ViewType.ExaminationPath] = new ViewTypeExaminationPathManager(cms.ToExaminationPathPipe);
 
-            mapping[ViewType.PictogramsManagementWizard] = new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand);
+            mapping[ViewType.PictogramsManagementWizard] = new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand, cms.OpenSettingsWindowCommand);
             mapping[ViewType.CategoriesManagementWizard] = new ViewTypeCategoriesManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.CategoriesManagementWizard, vt); }, cms.HideSecondaryWindowCommand, cms.OpenSettingsWindowCommand);
 			mapping[ViewType.CalibrationWindow] = new ViewTypeCalibrationManager();
 
