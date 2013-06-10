@@ -57,7 +57,7 @@ namespace Pikto.ViewModel.WizardViewModel
                 var param = ViewModel.ChosenCategory;
                 if (param == null)
                 {
-                    System.Windows.MessageBox.Show("Wybierz ścieżkę egzaminacyjną.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show("Wybierz kategorię.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
                 else
                 {
