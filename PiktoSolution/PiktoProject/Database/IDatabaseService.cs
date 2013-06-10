@@ -13,6 +13,8 @@ namespace Pikto.Database
 
         piktogramy GetPiktogram(int id);
 
+        List<piktogramy> GetAllPiktogramsWithCategory(string categoryName);
+
         void AddPiktogram(string name, medium obj);
         void AddPiktogram(string name, medium obj, string categoryName);
 

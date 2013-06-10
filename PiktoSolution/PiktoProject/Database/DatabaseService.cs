@@ -22,6 +22,12 @@ namespace Pikto.Database
             return db.piktogramies.SingleOrDefault(x => x.id == id);
         }
 
+        List<piktogramy> GetAllPiktogramsWithCategory(string categoryName)
+        {
+            category cat = GetAllCategories().FirstOrDefault(x=>x.name==categoryName);
+            return db.piktogramies.Where(x => x.category == cat).ToList();
+        }
+
         public void AddPiktogram(string name, medium obj)
         {
             var piktogram = db.CreateObject<piktogramy>();
