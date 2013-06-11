@@ -126,6 +126,7 @@
     <Compile Include="Command\HideSecondaryWindowCommand.cs" />
     <Compile Include="Command\OpenExaminationPathWizardCommand.cs" />
     <Compile Include="Command\OpenLearningPathPromptCommand.cs" />
+    <Compile Include="Command\RenderXnaCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Command\ShowMainWindowCommand.cs" />
     <Compile Include="Database\DatabaseService.cs" />

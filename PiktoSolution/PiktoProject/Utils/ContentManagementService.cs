@@ -36,7 +36,10 @@ namespace Pikto.Utils
 
 		public ICommand StartLearningPathCommand { get; private set; }
 		public ICommand StartExaminationPathCommand { get; private set; }
-		public SingleParameterPipe<ExaminationPathType> ToExaminationPathPipe { get; private set; } // the type should be changed appropriately
+		public SingleParameterPipe<ExaminationPathType> ToExaminationPathPipe { get; private set; }
+
+		public ICommand LoadXnaCommand { get; private set; }
+		public ICommand RenderXnaCommand { get; private set; }
 
 		public ContentManagementService(IContentChange appViewModel, IParameterTransfer parameterTransfer)
 		{

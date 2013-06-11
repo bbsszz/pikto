@@ -64,6 +64,8 @@ namespace Pikto
         ServiceContainer services = new ServiceContainer();
         #endregion
 
+		public GraphicsDeviceService GraphicsDeviceService { get { return graphicsService; } }
+
         #region Events
 
         /// <summary>

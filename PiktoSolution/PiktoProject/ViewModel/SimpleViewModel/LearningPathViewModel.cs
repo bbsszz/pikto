@@ -6,43 +6,57 @@ using System.Windows.Input;
 using Pikto.Command;
 using Emgu.CV.Structure;
 using Emgu.CV;
+using Pikto.Database;
 
 namespace Pikto.ViewModel.SimpleViewModel
 {
 	class LearningPathViewModel : BaseViewModel
 	{
-        public DisplayComponent DisplayContent { get; set; }
-        public PiktoViewManager PiktoViewMan { get; set; }
+		public ICommand RenderXnaCmd { get; private set; }
+		public GraphicsDeviceControl control { set; private get; }
 
-        MDetector md;
-        Image<Bgr, Byte> img;
-        ToolArtNetwork toolNetwork;
-        MarkerPosition3D pos;
+		private DisplayComponent displayComponent;
+		private PiktoViewManager pictoViewManager;
 
-        private void LoadXna(object sender, GraphicsDeviceEventArgs e)
-        {
-            DisplayContent = PiktoViewMan.createScene((GraphicsDeviceControl)sender, e.GraphicsDevice);
-        }
+		public LearningPathViewModel(/*ICommand renderXnaCmd, */DatabaseService db)
+		{
+			MDetector md = new MDetector();
+			Image<Bgr, Byte> img = new Image<Bgr, Byte>(640, 480, new Bgr(255, 255, 0));
+			PiktoViewDB piktodb = new PiktoViewDB(db);
+			pictoViewManager = new PiktoViewManager(piktodb);
+            ToolArtNetwork toolNetwork = new ToolArtNetwork(piktodb.getImageIdDic());
+			MarkerPosition3D pos = new MarkerPosition3D(80.0f, 640.0f, 640, 480);
 
-        private void RenderXna(object sender, GraphicsDeviceEventArgs e)
-        {
-            md.findMarkers(img.Convert<Gray, Byte>());
-            if (md.isMarker())
-            {
-                int id = toolNetwork.recognitionPictograms(md.markers[0].getSymbolImage());
-                if (id != -1)
-                {
-                    pos.estimate(md.markers[0]);
-                    PiktoViewMan.viewSceneMarker(id, pos.getTransformatinMatrix(), img.ToBitmap());
+			RenderXnaCmd = new BasicCommand(p =>
+			{
+				md.findMarkers(img.Convert<Gray, Byte>());
+				if (md.isMarker())
+				{
+					int id = toolNetwork.recognitionPictograms(md.markers[0].getSymbolImage());
+					if (id != -1)
+					{
+						pos.estimate(md.markers[0]);
+						pictoViewManager.viewSceneMarker(id, pos.getTransformatinMatrix(), img.ToBitmap());
+					}
+				}
+				else
+				{
+					pictoViewManager.updateDisplayCameraLayer(img.ToBitmap());
+				}
+				displayComponent.displaySetContent();
+			});
+		}
 
-                }
-            }
-            else
-            {
-                PiktoViewMan.updateDisplayCameraLayer(img.ToBitmap());
-            }
-            DisplayContent.displaySetContent();
+		public EventHandler<GraphicsDeviceEventArgs> RenderXnaEvent;
 
-        }
+		public void _RenderXnaEvent(object sender, GraphicsDeviceEventArgs e)
+		{
+			RenderXnaCmd.Execute(null);
+		}
+
+		public override void Loaded()
+		{
+			//displayComponent = pictoViewManager.createScene(control);
+		}
 	}
 }

@@ -11,6 +11,7 @@ using Pikto.View.ViewManager;
 using Pikto.View.ViewManager.ViewSimpleManager;
 using Pikto.View.ViewManager.ViewWizardManager;
 using Pikto.ViewModel;
+using Pikto.Database;
 
 namespace Pikto
 {
@@ -63,7 +64,8 @@ namespace Pikto
 			mapping[ViewType.SettingsWindow] = new ViewTypeSettingsWindowManager(cms.OpenPictogramsManagementWizardCommand, cms.OpenCategoriesManagementWizardCommand, cms.OpenCameraCalibrationToolCommand, cms.ReturnToMainWindowCommand);
 			mapping[ViewType.AboutWindow] = new ViewTypeAboutManager(cms.HideSecondaryWindowCommand);
 
-			mapping[ViewType.LearningPath] = new ViewTypeLearningPathManager();
+			DatabaseService databaseService = new DatabaseService();
+			mapping[ViewType.LearningPath] = new ViewTypeLearningPathManager(databaseService);
 			mapping[ViewType.ExaminationPath] = new ViewTypeExaminationPathManager(cms.ToExaminationPathPipe);
 
             mapping[ViewType.PictogramsManagementWizard] = new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand, cms.OpenSettingsWindowCommand);

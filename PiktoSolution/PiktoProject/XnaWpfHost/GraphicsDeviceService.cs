@@ -21,7 +21,7 @@ namespace Pikto
     /// interface, which provides notification events for when the device is reset
     /// or disposed.
     /// </summary>
-    class GraphicsDeviceService : IGraphicsDeviceService
+    public class GraphicsDeviceService : IGraphicsDeviceService
     {
         // Singleton device service instance.
         private static readonly GraphicsDeviceService singletonInstance = new GraphicsDeviceService();
