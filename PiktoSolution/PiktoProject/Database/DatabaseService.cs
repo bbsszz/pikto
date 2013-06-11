@@ -314,10 +314,11 @@ namespace Pikto.Database
             else
             {
                 media.media_type_id = 3;
-                BinaryFormatter bf = new BinaryFormatter();
-                MemoryStream ms = new MemoryStream();
-                bf.Serialize(ms, obj);
-                media.@object = ms.ToArray();
+                //BinaryFormatter bf = new BinaryFormatter();
+                //MemoryStream ms = new MemoryStream();
+                //bf.Serialize(ms, obj);
+                //media.@object = ms.ToArray();
+                media.@object = System.Text.Encoding.UTF8.GetBytes(obj as string);
             }
             db.media.AddObject(media);
             db.SaveChanges();

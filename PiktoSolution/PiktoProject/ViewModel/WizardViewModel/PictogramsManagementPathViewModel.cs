@@ -162,6 +162,7 @@ namespace Pikto.ViewModel.WizardViewModel
             SaveImageCmd = new BasicCommand(p => {
                 Piktogram.Image = CutImage;
                 Info = "Zapisano";
+                StopHandlingCamera();
                 OnPropertyChanged("Info");
             });
         }
