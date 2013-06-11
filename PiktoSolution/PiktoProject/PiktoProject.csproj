@@ -201,6 +201,9 @@
     <Compile Include="View\ManagePictogramsGetPictoFromCameraView.xaml.cs">
       <DependentUpon>ManagePictogramsGetPictoFromCameraView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MessageBox\PiktoMessageBox.xaml.cs">
+      <DependentUpon>PiktoMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
     <Compile Include="XnaWpfHost\DisplayComponent.cs" />
@@ -402,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagePictogramsChooseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageBox\PiktoMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
