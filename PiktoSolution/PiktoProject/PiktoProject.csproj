@@ -520,6 +520,9 @@
   <ItemGroup>
     <None Include="Resources\noImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Xna3DViewer.csproj" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
