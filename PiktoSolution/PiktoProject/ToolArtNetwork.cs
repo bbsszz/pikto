@@ -20,7 +20,7 @@ namespace Pikto
         private Dictionary<int, int> localMap;
         public ToolArtNetwork(   Dictionary<int, Image<Gray, byte>> dic) 
         {
-            var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.7f);
+            var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.8f);
             var discretizer = new DiscretizationModule(64);
             var classifier = new ART1PictogramClassifier(network);
             var mapper = new ClassMapper();

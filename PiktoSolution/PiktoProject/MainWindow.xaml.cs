@@ -30,152 +30,42 @@ namespace Pikto
     /// </summary>
     public partial class MainWindow : Window
     {
-        //logger file
-        StreamWriter logFile;
-        //public delegate void EventHandler(object sender, CameraEventArgs e);
-        private RecognitionPath.RecognitionPath recognitionPath;
-        private ImageFacade imageFacade;
-        Database.DatabaseService db;
-        private DispatcherTimer timer;
-        MDetector md;
-        MarkerPosition3D pos;
-        ToolArtNetwork toolNetwork;
-        DisplayComponent displayContent;
-        PiktoViewManager piktoViewMan;
+        PiktoRecognitionAndXNAViewer pictoRecognitionAndXnaView;
         Image<Bgr, Byte> img;
+        Database.DatabaseService db;
         public MainWindow()
         {
-            logFile = File.AppendText("log.log");
-
             InitializeComponent();
-            md = new MDetector();
-            pos = new MarkerPosition3D(80.0f, 640.0f, 640, 480);
             img = new Image<Bgr, byte>(640, 480, new Bgr(255, 255, 0));
-            var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.7f);
-            var discretizer = new DiscretizationModule(64);
-            var classifier = new ART1PictogramClassifier(network);
-            var mapper = new ClassMapper();
-            recognitionPath = new RecognitionPath.RecognitionPath(discretizer, classifier, mapper);
-            imageFacade = new ImageFacade();
-
-            db = new Database.DatabaseService();
-      
          
-            PiktoViewDB piktodb = new PiktoViewDB(db);
-            toolNetwork = new ToolArtNetwork(piktodb.getImageIdDic());
-            piktoViewMan = new PiktoViewManager(piktodb);
-            //testImg.Source = Camera.ToBitmapSource(piktodb.getImageIdDic()[1]);
-           // clusterInfo.Text = toolNetwork.testLearnNetwork();
+            db = new Database.DatabaseService();
+            pictoRecognitionAndXnaView = new PiktoRecognitionAndXNAViewer();
+            pictoRecognitionAndXnaView.initialize(db);
         }
-        public void Log(string logMessage)
-        {
-            logFile.Write("\r\nLog Entry : ");
-            logFile.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
-                DateTime.Now.ToLongDateString());
-            logFile.WriteLine("  :");
-            logFile.WriteLine("  :{0}", logMessage);
-            logFile.WriteLine("-------------------------------");
-        }
-
         private void displayImage(object s, CameraEventArgs e)
         {
             img = e.Image;
-            /*   {
-                   if (mode3D)
-                   {
-                       pos.estimate(md.getMarkers().First());
-                       List<Xna3DViewer.VirtualModel> lista = new List<Xna3DViewer.VirtualModel>();
-                       int cluster = CheckCluster(md.getMarkers().First().getImage());
-                       string modelName;
-                       if (cluster < 4)
-                       {
-                           modelName = "ship" + (cluster + 1);
-                       }
-                       else
-                       {
-                           modelName = "ship5";
-                       }
-                       lista.Add(new Xna3DViewer.VirtualModel(modelName, pos.getTransformatinMatrix(), 80.0f));
-                       arForm.UpdateScene(e.Image.ToBitmap(), lista);
-                   }
-                   else
-                   {
-                       EmguTools.draw4ContourAndCircle(img,
-                       md.getMarkers().First().getContourExternal());
-                       pos.estimate(md.getMarkers().First());
-                       f.setImagePoint(pos.imagePoints);
-                       f.setTransformatinMatrix(pos.getTransformatinMatrix());
-                       f.setEstymationLabel(pos.estimatedYaw,
-                       pos.estimatedPitch, pos.estimatedRoll);
-                       f.updateAngle(pos.estimatedYaw,
-                           pos.estimatedPitch,
-                           pos.estimatedRoll);
-                       EmguTools.draw3LineFromList(img, pos.getPointList(320, 240));
-                   }
-
-               }
-               else
-               {
-                   if (mode3D)
-                       arForm.UpdateScene(e.Image.ToBitmap(), new List<Xna3DViewer.VirtualModel>());
-                   else
-                       cameraImage.Source = Camera.ToBitmapSource(e.Image);
-               }
-                */
-        }
-
-        private int CheckCluster(Image<Gray, byte> image)
-        {
-            //iPictogram.Source = Camera.ToBitmapSource(image);
-            imageFacade.Image = image.Bitmap;
-            imageFacade.Lock();
-            int cluster = recognitionPath.Recognize(imageFacade);
-            imageFacade.Unlock();
-            Console.WriteLine(cluster);
-            return cluster;
-        }
+         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            
 
             Camera camera = new Camera();
             camera.TimeElapsed += new EventHandler<CameraEventArgs>(displayImage);
         }
-
-
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            //AddPiktogram addPiktogram = new AddPiktogram();
-            //addPiktogram.Show();
-
-
         }
-
-
         private void xnaLoad(object sender, GraphicsDeviceEventArgs e)
         {
-            displayContent = piktoViewMan.createScene(xnaHost, e.GraphicsDevice);
+            
+            pictoRecognitionAndXnaView.createScene((GraphicsDeviceControl)sender, e.GraphicsDevice);
         }
 
         private void renderXna(object sender, GraphicsDeviceEventArgs e)
         {
-            md.findMarkers(img.Convert<Gray, Byte>());
-            if (md.isMarker())
-            {
-                int id=toolNetwork.recognitionPictograms(md.markers[0].getSymbolImage());
-                if (id != -1)
-                {
-                    pos.estimate(md.markers[0]);
-                    piktoViewMan.viewSceneMarker(id, pos.getTransformatinMatrix(), img.ToBitmap());
-
-                }
-            }
-            else
-            {
-                piktoViewMan.updateDisplayCameraLayer(img.ToBitmap());
-            }
-            displayContent.displaySetContent();
-
+            pictoRecognitionAndXnaView.render(img);
         }
 
 

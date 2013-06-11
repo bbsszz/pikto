@@ -30,6 +30,8 @@ namespace Pikto
         int maxHeight;
         int step;
         bool moveStop;
+        int centerX;
+        int centerY;
         public DisplayMove(DisplayComponent d)
             : base(d)
         {
@@ -37,8 +39,8 @@ namespace Pikto
             loadOk = false;
             step = 2;
             currentMode = Mode.Center;
-            int centerX = (graficDevice.Viewport.Width - graficDevice.Viewport.X) / 2;
-            int centerY = (graficDevice.Viewport.Height - graficDevice.Viewport.Y) / 2;
+            centerX = (graficDevice.Viewport.Width - graficDevice.Viewport.X) / 2;
+            centerY = (graficDevice.Viewport.Height - graficDevice.Viewport.Y) / 2;
             screen = new Rectangle(centerX, centerY, 0, 0);
             maxHeight = 500;
             maxWidth = 400;
@@ -126,7 +128,8 @@ namespace Pikto
                     }
                     else
                     {
-
+                  //      screen = new Rectangle(centerX, centerY, 0, 0);
+                           
                     }
                     videoTexture = player.GetTexture();
                     if (videoTexture != null)

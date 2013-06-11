@@ -149,6 +149,7 @@
     <Compile Include="PictoModel\CategoryType.cs" />
     <Compile Include="PictoModel\ExaminationPathType.cs" />
     <Compile Include="PictoModel\PictogramType.cs" />
+    <Compile Include="PiktoRecognitionAndXNAViewer.cs" />
     <Compile Include="PiktoViewDB.cs" />
     <Compile Include="PiktoViewManager.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
