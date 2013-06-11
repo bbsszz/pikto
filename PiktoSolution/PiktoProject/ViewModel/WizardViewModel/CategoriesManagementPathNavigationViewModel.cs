@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using Pikto.Command;
 using Pikto.Utils;
+using System.Windows;
+using Pikto.View;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
@@ -49,7 +51,9 @@ namespace Pikto.ViewModel.WizardViewModel
             commands.Add("new_category", new BasicCommand(p =>
             {
                 ViewModel.AddCategory();
-                System.Windows.MessageBox.Show("Dodawanie kategorii zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                PiktoMessageBox pmb = new PiktoMessageBox("Dodawanie kategorii zakończone powodzeniem.", MessageBoxButton.OK);
+                pmb.ShowDialog();
+                //System.Windows.MessageBox.Show("Dodawanie kategorii zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                 finishCmd.Execute(null);
             }));
 
@@ -58,8 +62,9 @@ namespace Pikto.ViewModel.WizardViewModel
                 var param = ViewModel.ChosenCategory;
                 if (param == null)
                 {
-                    System.Windows.MessageBox.Show("Wybierz kategorię.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                }
+                    PiktoMessageBox pmb = new PiktoMessageBox("Wybierz kategorię.", MessageBoxButton.OK);
+                    pmb.ShowDialog();
+                     }
                 else
                 {
                     ViewModel.ChooseCategory();
@@ -75,14 +80,18 @@ namespace Pikto.ViewModel.WizardViewModel
                     case ActionEnum.Update:
                         {
                             ViewModel.EditCategory();
-                            System.Windows.MessageBox.Show("Edycja kategorii zakończona powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                            PiktoMessageBox pmb = new PiktoMessageBox("Edycja kategorii zakończona powodzeniem.", MessageBoxButton.OK);
+                            pmb.ShowDialog();
+                            //System.Windows.MessageBox.Show("Edycja kategorii zakończona powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                             finishCmd.Execute(null);
                             break;
                         }
                     case ActionEnum.Delete:
                         {
                             ViewModel.DeleteCategory();
-                            System.Windows.MessageBox.Show("Usunięcie kategorii zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                            PiktoMessageBox pmb = new PiktoMessageBox("Usunięcie kategorii zakończone powodzeniem.", MessageBoxButton.OK);
+                            pmb.ShowDialog();
+                            //System.Windows.MessageBox.Show("Usunięcie kategorii zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                             finishCmd.Execute(null);
                             break;
                         }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using Pikto.Command;
 using Pikto.Utils;
+using System.Windows;
+using Pikto.View;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
@@ -61,8 +63,10 @@ namespace Pikto.ViewModel.WizardViewModel
 			{
 				var param = ViewModel.ChosenExaminationPathFromLoadPath;
 				if (param == null)
-				{
-					System.Windows.MessageBox.Show("Wybierz ścieżkę egzaminacyjną.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                {
+                    PiktoMessageBox pmb = new PiktoMessageBox("Wybierz ścieżkę egzaminacyjną.", MessageBoxButton.OK);
+                    pmb.ShowDialog();
+					//System.Windows.MessageBox.Show("Wybierz ścieżkę egzaminacyjną.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
 				}
 				else
 				{

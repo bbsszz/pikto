@@ -23,5 +23,10 @@ namespace Pikto.View
 		{
 			InitializeComponent();
 		}
+
+        private void xnaHost_LoadContent(object sender, GraphicsDeviceEventArgs e)
+        {
+
+        }
 	}
 }

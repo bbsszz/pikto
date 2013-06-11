@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using Pikto.Utils;
 using Pikto.Command;
+using System.Windows;
+using Pikto.View;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
@@ -49,7 +51,9 @@ namespace Pikto.ViewModel.WizardViewModel
 			{
                 if (ViewModel.ChosenCategory==null || ViewModel.PictoName==null)
                 {
-                    System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    PiktoMessageBox pmb = new PiktoMessageBox("Wypełnij pola.", MessageBoxButton.OK);
+                    pmb.ShowDialog();
+                    //System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
                 else
                 {
@@ -71,7 +75,9 @@ namespace Pikto.ViewModel.WizardViewModel
             {
                 if (ViewModel.MediaType == null || ViewModel.ObjectName == null)
                 {
-                    System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    PiktoMessageBox pmb = new PiktoMessageBox("Wypełnij pola.", MessageBoxButton.OK);
+                    pmb.ShowDialog();
+                    //System.Windows.MessageBox.Show("Wypełnij pola.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
                 else
                 {
@@ -79,12 +85,16 @@ namespace Pikto.ViewModel.WizardViewModel
                     if (ViewModel.NewPictogram)
                     {
                         ViewModel.AddPiktogram();
-                        System.Windows.MessageBox.Show("Dodawanie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                        PiktoMessageBox pmb = new PiktoMessageBox("Dodawanie piktogramu zakończone powodzeniem.", MessageBoxButton.OK);
+                        pmb.ShowDialog();
+                        //System.Windows.MessageBox.Show("Dodawanie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                     }
                     else
                     {
                         ViewModel.EditPictogram();
-                        System.Windows.MessageBox.Show("Edycja piktogramu zakończona powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                        PiktoMessageBox pmb = new PiktoMessageBox("Edycja piktogramu zakończona powodzeniem.", MessageBoxButton.OK);
+                        pmb.ShowDialog();
+                        //System.Windows.MessageBox.Show("Edycja piktogramu zakończona powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                     }
                     finishCmd.Execute(null);
                 }
@@ -96,7 +106,9 @@ namespace Pikto.ViewModel.WizardViewModel
                 var param = ViewModel.ChosenPictogram;
                 if (param == null)
                 {
-                    System.Windows.MessageBox.Show("Wybierz piktogram.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    PiktoMessageBox pmb = new PiktoMessageBox("Wybierz piktogram.", MessageBoxButton.OK);
+                    pmb.ShowDialog();
+                    //System.Windows.MessageBox.Show("Wybierz piktogram.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
                 else
                 {
@@ -117,7 +129,9 @@ namespace Pikto.ViewModel.WizardViewModel
                     case ActionEnum.Delete:
                         {
                             ViewModel.DeletePictogram();
-                            System.Windows.MessageBox.Show("Usunięcie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
+                            PiktoMessageBox pmb = new PiktoMessageBox("Usunięcie piktogramu zakończone powodzeniem.", MessageBoxButton.OK);
+                            pmb.ShowDialog();
+                            //System.Windows.MessageBox.Show("Usunięcie piktogramu zakończone powodzeniem.", "Gratulacje", System.Windows.MessageBoxButton.OK);
                             finishCmd.Execute(null);
                             break;
                         }

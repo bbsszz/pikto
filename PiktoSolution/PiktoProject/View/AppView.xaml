@@ -6,7 +6,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         FontFamily="Verdana"
-        WindowState="Normal"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Top="0"
         AllowsTransparency="True"

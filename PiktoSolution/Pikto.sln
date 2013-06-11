@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiktoProject", "PiktoProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiktoTestEnvironment", "PiktoTestEnvironment\PiktoTestEnvironment.csproj", "{7F8A8FDE-E5E4-4C28-A42A-7F8512C5C4F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xna3DViewer", "Xna3DViewer\Xna3DViewer.csproj", "{282759F8-B913-412E-8B2F-3B6A2A84AB53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,6 +21,10 @@ Global
 		{7F8A8FDE-E5E4-4C28-A42A-7F8512C5C4F5}.Debug|x86.Build.0 = Debug|x86
 		{7F8A8FDE-E5E4-4C28-A42A-7F8512C5C4F5}.Release|x86.ActiveCfg = Release|x86
 		{7F8A8FDE-E5E4-4C28-A42A-7F8512C5C4F5}.Release|x86.Build.0 = Release|x86
+		{282759F8-B913-412E-8B2F-3B6A2A84AB53}.Debug|x86.ActiveCfg = Debug|x86
+		{282759F8-B913-412E-8B2F-3B6A2A84AB53}.Debug|x86.Build.0 = Debug|x86
+		{282759F8-B913-412E-8B2F-3B6A2A84AB53}.Release|x86.ActiveCfg = Release|x86
+		{282759F8-B913-412E-8B2F-3B6A2A84AB53}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,7 +39,7 @@ namespace Pikto
         private DispatcherTimer timer;
         MDetector md;
         MarkerPosition3D pos;
-
+        ToolArtNetwork toolNetwork;
         DisplayComponent displayContent;
         PiktoViewManager piktoViewMan;
         Image<Bgr, Byte> img;
@@ -51,7 +51,7 @@ namespace Pikto
             md = new MDetector();
             pos = new MarkerPosition3D(80.0f, 640.0f, 640, 480);
             img = new Image<Bgr, byte>(640, 480, new Bgr(255, 255, 0));
-            var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.5f);
+            var network = ART1Builder.Instance.BuildNetwork(64 * 64, 0.7f);
             var discretizer = new DiscretizationModule(64);
             var classifier = new ART1PictogramClassifier(network);
             var mapper = new ClassMapper();
@@ -59,7 +59,13 @@ namespace Pikto
             imageFacade = new ImageFacade();
 
             db = new Database.DatabaseService();
-            piktoViewMan = new PiktoViewManager(1, db);
+      
+         
+            PiktoViewDB piktodb = new PiktoViewDB(db);
+            toolNetwork = new ToolArtNetwork(piktodb.getImageIdDic());
+            piktoViewMan = new PiktoViewManager(piktodb);
+            //testImg.Source = Camera.ToBitmapSource(piktodb.getImageIdDic()[1]);
+           // clusterInfo.Text = toolNetwork.testLearnNetwork();
         }
         public void Log(string logMessage)
         {
@@ -156,9 +162,13 @@ namespace Pikto
             md.findMarkers(img.Convert<Gray, Byte>());
             if (md.isMarker())
             {
-                pos.estimate(md.markers[0]);
-                piktoViewMan.viewSceneMarker(1, pos.getTransformatinMatrix(), img.ToBitmap());
-             
+                int id=toolNetwork.recognitionPictograms(md.markers[0].getSymbolImage());
+                if (id != -1)
+                {
+                    pos.estimate(md.markers[0]);
+                    piktoViewMan.viewSceneMarker(id, pos.getTransformatinMatrix(), img.ToBitmap());
+
+                }
             }
             else
             {
