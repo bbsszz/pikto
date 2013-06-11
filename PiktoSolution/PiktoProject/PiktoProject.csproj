@@ -148,6 +148,7 @@
     <Compile Include="PictoModel\CategoryType.cs" />
     <Compile Include="PictoModel\ExaminationPathType.cs" />
     <Compile Include="PictoModel\PictogramType.cs" />
+    <Compile Include="PiktoViewDB.cs" />
     <Compile Include="PiktoViewManager.cs" />
     <Compile Include="Position3DForm\FormInfoPosition.cs">
       <SubType>Form</SubType>
@@ -173,6 +174,7 @@
     <Compile Include="RecognitionPath\IImage.cs" />
     <Compile Include="RecognitionPath\DiscretizationModule\IDiscretizer.cs" />
     <Compile Include="RecognitionPath\PixelMonoColorEnum.cs" />
+    <Compile Include="ToolArtNetwork.cs" />
     <Compile Include="UnsafeBitmap.cs" />
     <Compile Include="Utils\MediaTypeEnum.cs" />
     <Compile Include="ViewModel\SimpleViewModel\CalibrationToolViewModel.cs" />
@@ -440,12 +442,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Database\DataModelContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModelContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Configuration\packages.config" />
+    <None Include="Pikto.Database.piktoDB.datasource" />
     <None Include="pikto.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

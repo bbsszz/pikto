@@ -8,43 +8,19 @@ namespace Pikto
 {
     class PiktoViewManager
     {
-        int currentCatagoryId;
-        Dictionary<int, string> pictoObjectType;
-        Dictionary<int, string> pictoObjectName;
-        Database.DatabaseService db;
+        PiktoViewDB piktoViewDB;
         DisplayXNA baseSceneLayer;
         CameraImageDisplay cameraSceneLayer;
         DisplayMove moveLayerScene;
         Model3dDisplay model3dSceneLayer;
         bool videoMode;
-        public PiktoViewManager(int catagoryId, Database.DatabaseService dbService)
+        public PiktoViewManager(PiktoViewDB piktoDB)
         {
-            currentCatagoryId = catagoryId;
-            db = dbService;
-            pictoObjectType = new Dictionary<int, string>();
-            pictoObjectName = new Dictionary<int, string>();
-            createListAvailableId();
-            int i = 0;
-            videoMode = false;
+            piktoViewDB = piktoDB;
+             videoMode = false;
 
         }
-        private void createListAvailableId()
-        {
-            pictoObjectType.Add(1, "video");
-            pictoObjectName.Add(1, "Bear");
-
-            pictoObjectType.Add(2, "3dobject");
-            pictoObjectName.Add(2, "ship1");
-
-            pictoObjectType.Add(3, "3dobject");
-            pictoObjectName.Add(3, "ship1");
-
-            pictoObjectType.Add(4, "3dobject");
-            pictoObjectName.Add(4, "ship2");
-
-            pictoObjectType.Add(5, "3dobject");
-            pictoObjectName.Add(5, "ship3");
-        }
+       
         public DisplayComponent createScene(GraphicsDeviceControl devControl,
                                                  GraphicsDevice dev)
         {
@@ -96,19 +72,21 @@ namespace Pikto
             }
             else
             {
-                if (pictoObjectType.ContainsKey(id))
+                string mediumType = piktoViewDB.getMediaType(id);
+                string mediumName = piktoViewDB.getMediaName(id);
+                if (mediumName!="null")
                 {
-                    if (pictoObjectType[id] == "video")
+                    if (mediumType == "video")
                     {
                         viewMoveLayerAndCameraLayer();
-                        moveLayerScene.setMove(pictoObjectName[id]);
+                        moveLayerScene.setMove(mediumName);
                         moveLayerScene.playMove();
                         videoMode = true;
                     }
-                    if (pictoObjectType[id] == "3dobject")
+                    if (mediumType == "3dobject")
                     {
                         List<E3DModel> list = new List<E3DModel>();
-                        list.Add(new E3DModel(pictoObjectName[id],mtxProj, 80.0f));
+                        list.Add(new E3DModel(mediumName,mtxProj, 80.0f));
                         view3DModelLayerAndCameraLayer();
                         model3dSceneLayer.setModels(list);
 
