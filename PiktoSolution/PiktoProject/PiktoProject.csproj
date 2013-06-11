@@ -176,13 +176,16 @@
     <Compile Include="UnsafeBitmap.cs" />
     <Compile Include="Utils\MediaTypeEnum.cs" />
     <Compile Include="ViewModel\SimpleViewModel\CalibrationToolViewModel.cs" />
-    <Compile Include="ViewModel\WizardViewModel\ChooseExaminationPathViewModel.cs" />
-    <Compile Include="ViewModel\WizardViewModel\ManageExaminationPathsViewModel.cs" />
+    <Compile Include="ViewModel\WizardViewModel\ExaminationPathWizardChooseViewModel.cs" />
+    <Compile Include="ViewModel\WizardViewModel\ExaminationPathWizardNewViewModel.cs" />
     <Compile Include="View\CalibrationToolView.xaml.cs">
       <DependentUpon>CalibrationToolView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ChooseExaminationPathView.xaml.cs">
-      <DependentUpon>ChooseExaminationPathView.xaml</DependentUpon>
+    <Compile Include="View\ExaminationPathWizardChooseView.xaml.cs">
+      <DependentUpon>ExaminationPathWizardChooseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExaminationPathWizardNewView.xaml.cs">
+      <DependentUpon>ExaminationPathWizardNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageCategoriesChooseView.xaml.cs">
       <DependentUpon>ManageCategoriesChooseView.xaml</DependentUpon>
@@ -339,7 +342,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ChooseExaminationPathView.xaml">
+    <Page Include="View\ExaminationPathWizardChooseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExaminationPathWizardNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

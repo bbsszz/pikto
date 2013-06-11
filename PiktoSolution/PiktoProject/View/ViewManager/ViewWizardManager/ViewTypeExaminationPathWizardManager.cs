@@ -34,12 +34,14 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 
 				case "new_path":
 				{
-					return "NEW PATH";
+					var view = new ExaminationPathWizardNewView();
+					view.DataContext = NavigationViewModel.ViewModel;
+					return view;
 				}
 
 				case "load_path":
 				{
-					var view = new ChooseExaminationPathView();
+					var view = new ExaminationPathWizardChooseView();
 					view.DataContext = NavigationViewModel.ViewModel;
 					return view;
 				}
@@ -65,9 +67,9 @@ namespace Pikto.View.ViewManager.ViewWizardManager
 
 		protected override WizardNavigationViewModel<ExaminationPathWizardViewModel> CreateViewModel()
 		{
-			var chooseExaminationPathViewModel = new ChooseExaminationPathViewModel();
-			var manageExaminationPathsViewModel = new ManageExaminationPathsViewModel();
-			var viewModel = new ExaminationPathWizardViewModel(manageExaminationPathsViewModel, chooseExaminationPathViewModel);
+			var examinationPathWizardChooseViewModel = new ExaminationPathWizardChooseViewModel();
+			var examinationPathWizardNewViewModel = new ExaminationPathWizardNewViewModel();
+			var viewModel = new ExaminationPathWizardViewModel(examinationPathWizardNewViewModel, examinationPathWizardChooseViewModel);
 			var navigationViewModel = new ExaminationPathWizardNavigationViewModel(viewModel, refreshStepAction, cancelCmd, startExaminationPathCmd);
 			return navigationViewModel;
 		}

@@ -12,6 +12,8 @@ namespace Pikto.ViewModel.WizardViewModel
 	{
 		private ICommand startExaminationPathCmd;
 
+		public string WizardTitle { get; private set; }
+
 		public ExaminationPathWizardNavigationViewModel(
 			ExaminationPathWizardViewModel viewModel,
 			Action<string> refreshStepAction,
@@ -20,11 +22,13 @@ namespace Pikto.ViewModel.WizardViewModel
 			: base(viewModel, refreshStepAction, cancelCmd)
 		{
 			this.startExaminationPathCmd = startExaminationPathCmd;
+
+			WizardTitle = "Konfiguracja ścieżki egzaminowania";
 		}
 
 		protected override void PrepareForwardCmds(IDictionary<string, ICommand> commands)
 		{
-			commands.Add("", new BasicCommand(p =>
+			commands[""] = new BasicCommand(p =>
 			{
 				switch (ViewModel.Action)
 				{
@@ -38,15 +42,22 @@ namespace Pikto.ViewModel.WizardViewModel
 						ViewModel.HandleLoadPath();
 						break;
 				}
-			}));
+			});
 
-			commands.Add("new_path", new BasicCommand(p =>
+			commands["new_path"] = new BasicCommand(p =>
 			{
 				var param = ViewModel.ChosenExaminationPathFromNewPath;
-				startExaminationPathCmd.Execute(param);
-			}));
+				if (param == null)
+				{
+					System.Windows.MessageBox.Show("Nieprawidłowa ścieżka egzaminacyjna.", "Błąd", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+				}
+				else
+				{
+					startExaminationPathCmd.Execute(param);
+				}
+			});
 
-			commands.Add("load_path", new BasicCommand(p =>
+			commands["load_path"] = new BasicCommand(p =>
 			{
 				var param = ViewModel.ChosenExaminationPathFromLoadPath;
 				if (param == null)
@@ -57,7 +68,7 @@ namespace Pikto.ViewModel.WizardViewModel
 				{
 					startExaminationPathCmd.Execute(param);
 				}
-			}));
+			});
 		}
 	}
 }

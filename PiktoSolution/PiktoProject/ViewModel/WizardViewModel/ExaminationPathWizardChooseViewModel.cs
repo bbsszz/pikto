@@ -6,7 +6,7 @@ using Pikto.PictoModel;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-	class ChooseExaminationPathViewModel
+	class ExaminationPathWizardChooseViewModel
 	{
 		public IList<ExaminationPathType> ExaminationPaths { get; private set; }
 
@@ -27,7 +27,7 @@ namespace Pikto.ViewModel.WizardViewModel
 			}
 		}
 
-		public ChooseExaminationPathViewModel()
+		public ExaminationPathWizardChooseViewModel()
 		{
 			ExaminationPaths = new List<ExaminationPathType>();
 			SelectedIndex = -1;

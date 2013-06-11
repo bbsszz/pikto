@@ -6,7 +6,7 @@ using Pikto.PictoModel;
 
 namespace Pikto.ViewModel.WizardViewModel
 {
-	class ManageExaminationPathsViewModel
+	class ExaminationPathWizardNewViewModel
 	{
 		public ExaminationPathType ChosenExaminationPath
 		{
@@ -15,7 +15,7 @@ namespace Pikto.ViewModel.WizardViewModel
 
 		internal void Load()
 		{
-			throw new NotImplementedException();
+
 		}
 	}
 }
