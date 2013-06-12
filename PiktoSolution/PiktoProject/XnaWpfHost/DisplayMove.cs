@@ -72,6 +72,7 @@ namespace Pikto
             try
             {
                 video = content.Load<Video>(name);
+                screen = new Rectangle(centerX, centerY, 0, 0);
                 loadOk = true;
 
             }

@@ -42,6 +42,10 @@ namespace Pikto
                     piktoViewManager.viewSceneMarker(id, pos.getTransformatinMatrix(), img.ToBitmap());
 
                 }
+                else
+                {
+                    piktoViewManager.updateDisplayCameraLayer(img.ToBitmap());
+                }
                 //   piktoViewMan.updateDisplayCameraLayer(img.ToBitmap());
             }
             else
