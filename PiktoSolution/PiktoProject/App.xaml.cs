@@ -25,8 +25,8 @@ namespace Pikto
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
 			// temporary window
-			var tmpMainWindow = new MainWindow();
-			tmpMainWindow.Show();
+            //var tmpMainWindow = new MainWindow();
+            //tmpMainWindow.Show();
 
 			BuildApplication();
 			mainView.Show();

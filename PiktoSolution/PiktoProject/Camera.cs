@@ -31,6 +31,11 @@ namespace Pikto
 
         }
 
+        public void Close()
+        {
+            this._capture.Dispose();
+        }
+
         private void TimerHandler(object sender, EventArgs e)
         {
             img = _capture.QueryFrame();

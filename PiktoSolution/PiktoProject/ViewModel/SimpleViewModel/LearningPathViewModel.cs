@@ -45,6 +45,8 @@ namespace Pikto.ViewModel.SimpleViewModel
 				}
 				displayComponent.displaySetContent();
 			});
+
+
 		}
 
 		public EventHandler<GraphicsDeviceEventArgs> RenderXnaEvent;
@@ -58,5 +60,7 @@ namespace Pikto.ViewModel.SimpleViewModel
 		{
 			//displayComponent = pictoViewManager.createScene(control);
 		}
+
+
 	}
 }

@@ -6,6 +6,6 @@
     <Grid>
         <Button Content="Show Next Frame" Height="23" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Top" Width="140" Click="button1_Click" Margin="0,1,0,0" />
         <Button Content="AddPiktogram" Height="23" HorizontalAlignment="Left" Margin="204,3,0,0" x:Name="button2" VerticalAlignment="Top" Width="89" Click="button2_Click" />
-        <local:GraphicsDeviceControl x:Name="xnaHost" Margin="15,32,12,10" LoadContent="xnaLoad" RenderXna="renderXna"/>
+        <local:GraphicsDeviceControl x:Name="xnaHost" Margin="15,32,12,10" LoadContent="xnaLoad" RenderXna="renderXna" Width="Auto" Height="Auto" />
     </Grid>
 </Window>

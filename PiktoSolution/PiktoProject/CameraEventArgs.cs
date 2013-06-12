@@ -8,7 +8,7 @@ using Emgu.CV.Structure;
 
 namespace Pikto
 {
-    class CameraEventArgs : EventArgs
+    public class CameraEventArgs : EventArgs
     {
         private Image<Bgr, Byte> _image;
 

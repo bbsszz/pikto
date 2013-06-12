@@ -210,6 +210,9 @@
       <DependentUpon>PiktoMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
+    <Compile Include="View\XnaWindow.xaml.cs">
+      <DependentUpon>XnaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
     <Compile Include="XnaWpfHost\DisplayComponent.cs" />
     <Compile Include="XnaWpfHost\DisplayDecorator.cs" />
@@ -433,6 +436,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\XnaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -466,7 +473,9 @@
       <LastGenOutput>DataModelContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Configuration\packages.config" />
-    <None Include="Pikto.Database.piktoDB.datasource" />
+    <None Include="Pikto.Database.piktoDB.datasource">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="pikto.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
