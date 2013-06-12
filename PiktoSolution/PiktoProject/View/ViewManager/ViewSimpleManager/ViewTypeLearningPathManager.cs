@@ -11,10 +11,13 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 	class ViewTypeLearningPathManager : ViewTypeSimpleManager<LearningPathWindow, LearningPathViewModel>
 	{
 		private DatabaseService databaseService;
+        private ICommand returnToMainWindowCmd;
 
-		public ViewTypeLearningPathManager(DatabaseService databaseService)
+
+        public ViewTypeLearningPathManager(DatabaseService databaseService, ICommand returnToMainWindowCmd)
 		{
 			this.databaseService = databaseService;
+            this.returnToMainWindowCmd = returnToMainWindowCmd;
 		}
 
 		protected override LearningPathWindow CreateView()
@@ -26,7 +29,7 @@ namespace Pikto.View.ViewManager.ViewSimpleManager
 
 		protected override LearningPathViewModel CreateViewModel()
 		{
-			var viewModel = new LearningPathViewModel(databaseService);
+			var viewModel = new LearningPathViewModel(databaseService, returnToMainWindowCmd);
 			return viewModel;
 		}
 	}

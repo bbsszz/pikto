@@ -65,7 +65,7 @@ namespace Pikto
 			mapping[ViewType.AboutWindow] = new ViewTypeAboutManager(cms.HideSecondaryWindowCommand);
 
 			DatabaseService databaseService = new DatabaseService();
-			mapping[ViewType.LearningPath] = new ViewTypeLearningPathManager(databaseService);
+			mapping[ViewType.LearningPath] = new ViewTypeLearningPathManager(databaseService, cms.LoadMainPageCommand);
 			mapping[ViewType.ExaminationPath] = new ViewTypeExaminationPathManager(cms.ToExaminationPathPipe);
 
             mapping[ViewType.PictogramsManagementWizard] = new ViewTypePictogramsManagementWizardManager(vt => { cms.RefreshSecondaryView(ViewType.PictogramsManagementWizard, vt); }, cms.HideSecondaryWindowCommand, cms.OpenSettingsWindowCommand);

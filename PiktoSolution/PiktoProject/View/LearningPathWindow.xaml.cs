@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Pikto.View
 {
@@ -27,11 +28,12 @@ namespace Pikto.View
 
             
         }
-
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             xnaWindow.Close();
+            this.closeButton.Visibility = System.Windows.Visibility.Hidden;
         }
+
 
         
 

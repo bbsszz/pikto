@@ -56,5 +56,7 @@ namespace Pikto.View
             img = e.Image;
         }
 
+        
+
     }
 }
