@@ -12,32 +12,42 @@ namespace Pikto.View
 	/// </summary>
 	public partial class LearningPathWindow : Page
 	{
-        XnaWindow xnaWindow = new XnaWindow();
-
         public LearningPathWindow()
         {
-            InitializeComponent();
-            xnaWindow.Show();
-
-            //img = new Image<Bgr, byte>(640, 480, new Bgr(255, 0, 0));
-
-         
-            //db = new Database.DatabaseService();
-            //pictoRecognitionAndXnaView = new PiktoRecognitionAndXNAViewer();
-            //pictoRecognitionAndXnaView.initialize(db);
+			InitializeComponent();
+            img = new Image<Bgr, byte>(640, 480, new Bgr(255, 127, 127));
 
             
+            db = new Database.DatabaseService();
+            pictoRecognitionAndXnaView = new PiktoRecognitionAndXNAViewer();
+            pictoRecognitionAndXnaView.initialize(db);
+
+            camera = new Camera();
+            camera.TimeElapsed += displayFrame;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+		// TODO to be refactored
+
+		PiktoRecognitionAndXNAViewer pictoRecognitionAndXnaView;
+        Image<Bgr, Byte> img;
+        Database.DatabaseService db;
+
+        Camera camera;
+
+        private void xnaLoad(object sender, GraphicsDeviceEventArgs e)
         {
-            xnaWindow.Close();
-            this.closeButton.Visibility = System.Windows.Visibility.Hidden;
+            
+            pictoRecognitionAndXnaView.createScene((GraphicsDeviceControl)sender, e.GraphicsDevice);
         }
 
+        private void renderXna(object sender, GraphicsDeviceEventArgs e)
+        {
+            pictoRecognitionAndXnaView.render(img);
+        }
 
-        
-
-
-
+        private void displayFrame(object sender, CameraEventArgs e)
+        {
+            img = e.Image;
+        }
 	}
 }

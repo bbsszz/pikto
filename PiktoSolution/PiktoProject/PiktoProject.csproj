@@ -140,9 +140,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="Xna3DViewer, Version=2.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Xna3DViewer\bin\Debug_x86\Xna3DViewer.dll</HintPath>
@@ -241,9 +243,6 @@
       <DependentUpon>PiktoMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewManager\ViewSimpleManager\ViewTypeCalibrationManager.cs" />
-    <Compile Include="View\XnaWindow.xaml.cs">
-      <DependentUpon>XnaWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="XnaWpfHost\CameraImageDisplay.cs" />
     <Compile Include="XnaWpfHost\DisplayComponent.cs" />
     <Compile Include="XnaWpfHost\DisplayDecorator.cs" />
@@ -464,10 +463,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WizardView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\XnaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

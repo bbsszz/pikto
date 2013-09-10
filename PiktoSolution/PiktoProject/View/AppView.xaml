@@ -9,12 +9,11 @@
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Top="0"
-        AllowsTransparency="True"
         Height="600"
         Width="800"
         Background="{StaticResource PrimaryBrush}">
     <Grid>
-        <Frame Name="primaryContent" NavigationUIVisibility="Hidden" Focusable="False">
+        <Frame Name="primaryContent" NavigationUIVisibility="Hidden" Focusable="False" Margin="64,64,64,64">
             <Frame.Content>
                 <MultiBinding Converter="{StaticResource viewTypeConverter}" ConverterParameter="Primary">
                     <Binding Path="PrimaryViewType" />

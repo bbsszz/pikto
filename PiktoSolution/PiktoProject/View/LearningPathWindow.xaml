@@ -4,12 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:Pikto"
       mc:Ignorable="d" 
 	  Title="LearningPathWindow"
-      Width="auto" Height="auto">
+      Width="auto" Height="auto" d:DesignHeight="449" d:DesignWidth="577">
 
-    <Grid Width="auto" Height="auto">
-        <Button Style="{StaticResource MenuButtonStyle}" Content="Wróć do menu" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="220" Command="{Binding ReturnToMainWindowCmd}"/>
-        <Button Name="closeButton" Style="{StaticResource MenuButtonStyle}" FontFamily="Marlett" Content="r" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="30" Click="Button_Click" />
+    <Grid>
+        <!-- TODO make it beautiful :P -->
+        <Border BorderBrush="HotPink" BorderThickness="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="640" Height="480" >
+            <local:GraphicsDeviceControl x:Name="xnaHost" LoadContent="xnaLoad" RenderXna="renderXna"/>
+        </Border>
+        <Button Style="{StaticResource MenuButtonStyle}" Content="Wróć do menu" HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Width="220" Command="{Binding ReturnToMainWindowCmd}"/>
     </Grid>
 </Page>
